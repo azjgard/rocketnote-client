@@ -4,6 +4,7 @@ chrome.runtime.sendMessage({}, function () {
 			clearInterval(readyStateCheckInterval);
 			buildWidget();
 			watchAddNoteButton();
+			watchPinButton();
 			watchKeyForInputFocus(78);
 			watchKeyForNoteSubmit(13);
 		}
@@ -26,6 +27,12 @@ function buildWidget() {
 
 function watchAddNoteButton() {
 	$(document).on("click", "#rn_note-submit", function() {
+		addNote();
+	});
+}
+
+function watchPinButton() {
+	$(document).on("click", "#rn_pin", function() {
 		addNote();
 	});
 }
@@ -212,7 +219,7 @@ function buildExistingNotes(container) {
 			addClassToHashtags(noteBody);
 		} else {
 			noteBody.text("pinned");
-			existingNote.addClass("pin");
+			noteBody.addClass("pin");
 		}
 
 		if (note.timestamp >= 0) {
@@ -227,9 +234,12 @@ function buildExistingNotes(container) {
 function buildNoteInput() {
 	var inputForm = $(document.createElement("div")).attr({id: "rn_input-form"});
 	var input = $(document.createElement("input")).attr({id: "rn_note-input", placeholder: "Type here..."});
+	var pinButton = $(document.createElement("button")).attr({class: "rn_button-action gray", id: "rn_pin"});
+	var pinImage = $(document.createElement("image")).attr({src: chrome.extension.getURL("assets/img/thumbtack.svg"), class: "rn_icon"});
 	var submitButton = $(document.createElement("button")).attr({class: "rn_button-action", id: "rn_note-submit"}).text("Add");
 
-	inputForm.append([input, submitButton]);
+	pinButton.append(pinImage);
+	inputForm.append([input, pinButton, submitButton]);
 
 	return inputForm;
 }
