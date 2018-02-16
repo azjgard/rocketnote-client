@@ -247,23 +247,25 @@ function addNote() {
 	}
 
 	function addNoteToContainer(content, timestamp, videoId) {
-		var timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
+		var noteContainer = $("#rn_note-container");
 		var noteBody = $(document.createElement("p"));
+		var timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
 		var timestampAnchor = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: timestampedUrl});
 
-		if (note.content.length > 0) {
-			noteBody.text(note.content);
+		if (content.length > 0) {
+			noteBody.text(content);
 			addClassToHashtags(noteBody);
 		} else {
 			noteBody.text("pinned");
 			existingNote.addClass("pin");
 		}
 
-		if (note.timestamp >= 0) {
-			var formattedTimestamp = formatTimestamp(note.timestamp);
-			noteBody.prepend(timestamp.text(formattedTimestamp));
+		if (timestamp >= 0) {
+			var formattedTimestamp = formatTimestamp(timestamp);
+			noteBody.prepend(timestampAnchor.text(formattedTimestamp));
 		}
-		$("#rn_note-container").append(note);
+		noteContainer.append(noteBody);
+		noteContainer.scrollTop(noteContainer[0].scrollHeight);
 	}
 }
 
