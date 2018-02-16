@@ -1,9 +1,11 @@
-chrome.runtime.sendMessage({}, function (response) {
+chrome.runtime.sendMessage({}, function () {
 	var readyStateCheckInterval = setInterval(function () {
 		if (document.readyState === "complete") {
 			clearInterval(readyStateCheckInterval);
 			buildWidget();
 			watchAddNoteButton();
+			watchKeyForInputFocus(78);
+			watchKeyForNoteSubmit(13);
 		}
 	}, 300);
 });
@@ -234,7 +236,8 @@ function buildNoteInput() {
 
 function addNote() {
 	var video = $("video")[0];
-	var content = $("#rn_note-input").val();
+	var input = $("#rn_note-input");
+	var content = input.val();
 	var timestamp = Math.floor(video.currentTime);
 	var videoId = getParameterByName("v");
 	var tags = filterHashtags(content);
@@ -244,6 +247,8 @@ function addNote() {
 
 	function submitNote(content, timestamp, videoId, tags) {
 		addNoteToContainer(content, timestamp, videoId);
+		input.val("");
+		input.focus();
 	}
 
 	function addNoteToContainer(content, timestamp, videoId) {
@@ -257,7 +262,7 @@ function addNote() {
 			addClassToHashtags(noteBody);
 		} else {
 			noteBody.text("pinned");
-			existingNote.addClass("pin");
+			noteContainer.addClass("pin");
 		}
 
 		if (timestamp >= 0) {
@@ -296,4 +301,22 @@ function addClassToHashtags(note) {
 
 function formatTimestamp(timestamp) {
 	return String(moment.utc(timestamp*1000).format('mm:ss'));
+}
+
+function watchKeyForInputFocus(charCode) {
+	$(document).keyup(function(e) {
+		if (e.keyCode === charCode) {
+			$("#rn_note-input").focus();
+		}
+	})
+}
+
+function watchKeyForNoteSubmit(charCode) {
+	$(document).keyup(function(e) {
+		if ($("#rn_note-input").is(":focus")) {
+			if (e.keyCode === charCode) {
+				addNote();
+			}
+		}
+	});
 }

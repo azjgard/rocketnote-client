@@ -32,8 +32,8 @@
           <file leaf-file-name="inject.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="558">
-                  <caret line="265" column="5" lean-forward="true" selection-start-line="265" selection-start-column="5" selection-end-line="265" selection-end-column="5" />
+                <state relative-caret-position="870">
+                  <caret line="321" column="1" lean-forward="true" selection-start-line="321" selection-start-column="1" selection-end-line="321" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -85,6 +85,7 @@
       <find>p</find>
       <find>body</find>
       <find>scrollTop</find>
+      <find>&quot;Add</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
@@ -223,7 +224,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1518786934136</updated>
-      <workItem from="1518786936053" duration="23007000" />
+      <workItem from="1518786936053" duration="24368000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed body to content.">
       <created>1518811313443</created>
@@ -232,11 +233,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518811313443</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Wired up appending note on &quot;Add&quot;.">
+      <created>1518812810292</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1518812810292</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23007000" />
+    <option name="totallyTimeSpent" value="24368000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-975" y="-1080" width="1920" height="1080" extended-state="0" />
@@ -268,7 +276,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Renamed body to content." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed body to content." />
+    <MESSAGE value="Wired up appending note on &quot;Add&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="Wired up appending note on &quot;Add&quot;." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -389,8 +398,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="265" column="5" lean-forward="true" selection-start-line="265" selection-start-column="5" selection-end-line="265" selection-end-column="5" />
+        <state relative-caret-position="870">
+          <caret line="321" column="1" lean-forward="true" selection-start-line="321" selection-start-column="1" selection-end-line="321" selection-end-column="1" />
           <folding />
         </state>
       </provider>
