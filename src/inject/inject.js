@@ -7,6 +7,7 @@ chrome.runtime.sendMessage({}, function () {
 			watchPinButton();
 			watchKeyForInputFocus(78);
 			watchKeyForNoteSubmit(13);
+			watchKeyForPin(80);
 		}
 	}, 300);
 });
@@ -26,14 +27,14 @@ function buildWidget() {
 }
 
 function watchAddNoteButton() {
-	$(document).on("click", "#rn_note-submit", function() {
-		addNote();
+	$(document).on("click", "#rn_note-submit", function () {
+		addNoteIfInputHasContent();
 	});
 }
 
 function watchPinButton() {
-	$(document).on("click", "#rn_pin", function() {
-		addNote();
+	$(document).on("click", "#rn_pin", function () {
+		addPin();
 	});
 }
 
@@ -194,11 +195,11 @@ function getExistingNotes() {
 }
 
 function buildExistingNotes(container) {
-	existingNotes = getExistingNotes().data.sort(function(a, b) {
+	existingNotes = getExistingNotes().data.sort(function (a, b) {
 		return a.timestamp - b.timestamp;
 	});
 
-	existingNotes.map(function(note) {
+	existingNotes.map(function (note) {
 		var existingNote = $(document.createElement("div"));
 		existingNote.attr({class: "existing-note"});
 		var noteBody = buildNoteBody(note, existingNote);
@@ -234,20 +235,21 @@ function buildExistingNotes(container) {
 function buildNoteInput() {
 	var inputForm = $(document.createElement("div")).attr({id: "rn_input-form"});
 	var input = $(document.createElement("input")).attr({id: "rn_note-input", placeholder: "Type here..."});
-	var pinButton = $(document.createElement("button")).attr({class: "rn_button-action gray", id: "rn_pin"});
-	var pinImage = $(document.createElement("image")).attr({src: chrome.extension.getURL("assets/img/thumbtack.svg"), class: "rn_icon"});
-	var submitButton = $(document.createElement("button")).attr({class: "rn_button-action", id: "rn_note-submit"}).text("Add");
+	var pinButton = $(document.createElement("button")).attr({class: "rn_button-action gray", id: "rn_pin"}).text("Pin");
+	var submitButton = $(document.createElement("button")).attr({
+		class: "rn_button-action",
+		id: "rn_note-submit"
+	}).text("Add");
 
-	pinButton.append(pinImage);
 	inputForm.append([input, pinButton, submitButton]);
 
 	return inputForm;
 }
 
-function addNote() {
+function addNote(isPin) {
 	var video = $("video")[0];
 	var input = $("#rn_note-input");
-	var content = input.val();
+	var content = isPin ? "" : input.val();
 	var timestamp = Math.floor(video.currentTime);
 	var videoId = getParameterByName("v");
 	var tags = filterHashtags(content);
@@ -257,15 +259,21 @@ function addNote() {
 
 	function submitNote(content, timestamp, videoId, tags) {
 		addNoteToContainer(content, timestamp, videoId);
-		input.val("");
-		input.focus();
+		if (!isPin) {
+			input.val("");
+			input.focus();
+		}
+		input.removeClass("error");
 	}
 
 	function addNoteToContainer(content, timestamp, videoId) {
 		var noteContainer = $("#rn_note-container");
 		var noteBody = $(document.createElement("p"));
 		var timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
-		var timestampAnchor = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: timestampedUrl});
+		var timestampAnchor = $(document.createElement("a")).attr({
+			class: "timestamp yt-simple-endpoint",
+			href: timestampedUrl
+		});
 
 		if (content.length > 0) {
 			noteBody.text(content);
@@ -282,6 +290,11 @@ function addNote() {
 		noteContainer.append(noteBody);
 		noteContainer.scrollTop(noteContainer[0].scrollHeight);
 	}
+}
+
+function addPin() {
+	var isPin = true;
+	addNote(isPin);
 }
 
 function getParameterByName(name, url) {
@@ -304,17 +317,20 @@ function filterHashtags(string) {
 }
 
 function addClassToHashtags(note) {
-	note.html(function(_, html) {
+	note.html(function (_, html) {
 		return html.replace(/(\#\w+)/g, '<span class="rn_tag">$1</span>');
 	});
 }
 
 function formatTimestamp(timestamp) {
-	return String(moment.utc(timestamp*1000).format('mm:ss'));
+	return String(moment.utc(timestamp * 1000).format('mm:ss'));
 }
 
 function watchKeyForInputFocus(charCode) {
-	$(document).keyup(function(e) {
+	$(document).keyup(function (e) {
+		if ($(e.target).closest("input")[0]) {
+			return;
+		}
 		if (e.keyCode === charCode) {
 			$("#rn_note-input").focus();
 		}
@@ -322,11 +338,32 @@ function watchKeyForInputFocus(charCode) {
 }
 
 function watchKeyForNoteSubmit(charCode) {
-	$(document).keyup(function(e) {
+	$(document).keyup(function (e) {
 		if ($("#rn_note-input").is(":focus")) {
 			if (e.keyCode === charCode) {
-				addNote();
+				addNoteIfInputHasContent();
 			}
 		}
 	});
+}
+
+function watchKeyForPin(charCode) {
+	$(document).keyup(function (e) {
+		if ($(e.target).closest("input")[0]) {
+			return;
+		}
+		if (e.keyCode === charCode) {
+			addPin();
+		}
+	});
+}
+
+function addNoteIfInputHasContent() {
+	var input = $("#rn_note-input");
+	if (input.val() === "") {
+		input.addClass("error");
+		input.focus();
+	} else {
+		addNote();
+	}
 }
