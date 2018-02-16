@@ -8,6 +8,7 @@ chrome.runtime.sendMessage({}, function () {
 			watchKeyForInputFocus(78);
 			watchKeyForNoteSubmit(13);
 			watchKeyForPin(80);
+			getNotes();
 		}
 	}, 300);
 });
@@ -366,4 +367,8 @@ function addNoteIfInputHasContent() {
 	} else {
 		addNote();
 	}
+}
+
+function getNotes() {
+	console.log(requests.getNotes());
 }
