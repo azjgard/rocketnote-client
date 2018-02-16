@@ -1,0 +1,86 @@
+#rn_widget {
+	background-color: #292929;
+	border-top: 2px solid red;
+	color: #b7b7b7;
+	font-size: 14px;
+	margin-bottom: 20px;
+	padding: 10px 10px 20px 10px;
+	text-align: center;
+}
+
+#rn_note-container {
+	border: 1px solid #b7b7b7;
+	height: 340px;
+	margin-top: 10px;
+	padding: 5px;
+	text-align: left;
+	overflow-y: scroll;
+}
+
+#rn_note-container .existing-note {
+
+}
+
+#rn_note-container .pin p {
+	font-style: italic;
+}
+
+#rn_note-container .pin p a {
+	font-style: normal;
+}
+
+#rn_note-container .timestamp {
+	color: #707070;
+	margin-right: 10px;
+	text-decoration: underline;
+}
+
+#rn_note-container .tag {
+	color: #4791df;
+	margin-left: 3px;
+}
+
+#rn_note-container .tag:before {
+	color: #4791df;
+	content: "#";
+}
+
+#rn_input-form {
+	text-align: right;
+}
+
+#rn_note-input {
+	background-color: transparent;
+	border-bottom: 1px solid #b7b7b7;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+	color: #b7b7b7;
+	font-size: 14px;
+	margin: 20px 0;
+	outline: 0;
+	width: 100%;
+}
+
+.rn_tag {
+	color: #4791df;
+}
+
+#rn_note-input:focus {
+	border-bottom: 1px solid #4791df;
+}
+
+.rn_button-action {
+	padding: 5px 10px;
+	background-color: #4791df;
+	border: 0;
+	border-radius: 3px;
+	color: #fefefe;
+	cursor: pointer;
+	font-size: 14px;
+	outline: 0;
+}
+
+html[dark="true"] #rn_widget {
+	/*-- ADD DARK THEME HERE --*/
+}
