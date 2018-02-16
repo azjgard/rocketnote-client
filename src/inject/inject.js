@@ -47,7 +47,7 @@ function getExistingNotes() {
 		data: [
 			{
 				timestamp: 59,
-				body: "This is the #coolest thing ever.",
+				content: "This is the #coolest thing ever.",
 				tags: "lit dope",
 				video: {
 					id: "M6bUNRCghfE",
@@ -56,7 +56,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 71,
-				body: "#dope I need to #remember this.",
+				content: "#dope I need to #remember this.",
 				tags: "supercool dope",
 				video: {
 					id: "M6bUNRCghfE",
@@ -65,7 +65,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 123,
-				body: "",
+				content: "",
 				tags: "",
 				video: {
 					id: "oemgPLZKVFI",
@@ -74,7 +74,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 59,
-				body: "This is #the coolest thing ever.",
+				content: "This is #the coolest thing ever.",
 				tags: "lit dope",
 				video: {
 					id: "M6bUNRCghfE",
@@ -83,7 +83,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 71,
-				body: "I need to remember #this.",
+				content: "I need to remember #this.",
 				tags: "supercool dope",
 				video: {
 					id: "M6bUNRCghfE",
@@ -92,7 +92,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 180,
-				body: "This one is #especially long, because I want to test its #ability to work with really long #notes. I'm hoping I can make this work really well and not look super dumb.",
+				content: "This one is #especially long, because I want to test its #ability to work with really long #notes. I'm hoping I can make this work really well and not look super dumb.",
 				tags: "don't stop believing or we might all die on our own",
 				video: {
 					id: "oemgPLZKVFI",
@@ -101,7 +101,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 180,
-				body: "This one is #especially long, because I want to test its ability to work with really long notes. I'm #hoping I can make this work really well and not look super dumb.",
+				content: "This one is #especially long, because I want to test its ability to work with really long notes. I'm #hoping I can make this work really well and not look super dumb.",
 				tags: "don't stop believing or we might all die on our own",
 				video: {
 					id: "oemgPLZKVFI",
@@ -110,7 +110,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 100,
-				body: "#100 This one is especially long, because #I want to test its ability to #work with really #long notes. I'm hoping I can make this #work really well and not look super dumb.",
+				content: "#100 This one is especially long, because #I want to test its ability to #work with really #long notes. I'm hoping I can make this #work really well and not look super dumb.",
 				tags: "don't stop believing or we might all die on our own",
 				video: {
 					id: "oemgPLZKVFI",
@@ -119,7 +119,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 180,
-				body: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
+				content: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
 				tags: "don't stop believing or we might all die on our own",
 				video: {
 					id: "oemgPLZKVFI",
@@ -128,7 +128,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 180,
-				body: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
+				content: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
 				tags: "don't stop believing or we might all die on our own",
 				video: {
 					id: "oemgPLZKVFI",
@@ -137,7 +137,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 180,
-				body: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
+				content: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
 				tags: "don't stop believing or we might all die on our own",
 				video: {
 					id: "oemgPLZKVFI",
@@ -146,7 +146,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 180,
-				body: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and #not #look #super #dumb",
+				content: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and #not #look #super #dumb",
 				tags: "don't stop believing or we might all die on our own",
 				video: {
 					id: "oemgPLZKVFI",
@@ -155,7 +155,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 180,
-				body: "This one is especially long, #because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
+				content: "This one is especially long, #because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
 				tags: "don't stop believing or we might all die on our own",
 				video: {
 					id: "oemgPLZKVFI",
@@ -164,7 +164,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 180,
-				body: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
+				content: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
 				tags: "don't stop believing or we might all die on our own",
 				video: {
 					id: "oemgPLZKVFI",
@@ -173,7 +173,7 @@ function getExistingNotes() {
 			},
 			{
 				timestamp: 0,
-				body: "#FIRST! This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
+				content: "#FIRST! This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
 				tags: "don't stop believing or we might all die on our own",
 				video: {
 					id: "oemgPLZKVFI",
@@ -205,8 +205,8 @@ function buildExistingNotes(container) {
 		var videoUrl = "/watch?v=" + note.video.id + "&t=" + note.timestamp + "s";
 		var timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});
 
-		if (note.body.length > 0) {
-			noteBody.text(note.body);
+		if (note.content.length > 0) {
+			noteBody.text(note.content);
 			addClassToHashtags(noteBody);
 		} else {
 			noteBody.text("pinned");
@@ -248,7 +248,22 @@ function addNote() {
 
 	function addNoteToContainer(content, timestamp, videoId) {
 		var timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
+		var noteBody = $(document.createElement("p"));
+		var timestampAnchor = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: timestampedUrl});
 
+		if (note.content.length > 0) {
+			noteBody.text(note.content);
+			addClassToHashtags(noteBody);
+		} else {
+			noteBody.text("pinned");
+			existingNote.addClass("pin");
+		}
+
+		if (note.timestamp >= 0) {
+			var formattedTimestamp = formatTimestamp(note.timestamp);
+			noteBody.prepend(timestamp.text(formattedTimestamp));
+		}
+		$("#rn_note-container").append(note);
 	}
 }
 
