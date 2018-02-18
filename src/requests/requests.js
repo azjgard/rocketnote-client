@@ -3,15 +3,15 @@ var baseURL = "http://node-express-env.8pzfqbf2pk.us-west-2.elasticbeanstalk.com
 var requests = {
 	getNotes: function() {
 		$.ajax({
-			url: baseURL + "/notes",
-			success: function(response) {
-				console.log(response);
-				return response;
-			}
+			method: "GET",
+			url: baseURL + "/notes"
+		}).then(function(response) {
+			console.log(response);
 		});
 	},
 	getNotesByVideoId: function(videoId) {
 		$.ajax({
+			method: "GET",
 			url: baseURL + "/notes",
 			data: {
 				videoId: videoId

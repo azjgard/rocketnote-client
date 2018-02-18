@@ -10,6 +10,10 @@
 	"128": "icons/icon128.png"
   },
   "default_locale": "en",
+  "web_accessible_resources": [
+	"assets/img/thumbtack_light.svg",
+	"assets/img/thumbtack_dark.svg"
+  ],
   "background": {
 	"scripts": [
 	  "src/bg/background.js"

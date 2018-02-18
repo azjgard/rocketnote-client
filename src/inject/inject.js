@@ -203,7 +203,7 @@ function buildExistingNotes(container) {
 	existingNotes.map(function (note) {
 		var existingNote = $(document.createElement("div"));
 		existingNote.attr({class: "existing-note"});
-		var noteBody = buildNoteBody(note, existingNote);
+		var noteBody = buildNoteBody(note);
 		existingNote.append(noteBody);
 
 		container.append(existingNote);
@@ -211,16 +211,20 @@ function buildExistingNotes(container) {
 
 	return container;
 
-	function buildNoteBody(note, existingNote) {
+	function buildNoteBody(note) {
 		var noteBody = $(document.createElement("p"));
 		var videoUrl = "/watch?v=" + note.video.id + "&t=" + note.timestamp + "s";
+		var pinIcon = $(document.createElement("img")).attr({
+			src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
+			class: "pin-icon"
+		});
 		var timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});
 
 		if (note.content.length > 0) {
 			noteBody.text(note.content);
 			addClassToHashtags(noteBody);
 		} else {
-			noteBody.text("pinned");
+			noteBody.append(pinIcon);
 			noteBody.addClass("pin");
 		}
 
@@ -236,7 +240,11 @@ function buildExistingNotes(container) {
 function buildNoteInput() {
 	var inputForm = $(document.createElement("div")).attr({id: "rn_input-form"});
 	var input = $(document.createElement("input")).attr({id: "rn_note-input", placeholder: "Type here..."});
-	var pinButton = $(document.createElement("button")).attr({class: "rn_button-action gray", id: "rn_pin"}).text("Pin");
+	var pinIcon = $(document.createElement("img")).attr({
+		src: chrome.runtime.getURL("assets/img/thumbtack_dark.svg"),
+		class: "pin-icon"
+	});
+	var pinButton = $(document.createElement("button")).attr({class: "rn_button-action gray", id: "rn_pin"}).append(pinIcon);
 	var submitButton = $(document.createElement("button")).attr({
 		class: "rn_button-action",
 		id: "rn_note-submit"
@@ -275,13 +283,17 @@ function addNote(isPin) {
 			class: "timestamp yt-simple-endpoint",
 			href: timestampedUrl
 		});
+		var thumbtack = $(document.createElement("img")).attr({
+			src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
+			class: "pin-icon"
+		});
 
 		if (content.length > 0) {
 			noteBody.text(content);
 			addClassToHashtags(noteBody);
 		} else {
-			noteBody.text("pinned");
-			noteContainer.addClass("pin");
+			noteBody.append(thumbtack);
+			noteBody.addClass("pin");
 		}
 
 		if (timestamp >= 0) {

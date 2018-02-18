@@ -29,6 +29,12 @@
 	font-style: normal;
 }
 
+.pin-icon {
+	height: 18px;
+	vertical-align: middle;
+	width: 18px;
+}
+
 #rn_note-container .timestamp {
 	color: #707070;
 	margin-right: 10px;
@@ -83,9 +89,10 @@
 .rn_button-action.gray {
 	background-color: #b7b7b7;
 	color: #292929;
+	padding: 5px 7px 3px;
 }
 
-.rn_button-action.gray:focus {
+.rn_button-action.gray:hover {
 	background-color: #a6a6a6;
 }
 
