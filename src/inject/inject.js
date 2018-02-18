@@ -3,12 +3,13 @@ chrome.runtime.sendMessage({}, function () {
 		if (document.readyState === "complete") {
 			clearInterval(readyStateCheckInterval);
 			buildWidget();
+			getNotes();
 			watchAddNoteButton();
 			watchPinButton();
 			watchKeyForInputFocus(78);
 			watchKeyForNoteSubmit(13);
 			watchKeyForPin(80);
-			getNotes();
+			watchTimestampForCurrentVideo();
 		}
 	}, 300);
 });
@@ -382,5 +383,16 @@ function addNoteIfInputHasContent() {
 }
 
 function getNotes() {
-	console.log(requests.getNotes());
+	var allNotes = requests.getNotes();
+}
+
+function watchTimestampForCurrentVideo() {
+	var currentVideoId = getParameterByName("v");
+
+	$(document).on("click", ".timestamp[href*=" + currentVideoId + "]", function(event) {
+		var regex = /t=\d+/g;
+		var time = event.target.href.match(regex);
+		$("video")[0].currentTime = time[0].substring(2);
+		event.preventDefault();
+	});
 }
