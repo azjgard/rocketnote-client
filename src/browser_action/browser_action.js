@@ -7,7 +7,7 @@ const render = name => {
   }
 };
 
-$(document).ready(function($) {
+$(document).ready($ => {
   // It's important to understand that page actions don't retain
   // any kind of state after they've been closed. For that reason,
   // we need to manage all of the state in the background of the

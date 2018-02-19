@@ -1,30 +1,24 @@
-function addNote(isPin) {
+addNote = isPin => {
 	let video = $("video")[0];
 	let input = $("#rn_note-input");
-	let content = isPin ? "" : input.val();
+	let note = {};
+	let tags = filterHashtags(content);
 
-	const videoId = getCurrentVideoId();
-	const tags = filterHashtags(content);
-	const formattedTags = tags.join(" ");
-	const timestamp = Math.floor(video.currentTime);
+	note.content = isPin ? "" : input.val();
+	note.videoId = getCurrentVideoId();
+	note.formattedTags = tags.join(" ").toLowerCase();
+	note.timestamp = Math.floor(video.currentTime);
 
-	submitNote(content, timestamp, videoId, formattedTags);
+	submitNote(note);
 
-	function submitNote(content, timestamp, videoId, tags) {
-		const note = {
-			content: content,
-			timestamp: timestamp,
-			videoId: videoId,
-			tags: tags
-		};
-
+	submitNote = note => {
 		addNoteToContainer(note);
 		storeNoteLocally(note);
 
 		resetInput(isPin);
-	}
+	};
 
-	function resetInput(isPin) {
+	resetInput = isPin => {
 		if (!isPin) {
 			input.val("");
 			input.focus();
@@ -33,7 +27,7 @@ function addNote(isPin) {
 	}
 }
 
-function addNoteToContainer({content, timestamp, videoId}) {
+addNoteToContainer = ({content, timestamp, videoId}) => {
 	let noteContainer = $("#rn_note-container");
 	let notePlaceholder = $(".rn_notes-placeholder");
 	let noteBody = $(document.createElement("p"));
@@ -65,14 +59,14 @@ function addNoteToContainer({content, timestamp, videoId}) {
 	if (notePlaceholder.length) {
 		notePlaceholder.remove();
 	}
-}
+};
 
-function addPin() {
+addPin = () => {
 	const isPin = true;
 	addNote(isPin);
-}
+};
 
-function addNoteIfInputHasContent() {
+addNoteIfInputHasContent = () => {
 	let input = $("#rn_note-input");
 	if (input.val() === "") {
 		input.addClass("error");
@@ -80,9 +74,9 @@ function addNoteIfInputHasContent() {
 	} else {
 		addNote();
 	}
-}
+};
 
-function storeNoteLocally(note) {
+storeNoteLocally = note => {
 	chrome.storage.sync.get({notes: {}}, function(result) {
 		let notes = result.notes;
 		notes.recent = notes.recent || [];
@@ -95,4 +89,4 @@ function storeNoteLocally(note) {
 
 		chrome.storage.sync.set({notes: notes});
 	});
-}
+};

@@ -1,16 +1,16 @@
-function watchAddNoteButton() {
-	$(document).on("click", "#rn_note-submit", function () {
+watchAddNoteButton = () => {
+	$(document).on("click", "#rn_note-submit", () => {
 		addNoteIfInputHasContent();
 	});
-}
+};
 
-function watchPinButton() {
-	$(document).on("click", "#rn_pin", function () {
+watchPinButton = () => {
+	$(document).on("click", "#rn_pin", () => {
 		addPin();
 	});
-}
+};
 
-function watchKeyForInputFocus(charCode) {
+watchKeyForInputFocus = charCode => {
 	$(document).keyup(function (e) {
 		if ($(e.target).closest("input")[0]) {
 			return;
@@ -19,20 +19,20 @@ function watchKeyForInputFocus(charCode) {
 			$("#rn_note-input").focus();
 		}
 	})
-}
+};
 
-function watchKeyForNoteSubmit(charCode) {
-	$(document).keyup(function (e) {
+watchKeyForNoteSubmit = charCode => {
+	$(document).keyup(e => {
 		if ($("#rn_note-input").is(":focus")) {
 			if (e.keyCode === charCode) {
 				addNoteIfInputHasContent();
 			}
 		}
 	});
-}
+};
 
-function watchKeyForPin(charCode) {
-	$(document).keyup(function (e) {
+watchKeyForPin = charCode => {
+	$(document).keyup(e => {
 		if ($(e.target).closest("input")[0]) {
 			return;
 		}
@@ -40,15 +40,15 @@ function watchKeyForPin(charCode) {
 			addPin();
 		}
 	});
-}
+};
 
-function watchTimestampForCurrentVideo() {
+watchTimestampForCurrentVideo = () => {
 	const currentVideoId = getCurrentVideoId();
 
-	$(document).on("click", ".timestamp[href*=" + currentVideoId + "]", function (event) {
+	$(document).on("click", ".timestamp[href*=" + currentVideoId + "]", e => {
 		const regex = /t=\d+/g;
 		const time = event.target.href.match(regex);
 		$("video")[0].currentTime = time[0].substring(2);
-		event.preventDefault();
+		e.preventDefault();
 	});
-}
+};
