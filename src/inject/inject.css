@@ -100,6 +100,15 @@
 	padding: 5px 20px;
 }
 
+.rn_notes-placeholder {
+	color: #707070;
+	margin: 0;
+	position: relative;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 html[dark="true"] #rn_widget {
 	/*-- ADD DARK THEME HERE --*/
 }

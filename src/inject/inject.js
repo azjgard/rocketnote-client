@@ -4,7 +4,6 @@ chrome.runtime.sendMessage({}, function () {
 			var currentVideoId = getCurrentVideoId();
 			clearInterval(readyStateCheckInterval);
 			buildWidget();
-			getNotes();
 			watchAddNoteButton();
 			watchPinButton();
 			watchKeyForInputFocus(78);
@@ -69,18 +68,23 @@ function buildExistingNotes(container) {
 	chrome.storage.sync.get({notes: {}}, function(result) {
 		var existingNotes = result.notes[getCurrentVideoId()] ? result.notes[getCurrentVideoId()] : [];
 
-		existingNotes.sort(function (a, b) {
-			return a.timestamp - b.timestamp;
-		});
+		if (existingNotes.length > 0) {
+			existingNotes.sort(function (a, b) {
+				return a.timestamp - b.timestamp;
+			});
 
-		existingNotes.map(function (note) {
-			var existingNote = $(document.createElement("div"));
-			existingNote.attr({class: "existing-note"});
-			var noteBody = buildNoteBody(note);
-			existingNote.append(noteBody);
+			existingNotes.map(function (note) {
+				var existingNote = $(document.createElement("div"));
+				existingNote.attr({class: "existing-note"});
+				var noteBody = buildNoteBody(note);
+				existingNote.append(noteBody);
 
-			container.append(existingNote);
-		});
+				container.append(existingNote);
+			});
+		} else {
+			var noNotes = $(document.createElement("p")).addClass("rn_notes-placeholder").text("You have not yet added notes for this video.");
+			container.append(noNotes);
+		}
 
 		return container;
 	});
@@ -162,6 +166,7 @@ function addNote(isPin) {
 
 function addNoteToContainer(content, timestamp, videoId) {
 	var noteContainer = $("#rn_note-container");
+	var notePlaceholder = $(".rn_notes-placeholder");
 	var noteBody = $(document.createElement("p"));
 	var timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
 	var timestampAnchor = $(document.createElement("a")).attr({
@@ -187,6 +192,10 @@ function addNoteToContainer(content, timestamp, videoId) {
 	}
 	noteContainer.append(noteBody);
 	noteContainer.scrollTop(noteContainer[0].scrollHeight);
+
+	if (notePlaceholder.length) {
+		notePlaceholder.remove();
+	}
 }
 
 function addPin() {
@@ -263,10 +272,6 @@ function addNoteIfInputHasContent() {
 	} else {
 		addNote();
 	}
-}
-
-function getNotes() {
-	var allNotes = requests.getNotes();
 }
 
 function watchTimestampForCurrentVideo() {
