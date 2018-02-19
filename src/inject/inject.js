@@ -66,7 +66,7 @@ function buildNoteContainer() {
 
 function buildExistingNotes(container) {
 	chrome.storage.sync.get({notes: {}}, function(result) {
-		var existingNotes = result.notes[getCurrentVideoId()] ? result.notes[getCurrentVideoId()] : [];
+		var existingNotes = result.notes[getCurrentVideoId()] || [];
 
 		if (existingNotes.length > 0) {
 			existingNotes.sort(function (a, b) {
@@ -203,35 +203,6 @@ function addPin() {
 	addNote(isPin);
 }
 
-function getParameterByName(name, url) {
-	if (!url) url = window.location.href;
-	name = name.replace(/[\[\]]/g, "\\$&");
-	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-		results = regex.exec(url);
-	if (!results) return null;
-	if (!results[2]) return '';
-	return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
-function filterHashtags(string) {
-	var re = /(?:^|\W)#(\w+)(?!\w)/g, match, tags = [];
-	while (match = re.exec(string)) {
-		tags.push(match[1]);
-	}
-
-	return tags;
-}
-
-function addClassToHashtags(note) {
-	note.html(function (_, html) {
-		return html.replace(/(\#\w+)/g, '<span class="rn_tag">$1</span>');
-	});
-}
-
-function formatTimestamp(timestamp) {
-	return String(moment.utc(timestamp * 1000).format('mm:ss'));
-}
-
 function watchKeyForInputFocus(charCode) {
 	$(document).keyup(function (e) {
 		if ($(e.target).closest("input")[0]) {
@@ -288,17 +259,18 @@ function watchTimestampForCurrentVideo() {
 function storeNoteLocally(note) {
 	chrome.storage.sync.get({notes: {}}, function(result) {
 		var notes = result.notes;
-		notes[getCurrentVideoId()] = notes[getCurrentVideoId()] ? notes[getCurrentVideoId()] : [];
+		notes.recent = notes.recent || [];
+		notes.recent.push(note);
+		if (notes.recent.length > 5) {
+			notes.recent.shift();
+		}
+		notes[getCurrentVideoId()] = notes[getCurrentVideoId()] || [];
 		notes[getCurrentVideoId()].push(note);
 
 		chrome.storage.sync.set({notes: notes}, function() {
 			console.log("New note has been added.");
 		});
 	});
-}
-
-function getCurrentVideoId() {
-	return getParameterByName("v");
 }
 
 function refreshWidget() {

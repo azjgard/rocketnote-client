@@ -12,7 +12,8 @@
   "default_locale": "en",
   "web_accessible_resources": [
 	"assets/img/thumbtack_light.svg",
-	"assets/img/thumbtack_dark.svg"
+	"assets/img/thumbtack_dark.svg",
+	"assets/img/rocket_note_main_logo.svg"
   ],
   "permissions": [
 	"storage"
@@ -44,6 +45,7 @@
 	  "js": [
 		"js/lib/jquery/jquery.js",
 		"js/lib/moment/moment.min.js",
+		"src/utils/utils.js",
 		"src/requests/requests.js",
 		"src/inject/inject.js",
 		"src/inject/playlist.js"
