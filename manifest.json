@@ -37,6 +37,9 @@
         "js/lib/moment/moment.min.js",
         "src/utils/utils.js",
         "src/requests/requests.js",
+        "src/inject/watchers.js",
+        "src/inject/build_widget.js",
+        "src/inject/add_notes.js",
         "src/inject/playlist.js",
         "src/inject/inject.js"
       ]
