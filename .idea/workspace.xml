@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ef02f4a2-a314-4c11-971f-bf9495392357" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/browser_action/browser_action.css" afterPath="$PROJECT_DIR$/src/browser_action/browser_action.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/browser_action/browser_action.html" afterPath="$PROJECT_DIR$/src/browser_action/browser_action.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/browser_action/browser_action.js" afterPath="$PROJECT_DIR$/src/browser_action/browser_action.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/inject.js" afterPath="$PROJECT_DIR$/src/inject/inject.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,11 +29,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="inject.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="inject.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="241" column="25" lean-forward="false" selection-start-line="241" selection-start-column="25" selection-end-line="241" selection-end-column="25" />
+                <state relative-caret-position="497">
+                  <caret line="267" column="5" lean-forward="true" selection-start-line="267" selection-start-column="5" selection-end-line="267" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -70,11 +68,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="browser_action.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="browser_action.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="60" lean-forward="true" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
+                <state relative-caret-position="345">
+                  <caret line="23" column="68" lean-forward="false" selection-start-line="23" selection-start-column="68" selection-end-line="23" selection-end-column="68" />
                   <folding>
                     <element signature="e#748#754#0" expanded="true" />
                   </folding>
@@ -154,8 +152,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sender</find>
-      <find>p</find>
       <find>body</find>
       <find>scrollTop</find>
       <find>&quot;Add</find>
@@ -184,6 +180,8 @@
       <find>name</find>
       <find>identity</find>
       <find>text-decor</find>
+      <find>append(</find>
+      <find>height</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
@@ -211,10 +209,10 @@
         <option value="$PROJECT_DIR$/src/bg/background.js" />
         <option value="$PROJECT_DIR$/manifest.json" />
         <option value="$PROJECT_DIR$/src/inject/inject.css" />
-        <option value="$PROJECT_DIR$/src/inject/inject.js" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.js" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.css" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.html" />
+        <option value="$PROJECT_DIR$/src/inject/inject.js" />
       </list>
     </option>
   </component>
@@ -371,7 +369,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1518786934136</updated>
-      <workItem from="1518786936053" duration="58875000" />
+      <workItem from="1518786936053" duration="59476000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed body to content.">
       <created>1518811313443</created>
@@ -492,11 +490,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519076363228</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Make `logged out` state look prettier but simple.">
+      <created>1519077464943</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1519077464943</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58875000" />
+    <option name="totallyTimeSpent" value="59476000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="751" y="-1080" width="1920" height="1080" extended-state="6" />
@@ -544,7 +549,8 @@
     <MESSAGE value="Changed to browser action, so we can jump to recent notes from any page." />
     <MESSAGE value="Updated version number to be dynamic from `manifest.json`." />
     <MESSAGE value="Styled `logged in` part of popup." />
-    <option name="LAST_COMMIT_MESSAGE" value="Styled `logged in` part of popup." />
+    <MESSAGE value="Make `logged out` state look prettier but simple." />
+    <option name="LAST_COMMIT_MESSAGE" value="Make `logged out` state look prettier but simple." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -700,14 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="241" column="25" lean-forward="false" selection-start-line="241" selection-start-column="25" selection-end-line="241" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bg/background.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -742,11 +740,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="60" lean-forward="true" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
+        <state relative-caret-position="345">
+          <caret line="23" column="68" lean-forward="false" selection-start-line="23" selection-start-column="68" selection-end-line="23" selection-end-column="68" />
           <folding>
             <element signature="e#748#754#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="267" column="5" lean-forward="true" selection-start-line="267" selection-start-column="5" selection-end-line="267" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

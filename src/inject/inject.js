@@ -37,7 +37,7 @@ function buildWidget() {
 	widget.attr(widgetAttr);
 	widget.append(noteContainer);
 	widget.append(noteInput);
-	relatedContent.prepend(widget);
+	relatedContent.prepend(widget.hide().delay().fadeIn(300));
 	noteContainer.scrollTop(noteContainer[0].scrollHeight);
 }
 
@@ -269,9 +269,7 @@ function storeNoteLocally(note) {
 		notes[getCurrentVideoId()] = notes[getCurrentVideoId()] || [];
 		notes[getCurrentVideoId()].push(note);
 
-		chrome.storage.sync.set({notes: notes}, function() {
-			console.log("New note has been added.");
-		});
+		chrome.storage.sync.set({notes: notes});
 	});
 }
 
