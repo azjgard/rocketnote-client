@@ -1,73 +1,96 @@
 #rn_mainPopup {
-	padding: 10px;
-	height: 420px;
-	width: 260px;
-	font-family: Helvetica, Ubuntu, Arial, sans-serif;
+  padding: 10px;
+  height: 200px;
+  width: 400px;
+  font-family: Helvetica, Ubuntu, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+/* As mentioned in a comment in page_action.js, the page action doesn't */
+/* retain any kind of state after it's closed. For that reason, we need */
+/* to hide both of these containers, because they'll be conditionally */
+/* shown every time the popup is opened after the popup grabs the current */
+/* state (whether or not the user is logged in) from the background script. */
+#logged-in,
+#logged-out {
+  display: none;
 }
 
 h3 {
-	color: #707070;
-	font-size: 14px;
-	font-style: italic;
-	font-weight: 300;
-	margin-bottom: 5px;
-	text-align: center;
+  color: #707070;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 .view-all {
-	color: #4791df;
-	font-size: 10px;
-	margin-bottom: 2px;
-	outline: none;
-	text-align: right;
-	text-decoration: none;
+  color: #4791df;
+  font-size: 10px;
+  margin-bottom: 2px;
+  outline: none;
+  text-align: right;
+  text-decoration: none;
 }
 
 .rn_main-logo {
-	height: 26px;
+  height: 26px;
 }
 
 .rn_footer {
-	bottom: 5px;
-	color: #707070;
-	left: 50%;
-	position: absolute;
-	text-align: center;
-	transform: translateX(-50%);
-	width: 260px;
+  bottom: 5px;
+  color: #707070;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  width: 260px;
 }
 
 .rn_footer a {
-	color: #4791df;
-	outline: none;
-	text-decoration: none;
+  color: #4791df;
+  outline: none;
+  text-decoration: none;
 }
 
 .pin-icon {
-	height: 18px;
-	vertical-align: middle;
-	width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  width: 18px;
 }
 
 #recent-notes .timestamp {
-	color: #707070;
-	margin-right: 10px;
-	outline: none;
-	text-decoration: underline;
+  color: #707070;
+  margin-right: 10px;
+  outline: none;
+  text-decoration: underline;
 }
 
 .rn_tag {
-	color: #4791df;
+  color: #4791df;
 }
 
 .recent-note {
-	padding: 8px 0;
-	border-top: 1px solid #efefef;
+  padding: 8px 0;
+  border-top: 1px solid #efefef;
 }
 
 .recent-note-body {
-	display: inline-block;
-	margin: 0;
+  display: inline-block;
+  margin: 0;
+  width: 160px;
+}
+
+.rn_thumbnail {
+  display: inline-block;
+  height: 50px;
+  margin-right: 10px;
+  vertical-align: middle;
+  width: 88.875px;
 }
 
 .note-body-container {

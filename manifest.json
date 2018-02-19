@@ -6,51 +6,50 @@
   "description": "Extend the possiblities of YouTube with note-taking in a side panel, pins, and timestamps.",
   "homepage_url": "https://getrocketnote.com",
   "icons": {
-	"16": "icons/icon16.png",
-	"48": "icons/icon48.png",
-	"128": "icons/icon128.png"
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "default_locale": "en",
   "web_accessible_resources": [
-	"assets/img/thumbtack_light.svg",
-	"assets/img/thumbtack_dark.svg",
-	"assets/img/rocket_note_main_logo.svg"
-  ],
-  "permissions": [
-	"storage"
+    "assets/img/thumbtack_light.svg",
+    "assets/img/thumbtack_dark.svg",
+    "assets/img/rocket_note_main_logo.svg"
   ],
   "background": {
-	"scripts": [
-	  "src/bg/background.js"
-	],
-	"persistent": true
+    "scripts": ["js/lib/jquery/jquery.js", "src/bg/background.js"],
+    "persistent": true
   },
   "browser_action": {
-	"default_icon": "icons/icon16.png",
-	"default_title": "Rocket Note",
-	"default_popup": "src/browser_action/browser_action.html"
+    "default_icon": "icons/icon16.png",
+    "default_title": "Rocket Note",
+    "default_popup": "src/browser_action/browser_action.html"
   },
   "content_scripts": [
-	{
-	  "matches": [
-		"https://www.youtube.com/*"
-	  ],
-	  "css": [
-		"src/inject/inject.css"
-	  ]
-	},
-	{
-	  "matches": [
-		"https://www.youtube.com/*"
-	  ],
-	  "js": [
-		"js/lib/jquery/jquery.js",
-		"js/lib/moment/moment.min.js",
-		"src/utils/utils.js",
-		"src/requests/requests.js",
-		"src/inject/inject.js",
-		"src/inject/playlist.js"
-	  ]
-	}
-  ]
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "css": ["src/inject/inject.css"]
+    },
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": [
+        "js/lib/jquery/jquery.js",
+        "js/lib/moment/moment.min.js",
+        "src/utils/utils.js",
+        "src/requests/requests.js",
+        "src/inject/playlist.js",
+        "src/inject/inject.js"
+      ]
+    }
+  ],
+  "permissions": ["identity", "tabs", "identity.email", "storage"],
+  "oauth2": {
+    "client_id":
+    "772398796773-umv4eg28mbr2djot36l615obfhncenjh.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/plus.login",
+      "https://www.googleapis.com/auth/plus.me",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  }
 }
