@@ -34,7 +34,9 @@
       "js": [
         "js/lib/jquery/jquery.js",
         "js/lib/moment/moment.min.js",
+        "src/utils/utils.js",
         "src/requests/requests.js",
+        "src/inject/playlist.js",
         "src/inject/inject.js"
       ]
     }
