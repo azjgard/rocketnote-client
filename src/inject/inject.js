@@ -1,6 +1,7 @@
 chrome.runtime.sendMessage({}, function () {
 	var readyStateCheckInterval = setInterval(function () {
 		if (document.readyState === "complete") {
+			var currentVideoId = getCurrentVideoId();
 			clearInterval(readyStateCheckInterval);
 			buildWidget();
 			getNotes();
@@ -10,8 +11,19 @@ chrome.runtime.sendMessage({}, function () {
 			watchKeyForNoteSubmit(13);
 			watchKeyForPin(80);
 			watchTimestampForCurrentVideo();
+			watchForPlaylist();
+			watchVideoForChanges(currentVideoId);
+
+			function watchVideoForChanges() {
+				setInterval(function() {
+					if (currentVideoId !== getCurrentVideoId()) {
+						refreshWidget();
+						currentVideoId = getCurrentVideoId();
+					}
+				}, 500);
+			}
 		}
-	}, 300);
+	}, 500);
 });
 
 function buildWidget() {
@@ -53,168 +65,29 @@ function buildNoteContainer() {
 	return noteContainer;
 }
 
-function getExistingNotes() {
-	//TODO: Pull existing notes in from localstorage or wherever (background.js?).
-	return {
-		data: [
-			{
-				timestamp: 59,
-				content: "This is the #coolest thing ever.",
-				tags: "lit dope",
-				video: {
-					id: "M6bUNRCghfE",
-					title: "How to be a more confident designer."
-				}
-			},
-			{
-				timestamp: 71,
-				content: "#dope I need to #remember this.",
-				tags: "supercool dope",
-				video: {
-					id: "M6bUNRCghfE",
-					title: "How to be a more confident designer."
-				}
-			},
-			{
-				timestamp: 123,
-				content: "",
-				tags: "",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			},
-			{
-				timestamp: 59,
-				content: "This is #the coolest thing ever.",
-				tags: "lit dope",
-				video: {
-					id: "M6bUNRCghfE",
-					title: "How to be a more confident designer."
-				}
-			},
-			{
-				timestamp: 71,
-				content: "I need to remember #this.",
-				tags: "supercool dope",
-				video: {
-					id: "M6bUNRCghfE",
-					title: "How to be a more confident designer."
-				}
-			},
-			{
-				timestamp: 180,
-				content: "This one is #especially long, because I want to test its #ability to work with really long #notes. I'm hoping I can make this work really well and not look super dumb.",
-				tags: "don't stop believing or we might all die on our own",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			},
-			{
-				timestamp: 180,
-				content: "This one is #especially long, because I want to test its ability to work with really long notes. I'm #hoping I can make this work really well and not look super dumb.",
-				tags: "don't stop believing or we might all die on our own",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			},
-			{
-				timestamp: 100,
-				content: "#100 This one is especially long, because #I want to test its ability to #work with really #long notes. I'm hoping I can make this #work really well and not look super dumb.",
-				tags: "don't stop believing or we might all die on our own",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			},
-			{
-				timestamp: 180,
-				content: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
-				tags: "don't stop believing or we might all die on our own",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			},
-			{
-				timestamp: 180,
-				content: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
-				tags: "don't stop believing or we might all die on our own",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			},
-			{
-				timestamp: 180,
-				content: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
-				tags: "don't stop believing or we might all die on our own",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			},
-			{
-				timestamp: 180,
-				content: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and #not #look #super #dumb",
-				tags: "don't stop believing or we might all die on our own",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			},
-			{
-				timestamp: 180,
-				content: "This one is especially long, #because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
-				tags: "don't stop believing or we might all die on our own",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			},
-			{
-				timestamp: 180,
-				content: "This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
-				tags: "don't stop believing or we might all die on our own",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			},
-			{
-				timestamp: 0,
-				content: "#FIRST! This one is especially long, because I want to test its ability to work with really long notes. I'm hoping I can make this work really well and not look super dumb.",
-				tags: "don't stop believing or we might all die on our own",
-				video: {
-					id: "oemgPLZKVFI",
-					title: "Jack Coyne's ONE tip for YouTubers...wait til the end"
-				}
-			}
-		]
-	};
-}
-
 function buildExistingNotes(container) {
-	existingNotes = getExistingNotes().data.sort(function (a, b) {
-		return a.timestamp - b.timestamp;
+	chrome.storage.sync.get({notes: {}}, function(result) {
+		var existingNotes = result.notes[getCurrentVideoId()] ? result.notes[getCurrentVideoId()] : [];
+
+		existingNotes.sort(function (a, b) {
+			return a.timestamp - b.timestamp;
+		});
+
+		existingNotes.map(function (note) {
+			var existingNote = $(document.createElement("div"));
+			existingNote.attr({class: "existing-note"});
+			var noteBody = buildNoteBody(note);
+			existingNote.append(noteBody);
+
+			container.append(existingNote);
+		});
+
+		return container;
 	});
-
-	existingNotes.map(function (note) {
-		var existingNote = $(document.createElement("div"));
-		existingNote.attr({class: "existing-note"});
-		var noteBody = buildNoteBody(note);
-		existingNote.append(noteBody);
-
-		container.append(existingNote);
-	});
-
-	return container;
 
 	function buildNoteBody(note) {
 		var noteBody = $(document.createElement("p"));
-		var videoUrl = "/watch?v=" + note.video.id + "&t=" + note.timestamp + "s";
+		var videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
 		var pinIcon = $(document.createElement("img")).attr({
 			src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
 			class: "pin-icon"
@@ -245,7 +118,10 @@ function buildNoteInput() {
 		src: chrome.runtime.getURL("assets/img/thumbtack_dark.svg"),
 		class: "pin-icon"
 	});
-	var pinButton = $(document.createElement("button")).attr({class: "rn_button-action gray", id: "rn_pin"}).append(pinIcon);
+	var pinButton = $(document.createElement("button")).attr({
+		class: "rn_button-action gray",
+		id: "rn_pin"
+	}).append(pinIcon);
 	var submitButton = $(document.createElement("button")).attr({
 		class: "rn_button-action",
 		id: "rn_note-submit"
@@ -261,49 +137,56 @@ function addNote(isPin) {
 	var input = $("#rn_note-input");
 	var content = isPin ? "" : input.val();
 	var timestamp = Math.floor(video.currentTime);
-	var videoId = getParameterByName("v");
+	var videoId = getCurrentVideoId();
 	var tags = filterHashtags(content);
 	var formattedTags = tags.join(" ");
 
 	submitNote(content, timestamp, videoId, formattedTags);
 
 	function submitNote(content, timestamp, videoId, tags) {
+		var note = {
+			content: content,
+			timestamp: timestamp,
+			videoId: videoId,
+			tags: tags
+		};
 		addNoteToContainer(content, timestamp, videoId);
+		storeNoteLocally(note);
 		if (!isPin) {
 			input.val("");
 			input.focus();
 		}
 		input.removeClass("error");
 	}
+}
 
-	function addNoteToContainer(content, timestamp, videoId) {
-		var noteContainer = $("#rn_note-container");
-		var noteBody = $(document.createElement("p"));
-		var timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
-		var timestampAnchor = $(document.createElement("a")).attr({
-			class: "timestamp yt-simple-endpoint",
-			href: timestampedUrl
-		});
-		var thumbtack = $(document.createElement("img")).attr({
-			src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
-			class: "pin-icon"
-		});
+function addNoteToContainer(content, timestamp, videoId) {
+	var noteContainer = $("#rn_note-container");
+	var noteBody = $(document.createElement("p"));
+	var timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
+	var timestampAnchor = $(document.createElement("a")).attr({
+		class: "timestamp yt-simple-endpoint",
+		href: timestampedUrl
+	});
+	var thumbtack = $(document.createElement("img")).attr({
+		src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
+		class: "pin-icon"
+	});
 
-		if (content.length > 0) {
-			noteBody.text(content);
-			addClassToHashtags(noteBody);
-		} else {
-			noteBody.append(thumbtack);
-			noteBody.addClass("pin");
-		}
-
-		if (timestamp >= 0) {
-			var formattedTimestamp = formatTimestamp(timestamp);
-			noteBody.prepend(timestampAnchor.text(formattedTimestamp));
-		}
-		noteContainer.append(noteBody);
-		noteContainer.scrollTop(noteContainer[0].scrollHeight);
+	if (content.length > 0) {
+		noteBody.text(content);
+		addClassToHashtags(noteBody);
+	} else {
+		noteBody.append(thumbtack);
+		noteBody.addClass("pin");
 	}
+
+	if (timestamp >= 0) {
+		var formattedTimestamp = formatTimestamp(timestamp);
+		noteBody.prepend(timestampAnchor.text(formattedTimestamp));
+	}
+	noteContainer.append(noteBody);
+	noteContainer.scrollTop(noteContainer[0].scrollHeight);
 }
 
 function addPin() {
@@ -387,12 +270,35 @@ function getNotes() {
 }
 
 function watchTimestampForCurrentVideo() {
-	var currentVideoId = getParameterByName("v");
+	var currentVideoId = getCurrentVideoId();
 
-	$(document).on("click", ".timestamp[href*=" + currentVideoId + "]", function(event) {
+	$(document).on("click", ".timestamp[href*=" + currentVideoId + "]", function (event) {
 		var regex = /t=\d+/g;
 		var time = event.target.href.match(regex);
 		$("video")[0].currentTime = time[0].substring(2);
 		event.preventDefault();
 	});
+}
+
+function storeNoteLocally(note) {
+	chrome.storage.sync.get({notes: {}}, function(result) {
+		var notes = result.notes;
+		notes[getCurrentVideoId()] = notes[getCurrentVideoId()] ? notes[getCurrentVideoId()] : [];
+		notes[getCurrentVideoId()].push(note);
+
+		chrome.storage.sync.set({notes: notes}, function() {
+			console.log("New note has been added.");
+		});
+	});
+}
+
+function getCurrentVideoId() {
+	return getParameterByName("v");
+}
+
+function refreshWidget() {
+	var container = $("#rn_note-container");
+	container.empty();
+	buildExistingNotes(container);
+	console.log("Widget Refreshed.");
 }

@@ -14,6 +14,9 @@
 	"assets/img/thumbtack_light.svg",
 	"assets/img/thumbtack_dark.svg"
   ],
+  "permissions": [
+	"storage"
+  ],
   "background": {
 	"scripts": [
 	  "src/bg/background.js"
@@ -42,7 +45,8 @@
 		"js/lib/jquery/jquery.js",
 		"js/lib/moment/moment.min.js",
 		"src/requests/requests.js",
-		"src/inject/inject.js"
+		"src/inject/inject.js",
+		"src/inject/playlist.js"
 	  ]
 	}
   ]
