@@ -1,7 +1,7 @@
 #rn_mainPopup {
   padding: 10px;
-  height: 200px;
-  width: 400px;
+  height: 425px;
+  width: 260px;
   font-family: Helvetica, Ubuntu, Arial, sans-serif;
 }
 
@@ -24,7 +24,7 @@ h3 {
   font-size: 14px;
   font-style: italic;
   font-weight: 300;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -38,7 +38,16 @@ h3 {
 }
 
 .rn_main-logo {
-  height: 26px;
+  height: 24px;
+  margin-bottom: 5px;
+  vertical-align: top;
+}
+
+#rn_log-out {
+  color: #4791df;
+  float: right;
+  outline: none;
+  text-decoration: none;
 }
 
 .rn_footer {
@@ -80,7 +89,7 @@ h3 {
 }
 
 .recent-note-body {
-  display: inline-block;
+  display: inline;
   margin: 0;
   width: 160px;
 }
@@ -104,4 +113,16 @@ h3 {
 	margin-right: 10px;
 	vertical-align: top;
 	width: 88.875px;
+}
+
+.align-right {
+  display: inline-block;
+  text-align: right;
+  width: 100px;
+}
+
+#rn_welcome,
+#rn_log-out {
+  font-size: 10px;
+  margin: 0;
 }

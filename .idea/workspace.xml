@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ef02f4a2-a314-4c11-971f-bf9495392357" name="Default" comment="Changed to browser action, so we can jump to recent notes from any page.">
+    <list default="true" id="ef02f4a2-a314-4c11-971f-bf9495392357" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manifest.json" afterPath="$PROJECT_DIR$/manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/browser_action/browser_action.css" afterPath="$PROJECT_DIR$/src/browser_action/browser_action.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/browser_action/browser_action.html" afterPath="$PROJECT_DIR$/src/browser_action/browser_action.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/browser_action/recent_notes.js" afterPath="$PROJECT_DIR$/src/browser_action/recent_notes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/browser_action/browser_action.js" afterPath="$PROJECT_DIR$/src/browser_action/browser_action.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/inject.js" afterPath="$PROJECT_DIR$/src/inject/inject.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,11 +22,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="manifest.json" pinned="false" current-in-tab="true">
+          <file leaf-file-name="manifest.json" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/manifest.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="660">
-                  <caret line="44" column="8" lean-forward="false" selection-start-line="44" selection-start-column="7" selection-end-line="44" selection-end-column="8" />
+                <state relative-caret-position="407">
+                  <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
                   <folding />
                 </state>
               </provider>
@@ -34,8 +35,8 @@
           <file leaf-file-name="inject.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="390">
-                  <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+                <state relative-caret-position="323">
+                  <caret line="241" column="25" lean-forward="false" selection-start-line="241" selection-start-column="25" selection-end-line="241" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
@@ -45,8 +46,17 @@
             <entry file="file://$PROJECT_DIR$/src/utils/utils.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="330">
-                  <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-                  <folding />
+                  <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+                  <folding>
+                    <marker date="1519063934000" expanded="true" signature="39:330" ph="{...}" />
+                    <marker date="1519063934000" expanded="true" signature="361:397" ph="{...}" />
+                    <marker date="1519063934000" expanded="true" signature="431:563" ph="{...}" />
+                    <marker date="1519063934000" expanded="true" signature="519:546" ph="{...}" />
+                    <marker date="1519063934000" expanded="true" signature="599:708" ph="{...}" />
+                    <marker date="1519063934000" expanded="true" signature="631:704" ph="{...}" />
+                    <marker date="1519063934000" expanded="true" signature="746:811" ph="{...}" />
+                    <marker date="1519063934000" expanded="true" signature="849:917" ph="{...}" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -64,11 +74,21 @@
           <file leaf-file-name="browser_action.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="14" column="62" lean-forward="true" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
+                <state relative-caret-position="165">
+                  <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
                   <folding>
-                    <element signature="e#310#316#0" expanded="true" />
+                    <element signature="e#576#582#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="browser_action.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="600">
+                  <caret line="40" column="3" lean-forward="false" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -77,12 +97,24 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="recent_notes.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="recent_notes.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/browser_action/recent_notes.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="767">
                   <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
-                  <folding />
+                  <folding>
+                    <marker date="1519068494000" expanded="true" signature="13:69" ph="{...}" />
+                    <marker date="1519068494000" expanded="true" signature="109:1655" ph="{...}" />
+                    <marker date="1519068494000" expanded="true" signature="211:369" ph="{...}" />
+                    <marker date="1519068494000" expanded="true" signature="306:364" ph="{...}" />
+                    <marker date="1519068494000" expanded="true" signature="403:1653" ph="{...}" />
+                    <marker date="1519068494000" expanded="true" signature="824:914" ph="{&quot;class&quot;: &quot;pin-icon&quot;...}" />
+                    <marker date="1519068494000" expanded="true" signature="1274:1397" ph="{...}" />
+                    <marker date="1519068494000" expanded="true" signature="1430:1514" ph="{...}" />
+                    <marker date="1519068494000" expanded="true" signature="1520:1583" ph="{...}" />
+                    <marker date="1519068494000" expanded="true" signature="1696:1765" ph="{...}" />
+                    <marker date="1519068494000" expanded="true" signature="1798:1887" ph="{...}" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -90,18 +122,18 @@
           <file leaf-file-name="background.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/bg/background.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+                <state relative-caret-position="360">
+                  <caret line="24" column="33" lean-forward="true" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="browser_action.css" pinned="false" current-in-tab="false">
+          <file leaf-file-name="browser_action.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="647">
-                  <caret line="74" column="15" lean-forward="false" selection-start-line="74" selection-start-column="15" selection-end-line="74" selection-end-column="15" />
+                <state relative-caret-position="677">
+                  <caret line="125" column="15" lean-forward="false" selection-start-line="125" selection-start-column="15" selection-end-line="125" selection-end-column="15" />
                   <folding />
                 </state>
               </provider>
@@ -110,8 +142,8 @@
           <file leaf-file-name="inject.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/inject/inject.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-148">
-                  <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+                <state relative-caret-position="512">
+                  <caret line="101" column="1" lean-forward="true" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -123,7 +155,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>19</find>
       <find>generat</find>
       <find>sender</find>
       <find>p</find>
@@ -143,6 +174,17 @@
       <find>page_action</find>
       <find>0.0.1</find>
       <find>Feedba</find>
+      <find>logged-out</find>
+      <find>Promise</find>
+      <find>loggedIn</find>
+      <find>placeholder</find>
+      <find>button</find>
+      <find>type</find>
+      <find>...</find>
+      <find>currentVideo</find>
+      <find>Recent</find>
+      <find>name</find>
+      <find>identity</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
@@ -155,7 +197,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/browser_action/browser_action.css" />
         <option value="$PROJECT_DIR$/js/lib/moment/moment.js" />
         <option value="$PROJECT_DIR$/js/lib/hashtags/hashtags.js" />
         <option value="$PROJECT_DIR$/js/lib/hashtags/jquery.hashtags.css" />
@@ -163,26 +204,35 @@
         <option value="$PROJECT_DIR$/js/lib/hashtags/jquery.hashtags.js" />
         <option value="$PROJECT_DIR$/src/requests/requests.js" />
         <option value="$PROJECT_DIR$/src/inject/playlist.js" />
-        <option value="$PROJECT_DIR$/src/inject/inject.js" />
-        <option value="$PROJECT_DIR$/src/inject/inject.css" />
         <option value="$PROJECT_DIR$/src/utils/utils.js" />
         <option value="$PROJECT_DIR$/src/page_action/page_action.html" />
         <option value="$PROJECT_DIR$/src/page_action/recent_notes.js" />
         <option value="$PROJECT_DIR$/src/page_action/page_action.css" />
+        <option value="$PROJECT_DIR$/src/browser_action/recent_notes.js" />
         <option value="$PROJECT_DIR$/src/bg/background.js" />
         <option value="$PROJECT_DIR$/manifest.json" />
+        <option value="$PROJECT_DIR$/src/inject/inject.css" />
+        <option value="$PROJECT_DIR$/src/inject/inject.js" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.html" />
-        <option value="$PROJECT_DIR$/src/browser_action/recent_notes.js" />
+        <option value="$PROJECT_DIR$/src/browser_action/browser_action.css" />
+        <option value="$PROJECT_DIR$/src/browser_action/browser_action.js" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="x" value="751" />
     <option name="y" value="-1080" />
     <option name="width" value="1920" />
@@ -286,6 +336,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="ignore_missing_gitignore" value="true" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -319,7 +372,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1518786934136</updated>
-      <workItem from="1518786936053" duration="52361000" />
+      <workItem from="1518786936053" duration="57788000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed body to content.">
       <created>1518811313443</created>
@@ -426,14 +479,21 @@
       <option name="project" value="LOCAL" />
       <updated>1519066231838</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Updated version number to be dynamic from `manifest.json`.">
+      <created>1519068548512</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1519068548512</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52361000" />
+    <option name="totallyTimeSpent" value="57788000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="751" y="-1080" width="1920" height="1080" extended-state="0" />
+    <frame x="751" y="-1080" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12427594" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -476,7 +536,8 @@
     <MESSAGE value="Added more styling to recent notes popup." />
     <MESSAGE value="Fixed timestamping problem." />
     <MESSAGE value="Changed to browser action, so we can jump to recent notes from any page." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed to browser action, so we can jump to recent notes from any page." />
+    <MESSAGE value="Updated version number to be dynamic from `manifest.json`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated version number to be dynamic from `manifest.json`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -579,19 +640,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/inject.css">
+    <entry file="file://$PROJECT_DIR$/src/utils/utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-148">
-          <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="330">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <marker date="1519063934000" expanded="true" signature="39:330" ph="{...}" />
+            <marker date="1519063934000" expanded="true" signature="361:397" ph="{...}" />
+            <marker date="1519063934000" expanded="true" signature="431:563" ph="{...}" />
+            <marker date="1519063934000" expanded="true" signature="519:546" ph="{...}" />
+            <marker date="1519063934000" expanded="true" signature="599:708" ph="{...}" />
+            <marker date="1519063934000" expanded="true" signature="631:704" ph="{...}" />
+            <marker date="1519063934000" expanded="true" signature="746:811" ph="{...}" />
+            <marker date="1519063934000" expanded="true" signature="849:917" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
+    <entry file="file://$PROJECT_DIR$/src/browser_action/recent_notes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="767">
+          <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+          <folding>
+            <marker date="1519068494000" expanded="true" signature="13:69" ph="{...}" />
+            <marker date="1519068494000" expanded="true" signature="109:1655" ph="{...}" />
+            <marker date="1519068494000" expanded="true" signature="211:369" ph="{...}" />
+            <marker date="1519068494000" expanded="true" signature="306:364" ph="{...}" />
+            <marker date="1519068494000" expanded="true" signature="403:1653" ph="{...}" />
+            <marker date="1519068494000" expanded="true" signature="824:914" ph="{&quot;class&quot;: &quot;pin-icon&quot;...}" />
+            <marker date="1519068494000" expanded="true" signature="1274:1397" ph="{...}" />
+            <marker date="1519068494000" expanded="true" signature="1430:1514" ph="{...}" />
+            <marker date="1519068494000" expanded="true" signature="1520:1583" ph="{...}" />
+            <marker date="1519068494000" expanded="true" signature="1696:1765" ph="{...}" />
+            <marker date="1519068494000" expanded="true" signature="1798:1887" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -603,52 +685,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.css">
+    <entry file="file://$PROJECT_DIR$/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="74" column="15" lean-forward="false" selection-start-line="74" selection-start-column="15" selection-end-line="74" selection-end-column="15" />
+        <state relative-caret-position="407">
+          <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/utils.js">
+    <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="241" column="25" lean-forward="false" selection-start-line="241" selection-start-column="25" selection-end-line="241" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/inject.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="101" column="1" lean-forward="true" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bg/background.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/browser_action/recent_notes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="767">
-          <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+        <state relative-caret-position="360">
+          <caret line="24" column="33" lean-forward="true" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="62" lean-forward="true" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
+        <state relative-caret-position="165">
+          <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
           <folding>
-            <element signature="e#310#316#0" expanded="true" />
+            <element signature="e#576#582#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manifest.json">
+    <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="8" lean-forward="false" selection-start-line="44" selection-start-column="7" selection-end-line="44" selection-end-column="8" />
+        <state relative-caret-position="677">
+          <caret line="125" column="15" lean-forward="false" selection-start-line="125" selection-start-column="15" selection-end-line="125" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="3" lean-forward="false" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
           <folding />
         </state>
       </provider>

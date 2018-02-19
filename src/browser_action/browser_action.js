@@ -1,6 +1,6 @@
 const render = name => {
   if (name) {
-    $('#logged-in').find('h1').text('Hello, ' + name + '!');
+    $('#rn_welcome').html("Not <b>" + name + "</b>?");
     $('#logged-out').fadeOut(() => $('#logged-in').fadeIn());
   } else {
     $('#logged-in').fadeOut(() => $('#logged-out').fadeIn());
@@ -19,7 +19,7 @@ $(document).ready(function($) {
     chrome.runtime.sendMessage({type: 'login'});
   });
 
-  $('#logged-in > button').on('click', e => {
+  $('#rn_log-out').on('click', e => {
     chrome.runtime.sendMessage({type: 'logout'});
   });
 });

@@ -1,9 +1,9 @@
 chrome.runtime.sendMessage({
   type: 'showPageAction'
 }, function () {
-	var readyStateCheckInterval = setInterval(function () {
+	let readyStateCheckInterval = setInterval(function () {
 		if (document.readyState === "complete") {
-			var currentVideoId = getCurrentVideoId();
+			let currentVideoId = getCurrentVideoId();
 			clearInterval(readyStateCheckInterval);
 			buildWidget();
 			watchAddNoteButton();
@@ -248,11 +248,11 @@ function addNoteIfInputHasContent() {
 }
 
 function watchTimestampForCurrentVideo() {
-	var currentVideoId = getCurrentVideoId();
+	const currentVideoId = getCurrentVideoId();
 
 	$(document).on("click", ".timestamp[href*=" + currentVideoId + "]", function (event) {
-		var regex = /t=\d+/g;
-		var time = event.target.href.match(regex);
+		const regex = /t=\d+/g;
+		const time = event.target.href.match(regex);
 		$("video")[0].currentTime = time[0].substring(2);
 		event.preventDefault();
 	});
@@ -260,7 +260,7 @@ function watchTimestampForCurrentVideo() {
 
 function storeNoteLocally(note) {
 	chrome.storage.sync.get({notes: {}}, function(result) {
-		var notes = result.notes;
+		let notes = result.notes;
 		notes.recent = notes.recent || [];
 		notes.recent.push(note);
 		if (notes.recent.length > 5) {
@@ -276,7 +276,7 @@ function storeNoteLocally(note) {
 }
 
 function refreshWidget() {
-	var container = $("#rn_note-container");
+	let container = $("#rn_note-container");
 	container.empty();
 	buildExistingNotes(container);
 	console.log("Widget Refreshed.");
