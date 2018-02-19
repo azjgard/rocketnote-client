@@ -12,7 +12,8 @@
   "default_locale": "en",
   "web_accessible_resources": [
     "assets/img/thumbtack_light.svg",
-    "assets/img/thumbtack_dark.svg"
+    "assets/img/thumbtack_dark.svg",
+    "assets/img/rocket_note_main_logo.svg"
   ],
   "background": {
     "scripts": ["js/lib/jquery/jquery.js", "src/bg/background.js"],
@@ -38,10 +39,10 @@
       ]
     }
   ],
-  "permissions": ["identity", "tabs", "identity.email"],
+  "permissions": ["identity", "tabs", "identity.email", "storage"],
   "oauth2": {
     "client_id":
-      "772398796773-nofuo3vd7s8r6jjjn8qav61jpergv2cu.apps.googleusercontent.com",
+    "772398796773-nofuo3vd7s8r6jjjn8qav61jpergv2cu.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/plus.login",
       "https://www.googleapis.com/auth/plus.me",

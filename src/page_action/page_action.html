@@ -3,7 +3,6 @@
 <script src="../../js/lib/jquery/jquery.min.js"></script>
 
 <div id="rn_mainPopup">
-    <img src="../../icons/icon128.png"/>
 
   <div id="logged-out">
     <button>Login</button>
@@ -11,12 +10,19 @@
 
   <div id="logged-in">
     <button>Logout</button>
-
     <h1>Hello, Rocket Note!</h1>
-    <p>Let's start taking some notes. :)</p>
-
+    <img src="../../assets/img/rocket_note_main_logo.svg" class="rn_main-logo"/>
+    <h3 class="recent">Recent Notes</h3>
+    <div class="view-all"><a href="javascript:void(0);" class="view-all">view all notes &rarr;</a></div>
+    <div id="recent-notes"></div>
+    <div class="rn_footer">Rocket Note v0.0.1 <a href="javascript:void(0);">Leave Feedback</a></div>
     <span></span>
   </div>
+
 </div>
 
+<script type="text/javascript" src="../../js/lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/lib/moment/moment.min.js"></script>
+<script type="text/javascript" src="../utils/utils.js"></script>
+<script type="text/javascript" src="recent_notes.js"></script>
 <script src="page_action.js"></script>

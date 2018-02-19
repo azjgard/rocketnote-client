@@ -42,9 +42,6 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   if (request.type === 'login') {
     const token = await login(true);
 
-    console.log('token:');
-    console.log(token);
-
     // This ajax request isn't necessary to actually log the user
     // in, but it's here so that we can grab their information and
     // use it in the "Hello, {user}!" message inside of the popup. We
@@ -73,7 +70,6 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
           userLoggedIn: false,
           username: null,
         };
-
         chrome.runtime.sendMessage({
           context: 'popup',
           type: 'logout',
