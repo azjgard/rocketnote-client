@@ -1,6 +1,6 @@
 #rn_mainPopup {
 	padding: 10px;
-	height: 400px;
+	height: 420px;
 	width: 260px;
 	font-family: Helvetica, Ubuntu, Arial, sans-serif;
 }
@@ -18,7 +18,7 @@ h3 {
 }
 
 .rn_footer {
-	bottom: 0;
+	bottom: 5px;
 	color: #707070;
 	left: 50%;
 	position: absolute;
@@ -42,9 +42,29 @@ h3 {
 #recent-notes .timestamp {
 	color: #707070;
 	margin-right: 10px;
+	outline: none;
 	text-decoration: underline;
 }
 
 .rn_tag {
 	color: #4791df;
+}
+
+.recent-note {
+	padding: 8px 0;
+	border-top: 1px solid #efefef;
+}
+
+.recent-note-body {
+	display: inline-block;
+	margin: 0;
+	width: 60px;
+}
+
+.rn_thumbnail {
+	display: inline-block;
+	height: 50px;
+	margin-right: 10px;
+	vertical-align: middle;
+	width: 88.875px;
 }

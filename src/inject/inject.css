@@ -38,6 +38,7 @@
 #rn_note-container .timestamp {
 	color: #707070;
 	margin-right: 10px;
+	outline: none;
 	text-decoration: underline;
 }
 

@@ -12,13 +12,25 @@ function addRecentNotesToDropdown() {
 	});
 
 	function buildNoteBody(note) {
-		var noteBody = $(document.createElement("p"));
+		var noteBodyContainer = $(document.createElement("div")).addClass("recent-note");
+		var noteBody = $(document.createElement("p")).addClass("recent-note-body");
 		var videoUrl = "https://youtube.com/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
 		var pinIcon = $(document.createElement("img")).attr({
 			src: chrome.runtime.getURL("assets/img/thumbtack_dark.svg"),
 			class: "pin-icon"
 		});
 		var timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl, target: "_blank"});
+		var thumbnailUrl = getVideoThumbnailUrl(note.videoId);
+		var thumbnail = $(document.createElement("img")).attr({src: thumbnailUrl, class: "rn_thumbnail"});
+
+
+		noteBodyContainer.append(thumbnail);
+
+		if (note.timestamp >= 0) {
+			var formattedTimestamp = formatTimestamp(note.timestamp);
+			noteBody.append(timestamp.text(formattedTimestamp));
+
+		}
 
 		if (note.content.length > 0) {
 			noteBody.text(note.content);
@@ -28,16 +40,11 @@ function addRecentNotesToDropdown() {
 			noteBody.addClass("pin");
 		}
 
-		if (note.timestamp >= 0) {
-			var formattedTimestamp = formatTimestamp(note.timestamp);
-			noteBody.prepend(timestamp.text(formattedTimestamp));
-		}
-
-		return noteBody;
+		noteBodyContainer.append(noteBody);
+		return noteBodyContainer;
 	}
 }
 
-function getVideoThumbnail(videoId) {
-	//TODO: Get video thumbnails for each video
-	//TODO: Store thumbnail in chrome storage sync.
+function getVideoThumbnailUrl(videoId) {
+	return "https://i1.ytimg.com/vi/" + videoId +  "/mqdefault.jpg";
 }
