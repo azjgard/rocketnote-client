@@ -15,7 +15,7 @@ $(document).ready(function($) {
   // page action is re-opened by the user.
   chrome.runtime.sendMessage({context: 'background', type: 'getState'});
 
-  $('#logged-out > button').on('click', e => {
+  $('#rn_log-in').on('click', e => {
     chrome.runtime.sendMessage({type: 'login'});
   });
 

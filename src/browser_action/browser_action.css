@@ -9,6 +9,16 @@ h1 {
   font-size: 2em;
 }
 
+a {
+  color: #3680ce;
+  outline: none;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 /* As mentioned in a comment in page_action.js, the page action doesn't */
 /* retain any kind of state after it's closed. For that reason, we need */
 /* to hide both of these containers, because they'll be conditionally */
@@ -19,35 +29,29 @@ h1 {
   display: none;
 }
 
-h3 {
-  color: #707070;
+.recent {
+  color: #a6a6a6;
   font-size: 14px;
-  font-style: italic;
   font-weight: 300;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   text-align: center;
 }
 
 .view-all {
-  color: #4791df;
   font-size: 10px;
   margin-bottom: 2px;
   outline: none;
   text-align: right;
-  text-decoration: none;
 }
 
 .rn_main-logo {
-  height: 24px;
-  margin-bottom: 5px;
+  height: 26px;
+  margin-bottom: 15px;
   vertical-align: top;
 }
 
 #rn_log-out {
-  color: #4791df;
   float: right;
-  outline: none;
-  text-decoration: none;
 }
 
 .rn_footer {
@@ -58,12 +62,6 @@ h3 {
   text-align: center;
   transform: translateX(-50%);
   width: 260px;
-}
-
-.rn_footer a {
-  color: #4791df;
-  outline: none;
-  text-decoration: none;
 }
 
 .pin-icon {
@@ -118,11 +116,19 @@ h3 {
 .align-right {
   display: inline-block;
   text-align: right;
-  width: 100px;
+  width: 85px;
 }
 
 #rn_welcome,
 #rn_log-out {
   font-size: 10px;
   margin: 0;
+}
+
+#logged-out {
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%)
 }
