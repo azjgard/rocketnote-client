@@ -1,5 +1,6 @@
 $(function() {
 	addRecentNotesToDropdown();
+	updateVersionNumber();
 });
 
 function addRecentNotesToDropdown() {
@@ -47,4 +48,9 @@ function addRecentNotesToDropdown() {
 
 function getVideoThumbnailUrl(videoId) {
 	return "https://i1.ytimg.com/vi/" + videoId +  "/mqdefault.jpg";
+}
+
+function updateVersionNumber() {
+	var version = chrome.runtime.getManifest().version;
+	$("#rn_version").text(version);
 }
