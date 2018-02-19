@@ -5,45 +5,47 @@
   "description": "Power up YouTube with Note-Taking",
   "homepage_url": "https://getrocketnote.com",
   "icons": {
-	"16": "icons/icon16.png",
-	"48": "icons/icon48.png",
-	"128": "icons/icon128.png"
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "default_locale": "en",
   "web_accessible_resources": [
-	"assets/img/thumbtack_light.svg",
-	"assets/img/thumbtack_dark.svg"
+    "assets/img/thumbtack_light.svg",
+    "assets/img/thumbtack_dark.svg"
   ],
   "background": {
-	"scripts": [
-	  "src/bg/background.js"
-	],
-	"persistent": true
+    "scripts": ["js/lib/jquery/jquery.js", "src/bg/background.js"],
+    "persistent": true
   },
   "page_action": {
-	"default_icon": "icons/icon16.png",
-	"default_title": "page action",
-	"default_popup": "src/page_action/page_action.html"
+    "default_icon": "icons/icon16.png",
+    "default_title": "page action",
+    "default_popup": "src/page_action/page_action.html"
   },
   "content_scripts": [
-	{
-	  "matches": [
-		"https://www.youtube.com/*"
-	  ],
-	  "css": [
-		"src/inject/inject.css"
-	  ]
-	},
-	{
-	  "matches": [
-		"https://www.youtube.com/*"
-	  ],
-	  "js": [
-		"js/lib/jquery/jquery.js",
-		"js/lib/moment/moment.min.js",
-		"src/requests/requests.js",
-		"src/inject/inject.js"
-	  ]
-	}
-  ]
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "css": ["src/inject/inject.css"]
+    },
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": [
+        "js/lib/jquery/jquery.js",
+        "js/lib/moment/moment.min.js",
+        "src/requests/requests.js",
+        "src/inject/inject.js"
+      ]
+    }
+  ],
+  "permissions": ["identity", "tabs", "identity.email"],
+  "oauth2": {
+    "client_id":
+      "772398796773-nofuo3vd7s8r6jjjn8qav61jpergv2cu.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/plus.login",
+      "https://www.googleapis.com/auth/plus.me",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  }
 }

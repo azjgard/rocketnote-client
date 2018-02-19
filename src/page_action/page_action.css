@@ -1,10 +1,20 @@
 #rn_mainPopup {
-	padding: 10px;
-	height: 200px;
-	width: 400px;
-	font-family: Helvetica, Ubuntu, Arial, sans-serif;
+  padding: 10px;
+  height: 200px;
+  width: 400px;
+  font-family: Helvetica, Ubuntu, Arial, sans-serif;
 }
 
 h1 {
-	font-size: 2em;
+  font-size: 2em;
+}
+
+/* As mentioned in a comment in page_action.js, the page action doesn't */
+/* retain any kind of state after it's closed. For that reason, we need */
+/* to hide both of these containers, because they'll be conditionally */
+/* shown every time the popup is opened after the popup grabs the current */
+/* state (whether or not the user is logged in) from the background script. */
+#logged-in,
+#logged-out {
+  display: none;
 }

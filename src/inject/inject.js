@@ -1,4 +1,6 @@
-chrome.runtime.sendMessage({}, function () {
+chrome.runtime.sendMessage({
+  type: 'showPageAction'
+}, function () {
 	var readyStateCheckInterval = setInterval(function () {
 		if (document.readyState === "complete") {
 			clearInterval(readyStateCheckInterval);
