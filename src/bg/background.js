@@ -3,11 +3,6 @@ var state = {
   username: null,
 };
 
-const pageActionWhitelist = ['youtube.com'];
-
-const shouldShowPageAction = currentUrl =>
-  pageActionWhitelist.findIndex(url => currentUrl.includes(url)) !== -1;
-
 const login = interactive => {
   return new Promise((resolve, reject) => {
     chrome.identity.getAuthToken({interactive: true}, token => resolve(token));
@@ -15,19 +10,7 @@ const login = interactive => {
 };
 
 chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
-  if (request.type === 'showPageAction') {
-    // NOTE: We are checking for sender.tab because
-    // if the message is being sent from a popup then it
-    // will be undefined and we don't want to worry
-    // about showing a page action.
-    const showPageAction = sender.tab && shouldShowPageAction(sender.tab.url);
-
-    if (showPageAction) {
-      chrome.pageAction.show(sender.tab.id);
-    }
-  }
-
-  // This type of request will be sent by the page action every time
+  // This type of request will be sent by the browser action every time
   // that the popup is opened. It conditionally renders the HTML
   // based on the current state of the extension (whether or not
   // the user is logged in)

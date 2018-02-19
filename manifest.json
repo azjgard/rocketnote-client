@@ -19,10 +19,10 @@
     "scripts": ["js/lib/jquery/jquery.js", "src/bg/background.js"],
     "persistent": true
   },
-  "page_action": {
+  "browser_action": {
     "default_icon": "icons/icon16.png",
-    "default_title": "page action",
-    "default_popup": "src/page_action/page_action.html"
+    "default_title": "Rocket Note",
+    "default_popup": "src/browser_action/browser_action.html"
   },
   "content_scripts": [
     {
