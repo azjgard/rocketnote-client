@@ -1,4 +1,4 @@
-buildWidget = () => {
+const buildWidget = () => {
 	let relatedContent = $("#related");
 	let widget = $(document.createElement("div"));
 	let widgetAttr = {id: "rn_widget"};
@@ -12,14 +12,14 @@ buildWidget = () => {
 	noteContainer.scrollTop(noteContainer[0].scrollHeight);
 };
 
-buildNoteContainer = () => {
+const buildNoteContainer = () => {
 	let noteContainer = $(document.createElement("div"));
 	noteContainer.attr({id: "rn_note-container"});
 	buildExistingNotes(noteContainer);
 	return noteContainer;
 };
 
-buildExistingNotes = container => {
+const buildExistingNotes = container => {
 	chrome.storage.sync.get({notes: {}}, function(result) {
 		let existingNotes = result.notes[getCurrentVideoId()] || [];
 
@@ -44,7 +44,7 @@ buildExistingNotes = container => {
 		return container;
 	});
 
-	buildNoteBody = note => {
+	const buildNoteBody = note => {
 		let noteBody = $(document.createElement("p"));
 		let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
 		let pinIcon = $(document.createElement("img")).attr({
@@ -70,7 +70,7 @@ buildExistingNotes = container => {
 	};
 };
 
-buildNoteInput = () => {
+const buildNoteInput = () => {
 	let inputForm = $(document.createElement("div")).attr({id: "rn_input-form"});
 	let input = $(document.createElement("input")).attr({id: "rn_note-input", placeholder: "Type here..."});
 	let pinIcon = $(document.createElement("img")).attr({

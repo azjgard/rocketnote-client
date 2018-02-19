@@ -1,6 +1,6 @@
 chrome.runtime.sendMessage({
   type: 'showPageAction'
-}, function () {
+}, () => {
 	let readyStateCheckInterval = setInterval(() => {
 		if (document.readyState === "complete") {
 			let currentVideoId = getCurrentVideoId();
@@ -15,19 +15,19 @@ chrome.runtime.sendMessage({
 			watchForPlaylist();
 			watchVideoForChanges(currentVideoId);
 
-			watchVideoForChanges = () => {
+			function watchVideoForChanges(currentVideoId) {
 				setInterval(() => {
 					if (currentVideoId !== getCurrentVideoId()) {
 						refreshWidget();
 						currentVideoId = getCurrentVideoId();
 					}
 				}, 1000);
-			};
+			}
 		}
 	}, 500);
 });
 
-refreshWidget = () => {
+const refreshWidget = () => {
 	let container = $("#rn_note-container");
 	container.empty();
 	buildExistingNotes(container);

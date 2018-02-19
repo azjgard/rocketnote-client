@@ -1,4 +1,4 @@
-addNote = isPin => {
+const addNote = isPin => {
 	let video = $("video")[0];
 	let input = $("#rn_note-input");
 	let note = {};
@@ -11,23 +11,23 @@ addNote = isPin => {
 
 	submitNote(note);
 
-	submitNote = note => {
+	function submitNote(note) {
 		addNoteToContainer(note);
 		storeNoteLocally(note);
 
 		resetInput(isPin);
-	};
+	}
 
-	resetInput = isPin => {
+	function resetInput(isPin) {
 		if (!isPin) {
 			input.val("");
 			input.focus();
 		}
 		input.removeClass("error");
 	}
-}
+};
 
-addNoteToContainer = ({content, timestamp, videoId}) => {
+const addNoteToContainer = ({content, timestamp, videoId}) => {
 	let noteContainer = $("#rn_note-container");
 	let notePlaceholder = $(".rn_notes-placeholder");
 	let noteBody = $(document.createElement("p"));
@@ -61,12 +61,12 @@ addNoteToContainer = ({content, timestamp, videoId}) => {
 	}
 };
 
-addPin = () => {
+const addPin = () => {
 	const isPin = true;
 	addNote(isPin);
 };
 
-addNoteIfInputHasContent = () => {
+const addNoteIfInputHasContent = () => {
 	let input = $("#rn_note-input");
 	if (input.val() === "") {
 		input.addClass("error");
@@ -76,7 +76,7 @@ addNoteIfInputHasContent = () => {
 	}
 };
 
-storeNoteLocally = note => {
+const storeNoteLocally = note => {
 	chrome.storage.sync.get({notes: {}}, function(result) {
 		let notes = result.notes;
 		notes.recent = notes.recent || [];

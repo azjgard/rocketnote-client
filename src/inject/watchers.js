@@ -1,16 +1,16 @@
-watchAddNoteButton = () => {
+const watchAddNoteButton = () => {
 	$(document).on("click", "#rn_note-submit", () => {
 		addNoteIfInputHasContent();
 	});
 };
 
-watchPinButton = () => {
+const watchPinButton = () => {
 	$(document).on("click", "#rn_pin", () => {
 		addPin();
 	});
 };
 
-watchKeyForInputFocus = charCode => {
+const watchKeyForInputFocus = charCode => {
 	$(document).keyup(function (e) {
 		if ($(e.target).closest("input")[0]) {
 			return;
@@ -21,7 +21,7 @@ watchKeyForInputFocus = charCode => {
 	})
 };
 
-watchKeyForNoteSubmit = charCode => {
+const watchKeyForNoteSubmit = charCode => {
 	$(document).keyup(e => {
 		if ($("#rn_note-input").is(":focus")) {
 			if (e.keyCode === charCode) {
@@ -31,7 +31,7 @@ watchKeyForNoteSubmit = charCode => {
 	});
 };
 
-watchKeyForPin = charCode => {
+const watchKeyForPin = charCode => {
 	$(document).keyup(e => {
 		if ($(e.target).closest("input")[0]) {
 			return;
@@ -42,7 +42,7 @@ watchKeyForPin = charCode => {
 	});
 };
 
-watchTimestampForCurrentVideo = () => {
+const watchTimestampForCurrentVideo = () => {
 	const currentVideoId = getCurrentVideoId();
 
 	$(document).on("click", ".timestamp[href*=" + currentVideoId + "]", e => {

@@ -1,39 +1,40 @@
-$(function() {
+$(() => {
 	addRecentNotesToDropdown();
 	updateVersionNumber();
 });
 
-function addRecentNotesToDropdown() {
-	var recentNotesContainer = $("#recent-notes");
+const addRecentNotesToDropdown = () => {
+	let recentNotesContainer = $("#recent-notes");
 	chrome.storage.sync.get("notes", function(results) {
-		var recentNotes = results.notes.recent;
+		let recentNotes = results.notes.recent;
 		recentNotes.slice().reverse().map(function(note) {
 			recentNotesContainer.append(buildNoteBody(note));
 		});
 	});
 
 	function buildNoteBody(note) {
-		var noteBodyContainer = $(document.createElement("div")).addClass("recent-note");
-		var noteContents = $(document.createElement("p")).addClass("recent-note-body");
-		var noteBody = $(document.createElement("div")).addClass("note-body-container").append(noteContents);
-		var videoUrl = "https://youtube.com/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
-		var pinIcon = $(document.createElement("img")).attr({
+		let noteBodyContainer = $(document.createElement("div")).addClass("recent-note");
+		let noteContents = $(document.createElement("p")).addClass("recent-note-body");
+		let noteBody = $(document.createElement("div")).addClass("note-body-container").append(noteContents);
+		let videoUrl = "https://youtube.com/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
+		let pinIcon = $(document.createElement("img")).attr({
 			src: chrome.runtime.getURL("assets/img/thumbtack_dark.svg"),
 			class: "pin-icon"
 		});
-		var timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl, target: "_blank"});
-		var thumbnailUrl = getVideoThumbnailUrl(note.videoId);
-		var thumbnail = $(document.createElement("img")).attr({src: thumbnailUrl, class: "rn_thumbnail"});
+		let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl, target: "_blank"});
+		let thumbnailUrl = getVideoThumbnailUrl(note.videoId);
+		let thumbnail = $(document.createElement("img")).attr({src: thumbnailUrl, class: "rn_thumbnail"});
 
 
 		noteBodyContainer.append(thumbnail);
 
 		if (note.timestamp >= 0) {
-			var formattedTimestamp = formatTimestamp(note.timestamp);
+			let formattedTimestamp = formatTimestamp(note.timestamp);
 			noteBody.prepend(timestamp.text(formattedTimestamp));
 		}
 
 		if (note.content.length > 0) {
+			console.log(note.content.trunc(55));
 			noteContents.text(note.content.trunc(55));
 			addClassToHashtags(noteBody);
 		} else {
@@ -44,13 +45,13 @@ function addRecentNotesToDropdown() {
 		noteBodyContainer.append(noteBody);
 		return noteBodyContainer;
 	}
-}
+};
 
-function getVideoThumbnailUrl(videoId) {
+const getVideoThumbnailUrl = videoId => {
 	return "https://i1.ytimg.com/vi/" + videoId +  "/mqdefault.jpg";
-}
+};
 
-function updateVersionNumber() {
-	var version = chrome.runtime.getManifest().version;
+const updateVersionNumber = () => {
+	let version = chrome.runtime.getManifest().version;
 	$("#rn_version").text(version);
-}
+};

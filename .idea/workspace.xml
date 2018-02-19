@@ -3,12 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="ef02f4a2-a314-4c11-971f-bf9495392357" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/browser_action/browser_action.js" afterPath="$PROJECT_DIR$/src/browser_action/browser_action.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/browser_action/recent_notes.js" afterPath="$PROJECT_DIR$/src/browser_action/recent_notes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/add_notes.js" afterPath="$PROJECT_DIR$/src/inject/add_notes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/build_widget.js" afterPath="$PROJECT_DIR$/src/inject/build_widget.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/inject.js" afterPath="$PROJECT_DIR$/src/inject/inject.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/playlist.js" afterPath="$PROJECT_DIR$/src/inject/playlist.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/watchers.js" afterPath="$PROJECT_DIR$/src/inject/watchers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/requests/requests.js" afterPath="$PROJECT_DIR$/src/requests/requests.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/utils.js" afterPath="$PROJECT_DIR$/src/utils/utils.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,8 +29,8 @@
           <file leaf-file-name="manifest.json" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/manifest.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="302">
-                  <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+                <state relative-caret-position="330">
+                  <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
                   <folding />
                 </state>
               </provider>
@@ -49,18 +51,18 @@
           <file leaf-file-name="inject.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="33" column="2" lean-forward="true" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+                <state relative-caret-position="345">
+                  <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="add_notes.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="add_notes.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/inject/add_notes.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+                <state relative-caret-position="578">
+                  <caret line="84" column="27" lean-forward="true" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
@@ -69,18 +71,18 @@
           <file leaf-file-name="watchers.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/inject/watchers.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="795">
+                <state relative-caret-position="743">
                   <caret line="53" column="2" lean-forward="true" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="2" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="playlist.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="playlist.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/inject/playlist.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+                <state relative-caret-position="0">
+                  <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -89,8 +91,8 @@
           <file leaf-file-name="build_widget.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/inject/build_widget.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="743">
-                  <caret line="91" column="2" lean-forward="true" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
+                <state relative-caret-position="398">
+                  <caret line="72" column="6" lean-forward="true" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -113,21 +115,19 @@
           <file leaf-file-name="recent_notes.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/browser_action/recent_notes.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="767">
-                  <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
-                  <folding>
-                    <marker date="1519068494000" expanded="true" signature="13:69" ph="{...}" />
-                    <marker date="1519068494000" expanded="true" signature="109:1655" ph="{...}" />
-                    <marker date="1519068494000" expanded="true" signature="211:369" ph="{...}" />
-                    <marker date="1519068494000" expanded="true" signature="306:364" ph="{...}" />
-                    <marker date="1519068494000" expanded="true" signature="403:1653" ph="{...}" />
-                    <marker date="1519068494000" expanded="true" signature="824:914" ph="{&quot;class&quot;: &quot;pin-icon&quot;...}" />
-                    <marker date="1519068494000" expanded="true" signature="1274:1397" ph="{...}" />
-                    <marker date="1519068494000" expanded="true" signature="1430:1514" ph="{...}" />
-                    <marker date="1519068494000" expanded="true" signature="1520:1583" ph="{...}" />
-                    <marker date="1519068494000" expanded="true" signature="1696:1765" ph="{...}" />
-                    <marker date="1519068494000" expanded="true" signature="1798:1887" ph="{...}" />
-                  </folding>
+                <state relative-caret-position="540">
+                  <caret line="36" column="42" lean-forward="false" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="utils.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/utils/utils.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="525">
+                  <caret line="35" column="2" lean-forward="true" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -142,7 +142,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="browser_action.css" pinned="false" current-in-tab="true">
+          <file leaf-file-name="browser_action.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.css">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="960">
@@ -158,12 +158,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addNote</find>
-      <find>addNote(true)</find>
-      <find>pin</find>
-      <find>#3</find>
-      <find>thumb</find>
-      <find>video</find>
       <find>getParam</find>
       <find>refresh</find>
       <find>note.content</find>
@@ -188,10 +182,17 @@
       <find>view all</find>
       <find>join</find>
       <find>.join</find>
+      <find>ForChanges</find>
+      <find>var</find>
+      <find>submitNote</find>
+      <find>{content</find>
+      <find>recent</find>
+      <find>content</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
       <replace>addPin()</replace>
+      <replace>let</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -205,12 +206,9 @@
         <option value="$PROJECT_DIR$/js/lib/hashtags/jquery.hashtags.css" />
         <option value="$PROJECT_DIR$/js/lib/autosize/autosize.js" />
         <option value="$PROJECT_DIR$/js/lib/hashtags/jquery.hashtags.js" />
-        <option value="$PROJECT_DIR$/src/requests/requests.js" />
-        <option value="$PROJECT_DIR$/src/utils/utils.js" />
         <option value="$PROJECT_DIR$/src/page_action/page_action.html" />
         <option value="$PROJECT_DIR$/src/page_action/recent_notes.js" />
         <option value="$PROJECT_DIR$/src/page_action/page_action.css" />
-        <option value="$PROJECT_DIR$/src/browser_action/recent_notes.js" />
         <option value="$PROJECT_DIR$/src/bg/background.js" />
         <option value="$PROJECT_DIR$/src/inject/inject.css" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.css" />
@@ -219,12 +217,15 @@
         <option value="$PROJECT_DIR$/src/browser_action/add_notes.js" />
         <option value="$PROJECT_DIR$/manifest.json" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.html" />
-        <option value="$PROJECT_DIR$/src/inject/add_notes.js" />
-        <option value="$PROJECT_DIR$/src/inject/inject.js" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.js" />
-        <option value="$PROJECT_DIR$/src/inject/build_widget.js" />
         <option value="$PROJECT_DIR$/src/inject/watchers.js" />
         <option value="$PROJECT_DIR$/src/inject/playlist.js" />
+        <option value="$PROJECT_DIR$/src/inject/build_widget.js" />
+        <option value="$PROJECT_DIR$/src/requests/requests.js" />
+        <option value="$PROJECT_DIR$/src/inject/inject.js" />
+        <option value="$PROJECT_DIR$/src/inject/add_notes.js" />
+        <option value="$PROJECT_DIR$/src/browser_action/recent_notes.js" />
+        <option value="$PROJECT_DIR$/src/utils/utils.js" />
       </list>
     </option>
   </component>
@@ -382,7 +383,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1518786934136</updated>
-      <workItem from="1518786936053" duration="63454000" />
+      <workItem from="1518786936053" duration="64551000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed body to content.">
       <created>1518811313443</created>
@@ -531,11 +532,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519080099093</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Refactored everything into ES6.">
+      <created>1519082774420</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1519082774420</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63454000" />
+    <option name="totallyTimeSpent" value="64551000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="751" y="-1080" width="1920" height="1080" extended-state="6" />
@@ -587,7 +595,8 @@
     <MESSAGE value="Fade in widget. Removed logging." />
     <MESSAGE value="Broke out `inject.js` into 4 separate files." />
     <MESSAGE value="Only try to inject on YouTube watch pages." />
-    <option name="LAST_COMMIT_MESSAGE" value="Only try to inject on YouTube watch pages." />
+    <MESSAGE value="Refactored everything into ES6." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored everything into ES6." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -674,14 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/requests/requests.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/img/rocket_note_main_logo.svg">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -690,38 +691,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/browser_action/recent_notes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="767">
-          <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
-          <folding>
-            <marker date="1519068494000" expanded="true" signature="13:69" ph="{...}" />
-            <marker date="1519068494000" expanded="true" signature="109:1655" ph="{...}" />
-            <marker date="1519068494000" expanded="true" signature="211:369" ph="{...}" />
-            <marker date="1519068494000" expanded="true" signature="306:364" ph="{...}" />
-            <marker date="1519068494000" expanded="true" signature="403:1653" ph="{...}" />
-            <marker date="1519068494000" expanded="true" signature="824:914" ph="{&quot;class&quot;: &quot;pin-icon&quot;...}" />
-            <marker date="1519068494000" expanded="true" signature="1274:1397" ph="{...}" />
-            <marker date="1519068494000" expanded="true" signature="1430:1514" ph="{...}" />
-            <marker date="1519068494000" expanded="true" signature="1520:1583" ph="{...}" />
-            <marker date="1519068494000" expanded="true" signature="1696:1765" ph="{...}" />
-            <marker date="1519068494000" expanded="true" signature="1798:1887" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bg/background.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" column="33" lean-forward="true" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/inject.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="101" column="1" lean-forward="true" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/watchers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="743">
+          <caret line="53" column="2" lean-forward="true" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/playlist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/build_widget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="72" column="6" lean-forward="true" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -738,56 +751,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/add_notes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="2" lean-forward="true" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/build_widget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
-          <caret line="91" column="2" lean-forward="true" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/watchers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" column="2" lean-forward="true" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/inject.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="101" column="1" lean-forward="true" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
+        <state relative-caret-position="330">
+          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -800,10 +765,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/playlist.js">
+    <entry file="file://$PROJECT_DIR$/src/requests/requests.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+        <state relative-caret-position="255">
+          <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/browser_action/recent_notes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="42" lean-forward="false" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="2" lean-forward="true" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/add_notes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="84" column="27" lean-forward="true" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
           <folding />
         </state>
       </provider>
