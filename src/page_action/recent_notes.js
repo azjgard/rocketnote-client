@@ -13,7 +13,8 @@ function addRecentNotesToDropdown() {
 
 	function buildNoteBody(note) {
 		var noteBodyContainer = $(document.createElement("div")).addClass("recent-note");
-		var noteBody = $(document.createElement("p")).addClass("recent-note-body");
+		var noteContents = $(document.createElement("p")).addClass("recent-note-body");
+		var noteBody = $(document.createElement("div")).addClass("note-body-container").append(noteContents);
 		var videoUrl = "https://youtube.com/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
 		var pinIcon = $(document.createElement("img")).attr({
 			src: chrome.runtime.getURL("assets/img/thumbtack_dark.svg"),
@@ -28,12 +29,11 @@ function addRecentNotesToDropdown() {
 
 		if (note.timestamp >= 0) {
 			var formattedTimestamp = formatTimestamp(note.timestamp);
-			noteBody.append(timestamp.text(formattedTimestamp));
-
+			noteBody.prepend(timestamp.text(formattedTimestamp));
 		}
 
 		if (note.content.length > 0) {
-			noteBody.text(note.content.trunc(55));
+			noteContents.text(note.content.trunc(55));
 			addClassToHashtags(noteBody);
 		} else {
 			noteBody.append(pinIcon);

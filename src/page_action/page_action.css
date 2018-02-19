@@ -92,3 +92,16 @@ h3 {
   vertical-align: middle;
   width: 88.875px;
 }
+
+.note-body-container {
+	display: inline-block;
+	width: 160px;
+}
+
+.rn_thumbnail {
+	display: inline-block;
+	height: 50px;
+	margin-right: 10px;
+	vertical-align: top;
+	width: 88.875px;
+}
