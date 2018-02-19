@@ -33,7 +33,7 @@ function addRecentNotesToDropdown() {
 		}
 
 		if (note.content.length > 0) {
-			noteBody.text(note.content);
+			noteBody.text(note.content.trunc(55));
 			addClassToHashtags(noteBody);
 		} else {
 			noteBody.append(pinIcon);
