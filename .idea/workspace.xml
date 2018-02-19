@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ef02f4a2-a314-4c11-971f-bf9495392357" name="Default" comment="Broke out i">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/inject/add_notes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/inject/build_widget.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/inject/watchers.js" />
+    <list default="true" id="ef02f4a2-a314-4c11-971f-bf9495392357" name="Default" comment="Broke out `inject.js` into 4 separate files.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manifest.json" afterPath="$PROJECT_DIR$/manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/inject.js" afterPath="$PROJECT_DIR$/src/inject/inject.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/browser_action/browser_action.html" afterPath="$PROJECT_DIR$/src/browser_action/browser_action.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,21 +20,33 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="manifest.json" pinned="false" current-in-tab="false">
+          <file leaf-file-name="manifest.json" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/manifest.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="512">
-                  <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
+                <state relative-caret-position="527">
+                  <caret line="43" column="30" lean-forward="true" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="inject.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="browser_action.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="405">
+                  <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#742#748#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="inject.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+                <state relative-caret-position="420">
+                  <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -69,18 +78,6 @@
                 <state relative-caret-position="45">
                   <caret line="3" column="36" lean-forward="false" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="browser_action.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="23" column="68" lean-forward="false" selection-start-line="23" selection-start-column="68" selection-end-line="23" selection-end-column="68" />
-                  <folding>
-                    <element signature="e#748#754#0" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -134,7 +131,7 @@
           <file leaf-file-name="browser_action.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="492">
+                <state relative-caret-position="960">
                   <caret line="64" column="1" lean-forward="true" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
                   <folding />
                 </state>
@@ -157,7 +154,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scrollTop</find>
       <find>&quot;Add</find>
       <find>extension</find>
       <find>addNote</find>
@@ -187,6 +183,7 @@
       <find>append(</find>
       <find>height</find>
       <find>getWid</find>
+      <find>view all</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
@@ -215,12 +212,12 @@
         <option value="$PROJECT_DIR$/src/inject/inject.css" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.js" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.css" />
-        <option value="$PROJECT_DIR$/src/browser_action/browser_action.html" />
         <option value="$PROJECT_DIR$/src/browser_action/build_widget.js" />
         <option value="$PROJECT_DIR$/src/browser_action/watchers.js" />
         <option value="$PROJECT_DIR$/src/browser_action/add_notes.js" />
         <option value="$PROJECT_DIR$/src/inject/inject.js" />
         <option value="$PROJECT_DIR$/manifest.json" />
+        <option value="$PROJECT_DIR$/src/browser_action/browser_action.html" />
       </list>
     </option>
   </component>
@@ -378,7 +375,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1518786934136</updated>
-      <workItem from="1518786936053" duration="61011000" />
+      <workItem from="1518786936053" duration="61429000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed body to content.">
       <created>1518811313443</created>
@@ -513,11 +510,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519078092025</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Broke out `inject.js` into 4 separate files.">
+      <created>1519079667605</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1519079667605</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61011000" />
+    <option name="totallyTimeSpent" value="61429000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="751" y="-1080" width="1920" height="1080" extended-state="6" />
@@ -567,7 +571,8 @@
     <MESSAGE value="Styled `logged in` part of popup." />
     <MESSAGE value="Make `logged out` state look prettier but simple." />
     <MESSAGE value="Fade in widget. Removed logging." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fade in widget. Removed logging." />
+    <MESSAGE value="Broke out `inject.js` into 4 separate files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Broke out `inject.js` into 4 separate files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -674,16 +679,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <marker date="1519063934000" expanded="true" signature="39:330" ph="{...}" />
-            <marker date="1519063934000" expanded="true" signature="361:397" ph="{...}" />
-            <marker date="1519063934000" expanded="true" signature="431:563" ph="{...}" />
-            <marker date="1519063934000" expanded="true" signature="519:546" ph="{...}" />
-            <marker date="1519063934000" expanded="true" signature="599:708" ph="{...}" />
-            <marker date="1519063934000" expanded="true" signature="631:704" ph="{...}" />
-            <marker date="1519063934000" expanded="true" signature="746:811" ph="{...}" />
-            <marker date="1519063934000" expanded="true" signature="849:917" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -741,19 +737,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
+        <state relative-caret-position="960">
           <caret line="64" column="1" lean-forward="true" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="68" lean-forward="false" selection-start-line="23" selection-start-column="68" selection-end-line="23" selection-end-column="68" />
-          <folding>
-            <element signature="e#748#754#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -781,18 +767,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manifest.json">
+    <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
+        <state relative-caret-position="420">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
+    <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+        <state relative-caret-position="405">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#742#748#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="43" column="30" lean-forward="true" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
           <folding />
         </state>
       </provider>

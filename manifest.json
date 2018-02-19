@@ -31,7 +31,7 @@
       "css": ["src/inject/inject.css"]
     },
     {
-      "matches": ["https://www.youtube.com/*"],
+      "matches": ["https://www.youtube.com/watch*"],
       "js": [
         "js/lib/jquery/jquery.js",
         "js/lib/moment/moment.min.js",
