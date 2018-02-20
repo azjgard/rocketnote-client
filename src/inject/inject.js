@@ -1,5 +1,5 @@
 chrome.runtime.sendMessage({
-  type: 'showPageAction'
+	type: 'showPageAction'
 }, () => {
 	let readyStateCheckInterval = setInterval(() => {
 		if (document.readyState === "complete") {

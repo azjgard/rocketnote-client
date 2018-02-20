@@ -5,7 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/inject.css" afterPath="$PROJECT_DIR$/src/inject/inject.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/inject.js" afterPath="$PROJECT_DIR$/src/inject/inject.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/watchers.js" afterPath="$PROJECT_DIR$/src/inject/watchers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/playlist.js" afterPath="$PROJECT_DIR$/src/inject/playlist.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,21 +21,21 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="inject.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="inject.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+                <state relative-caret-position="420">
+                  <caret line="28" column="3" lean-forward="true" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="watchers.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/inject/watchers.js">
+          <file leaf-file-name="playlist.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/inject/playlist.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+                <state relative-caret-position="150">
+                  <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
                   <folding />
                 </state>
               </provider>
@@ -48,8 +48,8 @@
           <file leaf-file-name="inject.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/inject/inject.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="677">
-                  <caret line="139" column="1" lean-forward="false" selection-start-line="139" selection-start-column="1" selection-end-line="139" selection-end-column="1" />
+                <state relative-caret-position="407">
+                  <caret line="164" column="32" lean-forward="false" selection-start-line="164" selection-start-column="32" selection-end-line="164" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -61,7 +61,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>refresh</find>
       <find>note.content</find>
       <find>page_action</find>
       <find>0.0.1</find>
@@ -91,6 +90,7 @@
       <find>recent</find>
       <find>content</find>
       <find>#4791df</find>
+      <find>playlist</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
@@ -121,7 +121,6 @@
         <option value="$PROJECT_DIR$/manifest.json" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.html" />
         <option value="$PROJECT_DIR$/src/browser_action/browser_action.js" />
-        <option value="$PROJECT_DIR$/src/inject/playlist.js" />
         <option value="$PROJECT_DIR$/src/inject/build_widget.js" />
         <option value="$PROJECT_DIR$/src/requests/requests.js" />
         <option value="$PROJECT_DIR$/src/inject/add_notes.js" />
@@ -130,6 +129,7 @@
         <option value="$PROJECT_DIR$/src/inject/watchers.js" />
         <option value="$PROJECT_DIR$/src/inject/inject.js" />
         <option value="$PROJECT_DIR$/src/inject/inject.css" />
+        <option value="$PROJECT_DIR$/src/inject/playlist.js" />
       </list>
     </option>
   </component>
@@ -285,7 +285,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1518786934136</updated>
-      <workItem from="1518786936053" duration="68350000" />
+      <workItem from="1518786936053" duration="71076000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed body to content.">
       <created>1518811313443</created>
@@ -448,11 +448,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519083872003</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Added ESC handler to blur input. Added basic light theme.">
+      <created>1519134393318</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1519134393318</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68350000" />
+    <option name="totallyTimeSpent" value="71076000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -506,7 +513,8 @@
     <MESSAGE value="Only try to inject on YouTube watch pages." />
     <MESSAGE value="Refactored everything into ES6." />
     <MESSAGE value="Fixed all my errors. Oops." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed all my errors. Oops." />
+    <MESSAGE value="Added ESC handler to blur input. Added basic light theme." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ESC handler to blur input. Added basic light theme." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -609,14 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/playlist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/inject/build_widget.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
@@ -701,16 +701,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        <state relative-caret-position="420">
+          <caret line="28" column="3" lean-forward="true" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/inject/inject.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="677">
-          <caret line="139" column="1" lean-forward="false" selection-start-line="139" selection-start-column="1" selection-end-line="139" selection-end-column="1" />
+        <state relative-caret-position="407">
+          <caret line="164" column="32" lean-forward="false" selection-start-line="164" selection-start-column="32" selection-end-line="164" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/playlist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
           <folding />
         </state>
       </provider>
