@@ -23,6 +23,7 @@ chrome.runtime.sendMessage({
 				watchKeyForNoteSubmit(13); 			// `ENTER` for add note
 				watchTimestampForCurrentVideo();
 				watchForPlaylist();
+				watchForLiveVideo();
 				watchVideoForChanges(currentVideoId);
 
 				function watchVideoForChanges(currentVideoId) {

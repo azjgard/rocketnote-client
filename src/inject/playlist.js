@@ -27,34 +27,22 @@ const buildTabs = playlistContainer => {
 		name: "rn_tabs",
 	});
 	let noteTab = $(document.createElement("label")).attr({class: "rn_tab", "for": "rn_notes-radio"}).text("Notes");
-	let playlistTabContainer = $(document.createElement("div")).addClass("rn_tab-container");
-	let playlistTabRadio = $(document.createElement("input")).attr({
+	let secondaryTabContainer = $(document.createElement("div")).addClass("rn_tab-container");
+	let secondaryTabRadio = $(document.createElement("input")).attr({
 		type: "radio",
 		class: "rn_tab-radio",
-		id: "rn_playlist-radio",
+		id: "rn_secondary-radio",
 		name: "rn_tabs",
 	});
-	let playlistTab = $(document.createElement("label")).attr({class: "rn_tab", "for": "rn_playlist-radio"}).text("Playlist");
+	let secondaryTab = $(document.createElement("label")).attr({class: "rn_tab", "for": "rn_secondary-radio"}).text("Playlist");
 
 	noteTabContainer.append([noteTabRadio, noteTab]);
-	playlistTabContainer.append([playlistTabRadio, playlistTab]);
+	secondaryTabContainer.append([secondaryTabRadio, secondaryTab]);
 
-	tabs.append([noteTabContainer, playlistTabContainer]);
+	tabs.append([noteTabContainer, secondaryTabContainer]);
 
 	playlistContainer.height("430px");
 	mainContainer.prepend(tabs);
-};
-
-const moveWidgetUnderTab = playlistContainer => {
-	let widget = $("#rn_widget");
-	let playlistItems = $("iron-list#items");
-	let noteContainer = $("#rn_note-container");
-
-	widget.css("border-top", 0);
-	playlistContainer.find(".header").hide();
-	playlistItems.hide();
-	noteContainer.height("290px");
-	widget.appendTo(playlistContainer);
 };
 
 const watchPlaylistTabsForChange = playlistContainer => {
@@ -65,16 +53,4 @@ const watchPlaylistTabsForChange = playlistContainer => {
 		$("#rn_widget").toggle();
 		$("iron-list#items").toggle();
 	});
-};
-
-const watchKeysForTabToggle = (keyCode1, keyCode2) => {
-	$(document).keyup(function (e) {
-		if (e.shiftKey) {
-			if (e.keyCode === keyCode1) {
-				$("#rn_notes-radio").click();
-			} else if (e.keyCode === keyCode2) {
-				$("#rn_playlist-radio").click();
-			}
-		}
-	})
 };

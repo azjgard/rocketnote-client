@@ -16,6 +16,9 @@ const watchClickForCollapseNotes = () => {
 };
 
 const toggleCollapseNotes = () => {
+	if (isChatOrPlaylist()) {
+		return; // Disable collapsing if video is live or playlist.
+	}
 	swapLogoColor();
 	$("#rn_widget").fadeToggle();
 
@@ -29,6 +32,10 @@ const toggleCollapseNotes = () => {
 		} else {
 			youtubeControl.attr("src", whiteLogo);
 		}
+	}
+
+	function isChatOrPlaylist() {
+		return $("#chat").length || $("#container.ytd-playlist-panel-renderer").length;
 	}
 };
 
