@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ef02f4a2-a314-4c11-971f-bf9495392357" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/inject.css" afterPath="$PROJECT_DIR$/src/inject/inject.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/playlist.js" afterPath="$PROJECT_DIR$/src/inject/playlist.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inject/watchers.js" afterPath="$PROJECT_DIR$/src/inject/watchers.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,8 +33,28 @@
           <file leaf-file-name="playlist.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/inject/playlist.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="317">
-                  <caret line="38" column="37" lean-forward="false" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+                <state relative-caret-position="90">
+                  <caret line="6" column="86" lean-forward="false" selection-start-line="6" selection-start-column="86" selection-end-line="6" selection-end-column="86" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="jquery.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/js/lib/jquery/jquery.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="202">
+                  <caret line="4694" column="59" lean-forward="false" selection-start-line="4694" selection-start-column="59" selection-end-line="4694" selection-end-column="59" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="watchers.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/inject/watchers.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="293">
+                  <caret line="46" column="22" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -60,7 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>note.content</find>
       <find>page_action</find>
       <find>0.0.1</find>
       <find>Feedba</find>
@@ -90,12 +109,14 @@
       <find>content</find>
       <find>#4791df</find>
       <find>playlist</find>
+      <find>charCode</find>
     </findStrings>
     <replaceStrings>
       <replace>content</replace>
       <replace>addPin()</replace>
       <replace>let</replace>
       <replace>var(--action-button-color)</replace>
+      <replace>keyCode</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -125,10 +146,10 @@
         <option value="$PROJECT_DIR$/src/inject/add_notes.js" />
         <option value="$PROJECT_DIR$/src/browser_action/recent_notes.js" />
         <option value="$PROJECT_DIR$/src/utils/utils.js" />
-        <option value="$PROJECT_DIR$/src/inject/watchers.js" />
         <option value="$PROJECT_DIR$/src/inject/inject.js" />
-        <option value="$PROJECT_DIR$/src/inject/playlist.js" />
         <option value="$PROJECT_DIR$/src/inject/inject.css" />
+        <option value="$PROJECT_DIR$/src/inject/watchers.js" />
+        <option value="$PROJECT_DIR$/src/inject/playlist.js" />
       </list>
     </option>
   </component>
@@ -284,7 +305,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1518786934136</updated>
-      <workItem from="1518786936053" duration="72341000" />
+      <workItem from="1518786936053" duration="73022000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed body to content.">
       <created>1518811313443</created>
@@ -461,11 +482,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519137413324</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Wired up tabs to change from notes to playlist. Defaults to notes on load.">
+      <created>1519142140240</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1519142140240</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72341000" />
+    <option name="totallyTimeSpent" value="73022000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -474,11 +502,11 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14225437" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969216" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16683726" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16683726" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -496,7 +524,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Renamed body to content." />
     <MESSAGE value="Wired up appending note on &quot;Add&quot;." />
     <MESSAGE value="Added key bindings for input focus and adding note." />
     <MESSAGE value="Added pin button. It's dumb right now." />
@@ -521,7 +548,8 @@
     <MESSAGE value="Fixed all my errors. Oops." />
     <MESSAGE value="Added ESC handler to blur input. Added basic light theme." />
     <MESSAGE value="Build tabs on playlist." />
-    <option name="LAST_COMMIT_MESSAGE" value="Build tabs on playlist." />
+    <MESSAGE value="Wired up tabs to change from notes to playlist. Defaults to notes on load." />
+    <option name="LAST_COMMIT_MESSAGE" value="Wired up tabs to change from notes to playlist. Defaults to notes on load." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -539,14 +567,6 @@
     <entry file="file://$PROJECT_DIR$/icons/icon16.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/lib/jquery/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="3653" column="43" lean-forward="false" selection-start-line="3653" selection-start-column="43" selection-end-line="3653" selection-end-column="43" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/jquery/README.md">
@@ -698,14 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/watchers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -722,10 +734,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/lib/jquery/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="4694" column="59" lean-forward="false" selection-start-line="4694" selection-start-column="59" selection-end-line="4694" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/lib/jquery/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="4" column="10377" lean-forward="false" selection-start-line="4" selection-start-column="10377" selection-end-line="4" selection-end-column="10377" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/watchers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="46" column="22" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/inject/playlist.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="38" column="37" lean-forward="false" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+        <state relative-caret-position="90">
+          <caret line="6" column="86" lean-forward="false" selection-start-line="6" selection-start-column="86" selection-end-line="6" selection-end-column="86" />
           <folding />
         </state>
       </provider>

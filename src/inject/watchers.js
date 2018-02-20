@@ -10,41 +10,41 @@ const watchPinButton = () => {
 	});
 };
 
-const watchKeyForInputFocus = charCode => {
+const watchKeyForInputFocus = keyCode => {
 	$(document).keyup(function (e) {
 		if ($(e.target).closest("input")[0]) {
 			return;
 		}
-		if (e.keyCode === charCode) {
+		if (e.keyCode === keyCode) {
 			$("#rn_note-input").focus();
 		}
 	})
 };
 
-const watchKeyForInputBlur = charCode => {
+const watchKeyForInputBlur = keyCode => {
 	$(document).keyup(function (e) {
-		if (e.keyCode === charCode) {
+		if (e.keyCode === keyCode) {
 			$("#rn_note-input").blur();
 		}
 	})
 };
 
-const watchKeyForNoteSubmit = charCode => {
+const watchKeyForNoteSubmit = keyCode => {
 	$(document).keyup(e => {
 		if ($("#rn_note-input").is(":focus")) {
-			if (e.keyCode === charCode) {
+			if (e.keyCode === keyCode) {
 				addNoteIfInputHasContent();
 			}
 		}
 	});
 };
 
-const watchKeyForPin = charCode => {
+const watchKeyForPin = keyCode => {
 	$(document).keyup(e => {
 		if ($(e.target).closest("input")[0]) {
 			return;
 		}
-		if (e.keyCode === charCode) {
+		if (e.keyCode === keyCode) {
 			addPin();
 		}
 	});

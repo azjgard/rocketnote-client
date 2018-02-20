@@ -4,6 +4,7 @@ const watchForPlaylist = () => {
 	if (playlistContainer.length) {
 		formatForPlaylist(playlistContainer);
 		watchPlaylistTabsForChange(playlistContainer);
+		watchKeysForTabToggle(49, 50); // `SHIFT + 1 for Notes tab, SHIFT + 2 for Playlist
 	}
 };
 
@@ -16,7 +17,7 @@ const buildTabs = playlistContainer => {
 	let mainContainer = playlistContainer.parent();
 	let tabs = $(document.createElement("div")).addClass("rn_tabs");
 	let noteTabContainer = $(document.createElement("div")).addClass("rn_tab-container");
-	let noteTabBox = $(document.createElement("input")).attr({
+	let noteTabRadio = $(document.createElement("input")).attr({
 		type: "radio",
 		class: "rn_tab-radio",
 		id: "rn_notes-radio",
@@ -25,7 +26,7 @@ const buildTabs = playlistContainer => {
 	});
 	let noteTab = $(document.createElement("label")).attr({class: "rn_tab", "for": "rn_notes-radio"}).text("Notes");
 	let playlistTabContainer = $(document.createElement("div")).addClass("rn_tab-container");
-	let playlistTabBox = $(document.createElement("input")).attr({
+	let playlistTabRadio = $(document.createElement("input")).attr({
 		type: "radio",
 		class: "rn_tab-radio",
 		id: "rn_playlist-radio",
@@ -33,8 +34,8 @@ const buildTabs = playlistContainer => {
 	});
 	let playlistTab = $(document.createElement("label")).attr({class: "rn_tab", "for": "rn_playlist-radio"}).text("Playlist");
 
-	noteTabContainer.append([noteTabBox, noteTab]);
-	playlistTabContainer.append([playlistTabBox, playlistTab]);
+	noteTabContainer.append([noteTabRadio, noteTab]);
+	playlistTabContainer.append([playlistTabRadio, playlistTab]);
 
 	tabs.append([noteTabContainer, playlistTabContainer]);
 
@@ -62,4 +63,16 @@ const watchPlaylistTabsForChange = playlistContainer => {
 		$("#rn_widget").toggle();
 		$("#items").toggle();
 	});
+};
+
+const watchKeysForTabToggle = (keyCode1, keyCode2) => {
+	$(document).keyup(function (e) {
+		if (e.shiftKey) {
+			if (e.keyCode === keyCode1) {
+				$("#rn_notes-radio").click();
+			} else if (e.keyCode === keyCode2) {
+				$("#rn_playlist-radio").click();
+			}
+		}
+	})
 };
