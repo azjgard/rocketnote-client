@@ -10,6 +10,19 @@ const moveWidgetUnderTab = playlistContainer => {
 	widget.appendTo(playlistContainer);
 };
 
+
+const formatWidgetForNormalVideo = () => {
+
+	console.log("Formatting for normal video...");
+	let widget = $("#rn_widget");
+	let noteContainer = $("#rn_note-container");
+	let related = $("#related");
+
+	widget.css("border-top", "2px solid var(--red-color)");
+	noteContainer.height("340px");
+	widget.prependTo(related);
+};
+
 const watchKeysForTabToggle = (keyCode1, keyCode2) => {
 	$(document).keyup(function (e) {
 		if (e.shiftKey) {

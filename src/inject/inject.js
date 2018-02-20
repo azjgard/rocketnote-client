@@ -3,7 +3,6 @@ chrome.runtime.sendMessage({
 }, () => {
 	let readyStateCheckInterval = setInterval(() => {
 		if (document.readyState === "complete") {
-
 			if ($("#related").length) {
 				initRocketNote();
 			}
