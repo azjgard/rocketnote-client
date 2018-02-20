@@ -27,11 +27,13 @@
   },
   "content_scripts": [
     {
+      "run_at": "document_end",
       "matches": ["https://www.youtube.com/*"],
       "css": ["src/inject/inject.css"]
     },
     {
-      "matches": ["https://www.youtube.com/watch*"],
+      "run_at": "document_end",
+      "matches": ["https://www.youtube.com/*"],
       "js": [
         "js/lib/jquery/jquery.js",
         "js/lib/moment/moment.min.js",
