@@ -9,6 +9,7 @@ chrome.runtime.sendMessage({
 			watchAddNoteButton();
 			watchPinButton();
 			watchKeyForInputFocus(78); 	// `n` for input focus
+			watchKeyForInputBlur(27);		// `ESC` for input blur
 			watchKeyForNoteSubmit(13); 	// `ENTER` for add note
 			watchKeyForPin(80); 				// `p` for pin
 			watchTimestampForCurrentVideo();
@@ -24,7 +25,7 @@ chrome.runtime.sendMessage({
 				}, 1000);
 			}
 		}
-	}, 500);
+	}, 1000);
 });
 
 const refreshWidget = () => {

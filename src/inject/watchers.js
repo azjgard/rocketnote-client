@@ -21,6 +21,14 @@ const watchKeyForInputFocus = charCode => {
 	})
 };
 
+const watchKeyForInputBlur = charCode => {
+	$(document).keyup(function (e) {
+		if (e.keyCode === charCode) {
+			$("#rn_note-input").blur();
+		}
+	})
+};
+
 const watchKeyForNoteSubmit = charCode => {
 	$(document).keyup(e => {
 		if ($("#rn_note-input").is(":focus")) {
