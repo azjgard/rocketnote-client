@@ -3,12 +3,13 @@ const watchForPlaylist = () => {
 
 	if (playlistContainer.length) {
 		formatForPlaylist(playlistContainer);
+		watchPlaylistTabsForChange(playlistContainer);
 	}
 };
 
 const formatForPlaylist = playlistContainer => {
 	buildTabs(playlistContainer);
-
+	moveWidgetUnderTab(playlistContainer);
 };
 
 const buildTabs = playlistContainer => {
@@ -39,4 +40,26 @@ const buildTabs = playlistContainer => {
 
 	playlistContainer.height("430px");
 	mainContainer.prepend(tabs);
+};
+
+const moveWidgetUnderTab = playlistContainer => {
+	let widget = $("#rn_widget");
+	let playlistItems = $("#items");
+	let noteContainer = $("#rn_note-container");
+
+	widget.css("border-top", 0);
+	playlistContainer.find(".header").hide();
+	playlistItems.hide();
+	noteContainer.height("290px");
+	widget.appendTo(playlistContainer);
+};
+
+const watchPlaylistTabsForChange = playlistContainer => {
+	let playlistTabsSelector = ".rn_tab-radio";
+
+	$(document).on("change", playlistTabsSelector, e => {
+		playlistContainer.find(".header").toggle();
+		$("#rn_widget").toggle();
+		$("#items").toggle();
+	});
 };
