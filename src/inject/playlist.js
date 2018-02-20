@@ -5,6 +5,8 @@ const watchForPlaylist = () => {
 		formatForPlaylist(playlistContainer);
 		watchPlaylistTabsForChange(playlistContainer);
 		watchKeysForTabToggle(49, 50); // `SHIFT + 1 for Notes tab, SHIFT + 2 for Playlist
+	} else {
+		setTimeout(watchForPlaylist, 1000);
 	}
 };
 
@@ -45,7 +47,7 @@ const buildTabs = playlistContainer => {
 
 const moveWidgetUnderTab = playlistContainer => {
 	let widget = $("#rn_widget");
-	let playlistItems = $("#items");
+	let playlistItems = $("iron-list#items");
 	let noteContainer = $("#rn_note-container");
 
 	widget.css("border-top", 0);
@@ -58,10 +60,10 @@ const moveWidgetUnderTab = playlistContainer => {
 const watchPlaylistTabsForChange = playlistContainer => {
 	let playlistTabsSelector = ".rn_tab-radio";
 
-	$(document).on("change", playlistTabsSelector, e => {
+	$(document).on("change", playlistTabsSelector, () => {
 		playlistContainer.find(".header").toggle();
 		$("#rn_widget").toggle();
-		$("#items").toggle();
+		$("iron-list#items").toggle();
 	});
 };
 
