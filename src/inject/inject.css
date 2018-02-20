@@ -181,3 +181,10 @@ html[dark="true"] {
 input[type="radio"] {
 	display: none;
 }
+
+/*===  PLAYER CONTROLS  ===*/
+
+#rn_youtube-control {
+	height: 20px;
+	padding: 6px;
+}

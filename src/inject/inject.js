@@ -12,12 +12,15 @@ chrome.runtime.sendMessage({
 				let currentVideoId = getCurrentVideoId();
 				clearInterval(readyStateCheckInterval);
 				buildWidget();
-				watchAddNoteButton();
-				watchPinButton();
-				watchKeyForInputFocus(78); 	// `n` for input focus
-				watchKeyForInputBlur(27);		// `ESC` for input blur
-				watchKeyForNoteSubmit(13); 	// `ENTER` for add note
-				watchKeyForPin(80); 				// `p` for pin
+				addRocketLogoToPlayerControls();
+				watchClickAddNoteButton();
+				watchClickPinButton();
+				watchClickForCollapseNotes();
+				watchKeyForInputFocus(73); 			// `i` for input focus
+				watchKeyForPin(80); 						// `p` for pin
+				watchKeyForCollapseNotes(79); 	// `o` for open (and close) widget
+				watchKeyForInputBlur(27);				// `ESC` for input blur
+				watchKeyForNoteSubmit(13); 			// `ENTER` for add note
 				watchTimestampForCurrentVideo();
 				watchForPlaylist();
 				watchVideoForChanges(currentVideoId);

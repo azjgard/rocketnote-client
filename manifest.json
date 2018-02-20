@@ -14,7 +14,9 @@
   "web_accessible_resources": [
     "assets/img/thumbtack_light.svg",
     "assets/img/thumbtack_dark.svg",
-    "assets/img/rocket_note_main_logo.svg"
+    "assets/img/rocket_note_main_logo.svg",
+    "assets/img/rocket_red.svg",
+    "assets/img/rocket_white.svg"
   ],
   "background": {
     "scripts": ["js/lib/jquery/jquery.js", "src/bg/background.js"],
@@ -43,6 +45,7 @@
         "src/inject/build_widget.js",
         "src/inject/add_notes.js",
         "src/inject/playlist.js",
+        "src/inject/collapse.js",
         "src/inject/inject.js"
       ]
     }

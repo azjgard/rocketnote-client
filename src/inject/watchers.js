@@ -1,10 +1,10 @@
-const watchAddNoteButton = () => {
+const watchClickAddNoteButton = () => {
 	$(document).on("click", "#rn_note-submit", () => {
 		addNoteIfInputHasContent();
 	});
 };
 
-const watchPinButton = () => {
+const watchClickPinButton = () => {
 	$(document).on("click", "#rn_pin", () => {
 		addPin();
 	});
