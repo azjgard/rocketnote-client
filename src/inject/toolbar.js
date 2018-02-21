@@ -23,11 +23,10 @@ const watchMouseSelection = () => {
 
 	$(document).bind("mouseup", () => {
 		let selectedText = x.Selector.getSelected();
-		console.log(selectedText);
 		if (!selectedText.isCollapsed) {
 			$("#rn_tools").css({
-				'left': pageX + 5,
-				'top': pageY - 55,
+				'left': pageX + 10,
+				'top': pageY - 60,
 			}).fadeIn(200);
 		} else {
 			$("#rn_tools").fadeOut(200);
@@ -53,9 +52,11 @@ const addTextPinToToolbar = toolbar => {
 	let textPinTool = $(document.createElement("li")).attr({
 		id: "rn_text-pin-tool",
 	});
+	let button = $(document.createElement("button"));
 	let pinIcon = $(document.createElement("img")).attr("src", chrome.runtime.getURL("assets/img/thumbtack_dark.svg"));
 
-	textPinTool.append(pinIcon);
+	button.append(pinIcon);
+	textPinTool.append(button);
 	textPinTool.appendTo(toolbar);
 
 	textPinTool.on("click", () => {

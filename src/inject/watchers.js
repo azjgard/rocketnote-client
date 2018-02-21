@@ -51,12 +51,14 @@ const watchKeyForPin = keyCode => {
 };
 
 const watchTimestampForCurrentVideo = () => {
-	const currentVideoId = getCurrentVideoId();
+	$(document).on("click", ".timestamp", e => {
+		const currentVideoId = getCurrentVideoId();
 
-	$(document).on("click", ".timestamp[href*=" + currentVideoId + "]", e => {
-		const regex = /t=\d+/g;
-		const time = event.target.href.match(regex);
-		$("video")[0].currentTime = time[0].substring(2);
-		e.preventDefault();
+		if (e.target.href.indexOf(currentVideoId) > -1) {
+			const regex = /t=\d+/g;
+			const time = event.target.href.match(regex);
+			$("video")[0].currentTime = time[0].substring(2);
+			e.preventDefault();
+		}
 	});
 };
