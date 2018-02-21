@@ -1,10 +1,11 @@
-const addNote = isPin => {
+const addNote = (isPin, content) => {
 	let video = $("video")[0];
 	let input = $("#rn_note-input");
 	let note = {};
 	let tags = filterHashtags(content);
 
 	note.content = isPin ? "" : input.val();
+	note.content = content ? content : note.content;
 	note.videoId = getCurrentVideoId();
 	note.formattedTags = tags.join(" ").toLowerCase();
 	note.timestamp = Math.floor(video.currentTime);

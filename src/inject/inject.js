@@ -23,6 +23,7 @@ chrome.runtime.sendMessage({
 				watchTimestampForCurrentVideo();
 				watchForPlaylist();
 				watchForLiveVideo();
+				watchMouseSelection();
 				watchVideoForChanges(currentVideoId);
 
 				function watchVideoForChanges(currentVideoId) {

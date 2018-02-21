@@ -14,6 +14,7 @@ html {
 	--pin-buton-color: #c9c9c9;
 	--pin-button-hover-color: #b7b7b7;
 	--timestamp-color: #707070;
+	--tool-background-color: #efefef;
 }
 
 /*===  DARK THEME  ===*/
@@ -34,6 +35,7 @@ html[dark="true"] {
 	--pin-buton-color: #b7b7b7;
 	--pin-button-hover-color: #a6a6a6;
 	--timestamp-color: #707070;
+	--tool-background-color: #efefef;
 }
 
 #rn_widget {
@@ -187,4 +189,28 @@ input[type="radio"] {
 #rn_youtube-control {
 	height: 20px;
 	padding: 6px;
+}
+
+/*=== TOOLBAR ===*/
+
+#rn_tools {
+	background-color: var(--tool-background-color);
+	border-left: 2px solid var(--red-color);
+	box-shadow: 0 0 4px rgba(0,0,0,.5);
+	display: none;
+	list-style: none;
+	padding-left: 0;
+	position: absolute;
+}
+
+#rn_tools li {
+	display: inline-block;
+	cursor: pointer;
+	height: 20px;
+	padding: 10px;
+	width: 20px;
+}
+
+#rn_tools li:hover {
+	background-color: var(--pin-button-hover-color);
 }
