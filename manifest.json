@@ -38,6 +38,8 @@
       "matches": ["https://www.youtube.com/*"],
       "js": [
         "js/lib/jquery/jquery.js",
+        "js/lib/linkifyjs/linkify.min.js",
+        "js/lib/linkifyjs/linkify-jquery.min.js",
         "js/lib/moment/moment.min.js",
         "src/utils/utils.js",
         "src/utils/widget-formatting.js",

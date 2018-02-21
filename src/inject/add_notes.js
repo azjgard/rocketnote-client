@@ -44,6 +44,7 @@ const addNoteToContainer = ({content, timestamp, videoId}) => {
 
 	if (content.length > 0) {
 		noteBody.text(content);
+		noteBody.linkify();
 		addClassToHashtags(noteBody);
 	} else {
 		noteBody.append(thumbtack);

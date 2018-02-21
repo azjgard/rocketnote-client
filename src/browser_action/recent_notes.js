@@ -1,4 +1,8 @@
 $(() => {
+	linkify.options.defaults.format = function(value) {
+		return value.trunc(21);
+	};
+
 	addRecentNotesToDropdown();
 	updateVersionNumber();
 });
@@ -35,6 +39,7 @@ const addRecentNotesToDropdown = () => {
 
 		if (note.content.length > 0) {
 			noteContents.text(note.content.trunc(55));
+			noteContents.linkify();
 			addClassToHashtags(noteBody);
 		} else {
 			noteBody.append(pinIcon);

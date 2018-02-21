@@ -55,6 +55,7 @@ const buildExistingNotes = container => {
 
 		if (note.content.length > 0) {
 			noteBody.text(note.content);
+			noteBody.linkify();
 			addClassToHashtags(noteBody);
 		} else {
 			noteBody.append(pinIcon);

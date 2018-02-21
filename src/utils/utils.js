@@ -31,6 +31,10 @@ const formatTimestamp = timestamp => {
 	return String(moment.utc(timestamp * 1000).format('mm:ss'));
 };
 
-String.prototype.trunc = function(n){
+String.prototype.trunc = function(n) {
 		return (this.length > n) ? this.substr(0, n-1) + '...' : this;
+};
+
+linkify.options.defaults.format = function(value) {
+	return value.trunc(21);
 };
