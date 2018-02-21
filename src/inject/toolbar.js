@@ -62,5 +62,6 @@ const addTextPinToToolbar = toolbar => {
 	textPinTool.on("click", () => {
 		let selection = window.getSelection().toString();
 		addNote(false, selection);
+		toolbar.hide();
 	});
 };
