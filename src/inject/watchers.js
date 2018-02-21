@@ -57,7 +57,11 @@ const watchTimestampForCurrentVideo = () => {
 		if (e.target.href.indexOf(currentVideoId) > -1) {
 			const regex = /t=\d+/g;
 			const time = event.target.href.match(regex);
-			$("video")[0].currentTime = time[0].substring(2);
+			const video = $("video")[0];
+			video.currentTime = time[0].substring(2);
+			if (video.paused) {
+				video.play();
+			}
 			e.preventDefault();
 		}
 	});
