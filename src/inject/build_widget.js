@@ -25,7 +25,7 @@ const buildExistingNotes = container => {
 
 		if (existingNotes.length > 0) {
 			existingNotes.sort(function (a, b) {
-				return a.timestamp - b.timestamp;
+				return a.createdAt - b.createdAt;
 			});
 
 			existingNotes.map(function (note) {

@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "author": "Rocket Note LLC",
   "manifest_version": 2,
-  "description": "Extend the possiblities of YouTube with note-taking in a side panel, pins, and timestamps.",
+  "description": "Extend the possibilities of YouTube with note-taking, pins, and timestamps.",
   "homepage_url": "https://getrocketnote.com",
   "icons": {
     "16": "icons/icon16.png",
@@ -47,6 +47,7 @@
         "src/inject/watchers.js",
         "src/inject/build_widget.js",
         "src/inject/add_notes.js",
+        "src/inject/edit_delete_notes.js",
         "src/inject/playlist.js",
         "src/inject/live_video.js",
         "src/inject/collapse.js",

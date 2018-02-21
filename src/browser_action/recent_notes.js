@@ -29,7 +29,6 @@ const addRecentNotesToDropdown = () => {
 		let thumbnailUrl = getVideoThumbnailUrl(note.videoId);
 		let thumbnail = $(document.createElement("img")).attr({src: thumbnailUrl, class: "rn_thumbnail"});
 
-
 		noteBodyContainer.append(thumbnail);
 
 		if (note.timestamp >= 0) {
@@ -44,6 +43,11 @@ const addRecentNotesToDropdown = () => {
 		} else {
 			noteBody.append(pinIcon);
 			noteBody.addClass("pin");
+		}
+
+		if (note.createdAt) {
+			let dateCreated = $(document.createElement("span")).addClass("rn_date-created").text(moment(note.createdAt).fromNow());
+			noteBodyContainer.append(dateCreated);
 		}
 
 		noteBodyContainer.append(noteBody);

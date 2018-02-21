@@ -9,6 +9,7 @@ const addNote = (isPin, content) => {
 	note.videoId = getCurrentVideoId();
 	note.formattedTags = tags.join(" ").toLowerCase();
 	note.timestamp = Math.floor(video.currentTime);
+	note.createdAt = moment().format();
 
 	submitNote(note);
 
@@ -89,6 +90,6 @@ const storeNoteLocally = note => {
 		notes[getCurrentVideoId()] = notes[getCurrentVideoId()] || [];
 		notes[getCurrentVideoId()].push(note);
 
-		chrome.storage.sync.set({notes: notes});
+		chrome.storage.sync.set({notes});
 	});
 };

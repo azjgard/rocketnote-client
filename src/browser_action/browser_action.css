@@ -1,7 +1,7 @@
 #rn_mainPopup {
-  padding: 10px;
-  height: 425px;
-  width: 260px;
+  padding: 0 5px 5px;
+  height: 560px;
+  width: 340px;
   font-family: Helvetica, Ubuntu, Arial, sans-serif;
 }
 
@@ -46,7 +46,7 @@ a:hover {
 
 .rn_main-logo {
   height: 26px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   vertical-align: top;
 }
 
@@ -72,7 +72,7 @@ a:hover {
 
 #recent-notes .timestamp {
   color: #707070;
-  margin-right: 10px;
+  margin-right: 5px;
   outline: none;
   text-decoration: underline;
 }
@@ -82,41 +82,33 @@ a:hover {
 }
 
 .recent-note {
-  padding: 8px 0;
   border-top: 1px solid #efefef;
+  padding: 8px 0;
+  position: relative;
 }
 
 .recent-note-body {
   display: inline;
+  line-height: 16px;
   margin: 0;
-  width: 160px;
-}
-
-.rn_thumbnail {
-  display: inline-block;
-  height: 50px;
-  margin-right: 10px;
-  vertical-align: middle;
-  width: 88.875px;
 }
 
 .note-body-container {
 	display: inline-block;
-	width: 160px;
+	width: 200px;
 }
 
 .rn_thumbnail {
 	display: inline-block;
-	height: 50px;
 	margin-right: 10px;
 	vertical-align: top;
-	width: 88.875px;
+	width: 130px;
 }
 
 .align-right {
   display: inline-block;
   text-align: right;
-  width: 85px;
+  width: 168px;
 }
 
 #rn_welcome,
@@ -131,4 +123,12 @@ a:hover {
   text-align: center;
   top: 50%;
   transform: translate(-50%, -50%)
+}
+
+.rn_date-created {
+  bottom: 5px;
+  color: #b7b7b7;
+  font-size: 10px;
+  position: absolute;
+  right: 0;
 }
