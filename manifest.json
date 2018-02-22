@@ -59,11 +59,12 @@
   "permissions": ["identity", "tabs", "identity.email", "storage"],
   "oauth2": {
     "client_id":
-    "772398796773-umv4eg28mbr2djot36l615obfhncenjh.apps.googleusercontent.com",
+    "772398796773-nofuo3vd7s8r6jjjn8qav61jpergv2cu.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/plus.login",
       "https://www.googleapis.com/auth/plus.me",
       "https://www.googleapis.com/auth/userinfo.profile"
     ]
-  }
+  },
+  "key" : "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzC2WGW9HXEL44NpgIbmYvQmKW60ZNQ4eTnCGcVWQqbZlpBfa9FaHW/3aPlkGfgy0xOvrlUCDd8qC8TF9mSiTVE9EwHTrlIuw/4YYL5U9aXbh92cqxB6t+zyZLMDm7qj5RLTeTMiAGAQ7rnsW11uGw7PeQVOnnQIKk+N/JgSF9ToZ1OglOiuorBHLYjhRjBKDN/tkvGWtwm10UwYdF9H//z72ABdWyaMXGNTIibzOEJzUXAD9WWZcdhRTohtcPt+YS+uOfAnsdYoPxUVzPBHg8UxxjHTmaZUl0g9a+5iSKv6yiAGjkYQg/I1TVd86LoDqgSs2f4L9FFYRs6mb/7GvjwIDAQAB"
 }
