@@ -14,7 +14,7 @@ const watchClickForCollapseNotes = () => {
 
 const toggleCollapseNotes = () => {
 	if (isChatOrPlaylist()) {
-		return; // Disable collapsing if video is live or playlist.
+		return;
 	}
 	swapLogoColor();
 	$("#rn_widget").fadeToggle();
@@ -46,4 +46,28 @@ const addRocketLogoToPlayerControls = () => {
 	button.find("svg").remove();
 	button.append(rocketLogo);
 	$(".ytp-right-controls").prepend(button);
+
+	watchFullScreenButtonForClick();
+};
+
+const watchFullScreenButtonForClick = () => {
+	$(document).on("click", ".ytp-fullscreen-button", () => {
+		if ($(".ytp-big-mode").length) {
+			$("#rn_youtube-control-button").fadeIn();
+		} else {
+			$("#rn_youtube-control-button").fadeOut();
+		}
+	});
+
+	watchKeyForShowCollapseButton(27); // `ESC`
+};
+
+const watchKeyForShowCollapseButton = keyCode => {
+	$(document).keyup(function (e) {
+		if (e.keyCode === keyCode) {
+			if ($(".ytp-big-mode").length) {
+				$("#rn_youtube-control-button").fadeIn();
+			}
+		}
+	})
 };

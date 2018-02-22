@@ -22,7 +22,7 @@ const watchMouseSelection = () => {
 		const pageX = e.pageX;
 		const pageY = e.pageY;
 		let selectedText = x.Selector.getSelected();
-		if (!selectedText.isCollapsed) {
+		if (!selectedText.isCollapsed && selectedText !== "") {
 			$("#rn_tools").css({
 				'left': pageX - 30,
 				'top': pageY - 65,
