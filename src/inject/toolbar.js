@@ -1,7 +1,4 @@
 const watchMouseSelection = () => {
-	let pageX;
-	let pageY;
-
 	initToolbar();
 
 	if (!window.x) {
@@ -21,21 +18,18 @@ const watchMouseSelection = () => {
 		return selection;
 	};
 
-	$(document).bind("mouseup", () => {
+	$(document).bind("mouseup", e => {
+		const pageX = e.pageX;
+		const pageY = e.pageY;
 		let selectedText = x.Selector.getSelected();
 		if (!selectedText.isCollapsed) {
 			$("#rn_tools").css({
-				'left': pageX + 10,
-				'top': pageY - 60,
+				'left': pageX - 30,
+				'top': pageY - 65,
 			}).fadeIn(200);
 		} else {
 			$("#rn_tools").fadeOut(200);
 		}
-	});
-
-	$(document).on("mousedown", e => {
-		pageX = e.pageX;
-		pageY = e.pageY;
 	});
 };
 
