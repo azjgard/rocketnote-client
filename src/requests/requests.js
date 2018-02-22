@@ -1,12 +1,12 @@
-const baseURL = "http://node-express-env.8pzfqbf2pk.us-west-2.elasticbeanstalk.com/v1";
+const baseURL = "https://api.getrocketnote.com/v1";
 
 const requests = {
 	getNotes: () => {
 		$.ajax({
 			method: "GET",
 			url: baseURL + "/notes",
-		}).then(function(response) {
-			console.log(response);
+		}).then(response => {
+			return response;
 		});
 	},
 	getNotesByVideoId: videoId => {
@@ -16,6 +16,8 @@ const requests = {
 			data: {
 				videoId: videoId
 			},
-		})
+		}).then(response => {
+			return response
+		});
 	}
 };
