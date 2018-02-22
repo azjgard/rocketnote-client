@@ -6,6 +6,7 @@ html {
 	--action-button-hover-color: #3680ce;
 	--widget-background-color: #eeeeee;
 	--widget-text-color: #292929;
+	--link-color: #4791df;
 
 	--widget-playlist-tab-color: #eeeeee;
 	--widget-playlist-tab-off-color: #dcdcdc;
@@ -26,6 +27,7 @@ html[dark="true"] {
 	--action-button-hover-color: #3680ce;
 	--widget-background-color: #292929;
 	--widget-text-color: #b7b7b7;
+	--link-color: #4791df;
 
 	--widget-playlist-tab-color: #404040;
 	--widget-playlist-tab-off-color: #525252;
@@ -80,6 +82,14 @@ html[dark="true"] {
 	margin-right: 10px;
 	outline: none;
 	text-decoration: underline;
+}
+
+#rn_note-container a {
+	color: var(--link-color);
+}
+
+#rn_note-container a:visited {
+	color: var(--link-color);
 }
 
 #rn_input-form {
