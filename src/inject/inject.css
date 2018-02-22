@@ -60,7 +60,15 @@ html[dark="true"] {
 }
 
 #rn_note-container .existing-note {
+	height: 48px;
+	position: relative;
+}
 
+#rn_note-container .existing-note p {
+	margin: 0;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 #rn_note-container .pin p {
@@ -241,4 +249,21 @@ input[type="radio"] {
 
 #rn_tools li:hover {
 	background-color: var(--pin-button-hover-color);
+}
+
+/*=== EDIT ACTIONS ===*/
+
+
+#rn_note-container .existing-note .edit-actions {
+	background-color: var(--widget-playlist-tab-color);
+	display: none;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 33%;
+}
+
+#rn_note-container.edit .existing-note:hover .edit-actions {
+	display: block;
 }

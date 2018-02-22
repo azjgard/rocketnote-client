@@ -31,6 +31,10 @@ const formatTimestamp = timestamp => {
 	return String(moment.utc(timestamp * 1000).format('mm:ss'));
 };
 
+const shortcutKeyShouldBePrevented = event => {
+	return $(event.target).closest("input")[0] || $(event.target).closest("textarea")[0];
+};
+
 String.prototype.trunc = function(n) {
 		return (this.length > n) ? this.substr(0, n-1) + '...' : this;
 };

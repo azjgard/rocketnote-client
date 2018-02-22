@@ -20,6 +20,7 @@ chrome.runtime.sendMessage({
 				watchKeyForCollapseNotes(79); 	// `o` for open (and close) widget
 				watchKeyForInputBlur(27);				// `ESC` for input blur
 				watchKeyForNoteSubmit(13); 			// `ENTER` for add note
+				enableEditActions(219);					// `[` for toggle edit actions
 				watchTimestampForCurrentVideo();
 				watchForPlaylist();
 				watchForLiveVideo();

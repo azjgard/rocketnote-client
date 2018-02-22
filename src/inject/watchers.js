@@ -12,10 +12,7 @@ const watchClickPinButton = () => {
 
 const watchKeyForInputFocus = keyCode => {
 	$(document).keyup(function (e) {
-		if ($(e.target).closest("input")[0]) {
-			return;
-		}
-		if (e.keyCode === keyCode) {
+		if (e.keyCode === keyCode && !shortcutKeyShouldBePrevented(e)) {
 			$("#rn_note-input").focus();
 		}
 	})
@@ -41,10 +38,7 @@ const watchKeyForNoteSubmit = keyCode => {
 
 const watchKeyForPin = keyCode => {
 	$(document).keyup(e => {
-		if ($(e.target).closest("input")[0]) {
-			return;
-		}
-		if (e.keyCode === keyCode) {
+		if (e.keyCode === keyCode && !shortcutKeyShouldBePrevented(e)) {
 			addPin();
 		}
 	});

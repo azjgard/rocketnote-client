@@ -1,9 +1,6 @@
 const watchKeyForCollapseNotes = keyCode => {
 	$(document).on("keyup", e => {
-		if ($(e.target).closest("input")[0]) {
-			return;
-		}
-		if (e.keyCode === keyCode) {
+		if (e.keyCode === keyCode && !shortcutKeyShouldBePrevented(e)) {
 			toggleCollapseNotes();
 		}
 	});

@@ -10,8 +10,7 @@ const moveWidgetUnderTab = playlistContainer => {
 	widget.appendTo(playlistContainer);
 };
 
-
-const formatWidgetForNormalVideo = () => {
+const reformatWidgetForNormalVideo = () => {
 	let widget = $("#rn_widget");
 	let noteContainer = $("#rn_note-container");
 	let related = $("#related");
@@ -23,10 +22,7 @@ const formatWidgetForNormalVideo = () => {
 
 const watchKeysForTabToggle = (keyCode1, keyCode2) => {
 	$(document).keyup(function (e) {
-		if ($(e.target).closest("input")[0]) {
-			return;
-		}
-		if (e.shiftKey) {
+		if (e.shiftKey && !shortcutKeyShouldBePrevented(e)) {
 			if (e.keyCode === keyCode1) {
 				$("#rn_notes-radio").click();
 			} else if (e.keyCode === keyCode2) {
