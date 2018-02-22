@@ -59,8 +59,9 @@
   "permissions": ["identity", "tabs", "identity.email", "storage"],
   "oauth2": {
     "client_id":
-    "772398796773-nofuo3vd7s8r6jjjn8qav61jpergv2cu.apps.googleusercontent.com",
+    "772398796773-oiofjsr6bbquchgpujodu1ireue92a70.apps.googleusercontent.com",
     "scopes": [
+      "openid", "email", "profile",
       "https://www.googleapis.com/auth/plus.login",
       "https://www.googleapis.com/auth/plus.me",
       "https://www.googleapis.com/auth/userinfo.profile"
