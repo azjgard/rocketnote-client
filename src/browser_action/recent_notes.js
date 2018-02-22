@@ -37,7 +37,7 @@ const addRecentNotesToDropdown = () => {
 		}
 
 		if (note.content.length > 0) {
-			noteContents.text(note.content.trunc(55));
+			noteContents.text(note.content.trunc(95));
 			noteContents.linkify();
 			addClassToHashtags(noteBody);
 		} else {

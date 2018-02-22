@@ -9,7 +9,9 @@ const addNote = (isPin, content) => {
 	note.videoId = getCurrentVideoId();
 	note.formattedTags = tags.join(" ").toLowerCase();
 	note.timestamp = Math.floor(video.currentTime);
+	// TODO: Delete these when you're wired in.
 	note.createdAt = moment().format();
+	note.id = Math.floor(Math.random() * 10000 * Math.random());
 
 	submitNote(note);
 
@@ -29,9 +31,10 @@ const addNote = (isPin, content) => {
 	}
 };
 
-const addNoteToContainer = ({content, timestamp, videoId}) => {
+const addNoteToContainer = ({content, timestamp, videoId, id}) => {
 	let noteContainer = $("#rn_note-container");
 	let notePlaceholder = $(".rn_notes-placeholder");
+	let noteBodyContainer = $(document.createElement("div")).attr({class: "existing-note"});
 	let noteBody = $(document.createElement("p"));
 	let timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
 	let timestampAnchor = $(document.createElement("a")).attr({
@@ -56,7 +59,9 @@ const addNoteToContainer = ({content, timestamp, videoId}) => {
 		const formattedTimestamp = formatTimestamp(timestamp);
 		noteBody.prepend(timestampAnchor.text(formattedTimestamp));
 	}
-	noteContainer.append(noteBody);
+
+	noteBodyContainer.append(noteBody);
+	noteContainer.append(noteBodyContainer);
 	noteContainer.scrollTop(noteContainer[0].scrollHeight);
 
 	if (notePlaceholder.length) {
