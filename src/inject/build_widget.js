@@ -29,10 +29,17 @@ const buildExistingNotes = container => {
 			});
 
 			existingNotes.map(function (note) {
-				let existingNote = $(document.createElement("div"));
-				existingNote.attr({class: "existing-note"});
+				let existingNote = $(document.createElement("div")).attr({class: "existing-note"});
 				let noteBody = buildNoteBody(note);
+				let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
+				let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});
+
 				existingNote.append(noteBody);
+
+				if (note.timestamp >= 0) {
+					const formattedTimestamp = formatTimestamp(note.timestamp);
+					existingNote.prepend(timestamp.text(formattedTimestamp));
+				}
 
 				container.append(existingNote);
 			});
@@ -46,12 +53,10 @@ const buildExistingNotes = container => {
 
 	const buildNoteBody = note => {
 		let noteBody = $(document.createElement("p"));
-		let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
 		let pinIcon = $(document.createElement("img")).attr({
 			src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
 			class: "pin-icon"
 		});
-		let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});
 
 		if (note.content.length > 0) {
 			noteBody.text(note.content);
@@ -60,11 +65,6 @@ const buildExistingNotes = container => {
 		} else {
 			noteBody.append(pinIcon);
 			noteBody.addClass("pin");
-		}
-
-		if (note.timestamp >= 0) {
-			const formattedTimestamp = formatTimestamp(note.timestamp);
-			noteBody.prepend(timestamp.text(formattedTimestamp));
 		}
 
 		return noteBody;

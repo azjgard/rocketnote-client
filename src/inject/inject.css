@@ -63,12 +63,24 @@ html[dark="true"] {
 }
 
 #rn_note-container .existing-note {
+	padding: 5px 0;
 	position: relative;
 }
 
 #rn_note-container .existing-note p {
+	display: inline;
 	margin: 0;
-	padding: 10px 0;
+	outline: none;
+}
+
+#rn_note-container .existing-note p[contenteditable="true"] {
+	background-color: var(--widget-playlist-tab-color);
+}
+
+#rn_note-container .existing-note p[contenteditable="true"]::after {
+	background-color: var(--widget-background-color);
+	color: var(--timestamp-color);
+	content: " (editing)";
 }
 
 #rn_note-container .pin p {

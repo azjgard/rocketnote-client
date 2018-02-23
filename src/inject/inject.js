@@ -27,6 +27,7 @@ chrome.runtime.sendMessage({
 				watchMouseSelection();
 				watchVideoForChanges(currentVideoId);
 				watchButtonForEditNote();
+				watchCancelEditNote();
 
 				function watchVideoForChanges(currentVideoId) {
 					setInterval(() => {

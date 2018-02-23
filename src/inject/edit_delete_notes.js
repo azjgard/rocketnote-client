@@ -2,20 +2,32 @@ const editNote = note => {
 
 };
 
+const watchCancelEditNote = () => {
+	$(document).on("blur", ".existing-note p", e => {
+		$(e.target).attr("contenteditable", "false");
+		chrome.storage.sync.get("editedNote", result => {
+			$(e.target).text(result.editedNote.originalContents);
+		});
+	});
+};
+
 const deleteNote = note => {
 
 };
 
-const switchToEditNoteMode = (e) => {
+const switchToEditNoteMode = e => {
 	const existingNote = $(e.target).closest(".existing-note");
 	const editIcon = $(e.target).find("img");
-	const note = existingNote.find("p");
+	const note = $(existingNote.find("p"));
 	const noteContents = note.text();
-	const noteTimestamp = note.find("a");
-	const noteBody = noteContents.substring(5);
-	const input = $(document.createElement("textarea")).text(noteBody);
 
-	$(note).attr("contenteditable", "true");
+	let editedNote = {
+		originalContents: noteContents,
+	};
+
+	chrome.storage.sync.set({editedNote});
+	note.attr("contenteditable", "true").focus();
+	$("#rn_note-container").removeClass("edit");
 };
 
 const confirmDeleteNote = note => {
