@@ -16,6 +16,8 @@ html {
 	--pin-button-hover-color: #b7b7b7;
 	--timestamp-color: #707070;
 	--tool-background-color: #efefef;
+
+	--edit-note-offset: -80px;
 }
 
 /*===  DARK THEME  ===*/
@@ -56,19 +58,17 @@ html[dark="true"] {
 	margin-top: 10px;
 	padding: 5px;
 	text-align: left;
+	overflow-x: hidden;
 	overflow-y: scroll;
 }
 
 #rn_note-container .existing-note {
-	height: 48px;
 	position: relative;
 }
 
 #rn_note-container .existing-note p {
 	margin: 0;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
+	padding: 10px 0;
 }
 
 #rn_note-container .pin p {
@@ -98,6 +98,10 @@ html[dark="true"] {
 
 #rn_note-container a:visited {
 	color: var(--link-color);
+}
+
+#rn_note-container a.timestamp:visited {
+	color: var(--timestamp-color);
 }
 
 #rn_input-form {
@@ -253,17 +257,47 @@ input[type="radio"] {
 
 /*=== EDIT ACTIONS ===*/
 
-
-#rn_note-container .existing-note .edit-actions {
-	background-color: var(--widget-playlist-tab-color);
-	display: none;
-	height: 100%;
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 33%;
+#rn_note-container .existing-note {
+	left: 0;
+	transition-duration: .2s;
 }
 
-#rn_note-container.edit .existing-note:hover .edit-actions {
-	display: block;
+#rn_note-container.edit .existing-note:hover {
+	left: var(--edit-note-offset);
+	transition-duration: .2s;
+}
+
+#rn_note-container .existing-note .edit-actions {
+	height: 100%;
+	position: absolute;
+	right: var(--edit-note-offset);
+	top: 0;
+	width: calc(-1 * var(--edit-note-offset));
+}
+
+.edit-action {
+	display: inline-block;
+	height: 100%;
+	width: 50%;
+}
+
+.edit-action:hover {
+	cursor: pointer;
+	opacity: .5;
+}
+
+.edit-action img {
+	height: 22px;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.existing-note textarea {
+	background-color: transparent;
+	border: 0;
+	color: var(--widget-text-color);
+	font-size: 14px;
+	outline: none;
 }

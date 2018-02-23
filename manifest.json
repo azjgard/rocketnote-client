@@ -16,7 +16,9 @@
     "assets/img/thumbtack_dark.svg",
     "assets/img/rocket_note_main_logo.svg",
     "assets/img/rocket_red.svg",
-    "assets/img/rocket_white.svg"
+    "assets/img/rocket_white.svg",
+    "assets/img/edit.svg",
+    "assets/img/trash.svg"
   ],
   "background": {
     "scripts": ["js/lib/jquery/jquery.js", "src/bg/background.js"],
@@ -45,9 +47,9 @@
         "src/utils/widget-formatting.js",
         "src/requests/requests.js",
         "src/inject/watchers.js",
+        "src/inject/edit_delete_notes.js",
         "src/inject/build_widget.js",
         "src/inject/add_notes.js",
-        "src/inject/edit_delete_notes.js",
         "src/inject/playlist.js",
         "src/inject/live_video.js",
         "src/inject/collapse.js",
