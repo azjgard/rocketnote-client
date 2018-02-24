@@ -1,20 +1,18 @@
 const editNote = e => {
 	const existingNote = $(e.target).closest(".existing-note");
 	const noteBody = existingNote.find("p");
-	const confirmButton = existingNote.find(".rn_confirm-edit-button");
-	const cancelButton = existingNote.find(".rn_cancel-edit-button");
 	const editedNoteId = existingNote.attr("id").replace("rn_note-", "");
 
-	confirmButton.remove();
-	cancelButton.remove();
+	existingNote.find(".rn_edit-buttons").remove();
 	noteBody.attr("contenteditable", "false");
 
 	chrome.storage.sync.get({notes: {}}, result => {
 		let notes = result.notes;
 		let existingNotes = notes[getCurrentVideoId()] || [];
+
 		existingNotes.map(({id}, i) => {
 			if (parseInt(id) === parseInt(editedNoteId)) {
-				notes[getCurrentVideoId()][i].content = $(noteBody).text();
+				notes[getCurrentVideoId()][i].content = noteBody.text();
 				chrome.storage.sync.set({notes});
 				addClassToHashtags(noteBody);
 				noteBody.linkify();
@@ -23,7 +21,7 @@ const editNote = e => {
 	});
 };
 
-const watchCancelEditNote = () => {
+const watchForCancelEditNote = () => {
 	$(document).on("click", ".rn_cancel-edit-button", e => {
 		cancelEdit($(e.target).closest(".existing-note").find("p"));
 	});
@@ -50,8 +48,7 @@ const watchCancelEditNote = () => {
 				$(target).append(thumbtack);
 			}
 
-			$(target).closest(".existing-note").find(".rn_confirm-edit-button").remove();
-			$(target).closest(".existing-note").find(".rn_cancel-edit-button").remove();
+			$(target).closest(".existing-note").find(".rn_edit-buttons").remove();
 		});
 	}
 };
@@ -147,14 +144,80 @@ const addEditActions = noteElements => {
 	noteElements.append(editActions);
 };
 
-const askConfirmDeleteNote = note => {
-
-};
-
 const deleteNote = note => {
+	const noteId = note.attr("id").replace("rn_note-", "");
 
+	chrome.storage.sync.get({notes: {}}, result => {
+		let notes = result.notes;
+		let existingNotes = notes[getCurrentVideoId()] || [];
+
+		existingNotes.map(({id}, i) => {
+			if (parseInt(id) === parseInt(noteId)) {
+				notes[getCurrentVideoId()][i].index = i;
+				updateLastDeleted(notes[getCurrentVideoId()][i]);
+				notes[getCurrentVideoId()].splice(i, 1);
+				chrome.storage.sync.set({notes});
+			}
+		});
+	});
+	notifyDelete(note);
+	note.remove();
+
+	function notifyDelete(note) {
+		let noteDeletedNotification = $(document.createElement("div")).addClass("rn_notify-deleted").text("Note deleted.");
+		const undoAnchor = $(document.createElement("a")).attr({class: "rn_undo-action"}).text(" undo");
+
+		$(".rn_notify-deleted").remove();
+
+		noteDeletedNotification.append(undoAnchor);
+		noteDeletedNotification.insertBefore(note);
+	}
 };
 
-const watchKeyForDeleteNote = keyCode => {
+const watchForDeleteNote = () => {
+	$(document).on("click", ".rn_delete-button", e => {
+		deleteNote($(e.target).closest(".existing-note"));
+	});
+};
 
+const undoAction = e => {
+	let notifyBody = $(e.target).closest("div");
+
+	chrome.storage.sync.get({lastDeleted: {}}, lastDeletedResult => {
+		let note = lastDeletedResult.lastDeleted;
+
+		let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id});
+		let noteBody = buildNoteBody(note);
+		let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
+		let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});
+
+		existingNote.append(noteBody);
+
+		if (note.timestamp >= 0) {
+			const formattedTimestamp = formatTimestamp(note.timestamp);
+			existingNote.prepend(timestamp.text(formattedTimestamp));
+		}
+
+		addEditActions(existingNote);
+		existingNote.insertBefore(notifyBody);
+		notifyBody.remove();
+
+		chrome.storage.sync.get({notes: {}}, notesResult => {
+			let allNotes = notesResult.notes;
+			let currentVideoNotes = allNotes[getCurrentVideoId()];
+			currentVideoNotes.splice(note.index, 0, note);
+
+			chrome.storage.sync.set({notes: allNotes});
+		});
+	});
+};
+
+const watchUndoAction = () => {
+	$(document).on("click", ".rn_undo-action", e => {
+		undoAction(e);
+	});
+};
+
+const updateLastDeleted = note => {
+	chrome.storage.sync.set({lastDeleted: note});
 };

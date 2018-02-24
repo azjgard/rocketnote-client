@@ -51,25 +51,6 @@ const buildExistingNotes = container => {
 
 		return container;
 	});
-
-	const buildNoteBody = note => {
-		let noteBody = $(document.createElement("p"));
-		let pinIcon = $(document.createElement("img")).attr({
-			src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
-			class: "pin-icon"
-		});
-
-		if (note.content.length > 0) {
-			noteBody.text(note.content);
-			noteBody.linkify();
-			addClassToHashtags(noteBody);
-		} else {
-			noteBody.append(pinIcon);
-			noteBody.addClass("pin");
-		}
-
-		return noteBody;
-	};
 };
 
 const buildNoteInput = () => {
@@ -91,4 +72,23 @@ const buildNoteInput = () => {
 	inputForm.append([input, pinButton, submitButton]);
 
 	return inputForm;
+};
+
+const buildNoteBody = note => {
+	let noteBody = $(document.createElement("p"));
+	let pinIcon = $(document.createElement("img")).attr({
+		src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
+		class: "pin-icon"
+	});
+
+	if (note.content.length > 0) {
+		noteBody.text(note.content);
+		noteBody.linkify();
+		addClassToHashtags(noteBody);
+	} else {
+		noteBody.append(pinIcon);
+		noteBody.addClass("pin");
+	}
+
+	return noteBody;
 };

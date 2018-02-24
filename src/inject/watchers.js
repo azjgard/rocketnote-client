@@ -13,8 +13,10 @@ const initWatchers = () => {
 	watchForLiveVideo();
 	watchMouseSelection();
 	watchButtonForEditNote();
-	watchCancelEditNote();
+	watchForCancelEditNote();
 	watchForEditNote();
+	watchForDeleteNote();
+	watchUndoAction();
 };
 
 const watchClickAddNoteButton = () => {

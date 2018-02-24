@@ -308,9 +308,9 @@ input[type="radio"] {
 
 .edit-action img {
 	height: 22px;
+	left: 50%;
 	position: relative;
 	top: 50%;
-	left: 50%;
 	transform: translate(-50%, -50%);
 }
 
@@ -322,7 +322,19 @@ input[type="radio"] {
 
 .rn_cancel-edit-button.gray {
 	background-color: var(--white-color);
-	padding: 5px 10px;
-	color: var(--widget-text-color);
 	border: 1px solid var(--pin-buton-color);
+	color: var(--widget-text-color);
+	padding: 5px 10px;
+}
+
+.rn_notify-deleted {
+	background-color: var(--widget-playlist-tab-off-color);
+	margin: 0 -5px;
+	padding: 5px 0;
+	text-align: center;
+}
+
+.rn_undo-action {
+	color: var(--link-color);
+	cursor: pointer;
 }
