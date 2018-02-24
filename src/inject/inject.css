@@ -280,8 +280,9 @@ input[type="radio"] {
 	width: calc(-1 * var(--edit-note-offset));
 }
 
-#rn_note-container .existing-note p[contenteditable="true"] {
-	/*background-color: var(--widget-playlist-tab-off-color);*/
+#rn_note-container.edit .existing-note {
+	left: -30px;
+	transition-duration: .2s;
 }
 
 #rn_note-container .existing-note p::selection {

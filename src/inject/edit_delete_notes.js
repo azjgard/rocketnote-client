@@ -12,7 +12,6 @@ const editNote = (e, note) => {
 
 const watchCancelEditNote = () => {
 	$(document).on("click", ".rn_cancel-edit-button", e => {
-		console.log($(e.target).closest(".existing-note").find("p").text());
 		cancelEdit($(e.target).closest(".existing-note").find("p"));
 	});
 
@@ -27,6 +26,8 @@ const watchCancelEditNote = () => {
 		chrome.storage.sync.get({"editedNote": ''}, result => {
 			if (result.editedNote.originalContents.length > 0) {
 				$(target).text(result.editedNote.originalContents);
+				addClassToHashtags($(target));
+				$(target).linkify();
 			} else if ($(target).is(":empty")) {
 				const thumbtack = $(document.createElement("img")).attr({
 					src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
@@ -40,10 +41,6 @@ const watchCancelEditNote = () => {
 			$(target).closest(".existing-note").find(".rn_cancel-edit-button").remove();
 		});
 	}
-};
-
-const deleteNote = note => {
-
 };
 
 const switchToEditNoteMode = e => {
@@ -95,11 +92,10 @@ const confirmDeleteNote = note => {
 };
 
 const watchForEditNote = () => {
-	$(document).on("keyup", "p[contenteditable]", e => {
-		if (e.shiftKey) {
-			console.log("Shift key is being pressed, so go ahead and add ENTER spaces!");
-		} else if (e.keyCode === 13) {
+	$(document).on("keydown", "p[contenteditable]", e => {
+		if (e.keyCode === 13 && !e.shiftKey) {
 			editNote(e);
+			e.preventDefault();
 		}
 	});
 
