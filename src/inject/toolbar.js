@@ -22,7 +22,7 @@ const watchMouseSelection = () => {
 		const pageX = e.pageX;
 		const pageY = e.pageY;
 		let selectedText = x.Selector.getSelected();
-		if (!selectedText.isCollapsed && selectedText !== "") {
+		if (!selectedText.isCollapsed && selectedText !== "" && clickIsNotOnWidget(e)) {
 			$("#rn_tools").css({
 				'left': pageX - 30,
 				'top': pageY - 65,
@@ -31,6 +31,10 @@ const watchMouseSelection = () => {
 			$("#rn_tools").fadeOut(200);
 		}
 	});
+
+	function clickIsNotOnWidget(e) {
+		return $(e.target).parents('#rn_widget').length <= 0 && !$(e.target).is("#rn_widget");
+	}
 };
 
 const initToolbar = () => {
