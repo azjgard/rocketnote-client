@@ -3,9 +3,58 @@ let state = {
   username: null,
 };
 
+const authWithRocketNote = id_token => {
+  console.log('Auth with RocketNote');
+  console.log('ID_TOKEN:');
+  console.log(id_token);
+};
+
 const login = interactive => {
   return new Promise((resolve, reject) => {
-    chrome.identity.getAuthToken({interactive: true}, token => resolve(token));
+
+    const manifest     = chrome.runtime.getManifest();
+    const scopes       = encodeURIComponent(manifest.oauth2.scopes.join(' '));
+    const clientId     = encodeURIComponent(manifest.oauth2.client_id);
+    const redirectUri  = encodeURIComponent('urn:ietf:wg:oauth:2.0:oob:auto');
+    const responseType = encodeURIComponent('id_token');
+
+    const url = 'https://accounts.google.com/o/oauth2/auth' + 
+          '?client_id=' + clientId + 
+          '&response_type=' + responseType +
+          '&access_type=offline' + 
+          '&redirect_uri=' + redirectUri + 
+          '&prompt=consent' +
+          '&scope=' + scopes;
+
+
+    const RESULT_PREFIX = ['Success', 'Denied', 'Error'];
+
+    chrome.tabs.create({'url': 'about:blank'}, function(authenticationTab) {
+      chrome.tabs.onUpdated.addListener(async function googleAuthorizationHook(tabId, changeInfo, tab) {
+        if (tabId === authenticationTab.id) {
+
+          const titleParts = tab.title.split(' ', 2);
+          const result     = titleParts[0];
+
+          if (titleParts.length == 2 && RESULT_PREFIX.indexOf(result) >= 0) {
+            chrome.tabs.onUpdated.removeListener(googleAuthorizationHook);
+            chrome.tabs.remove(tabId);
+
+            const response = titleParts[1];
+
+            if (response.includes('id_token=')) {
+              const id_token = response.split('&')[0].replace('id_token=', '');
+
+              await authWithRocketNote(id_token);
+            }
+            else {
+              console.log('There was an error.');
+            }
+          }
+        }
+      });
+      chrome.tabs.update(authenticationTab.id, {'url': url});
+    });
   });
 };
 
@@ -20,22 +69,22 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 
   if (request.type === 'login') {
     const token = await login(true);
-    $.ajax({
-        url: 'https://www.googleapis.com/plus/v1/people/me',
-        headers: {Authorization: 'Bearer ' + token},
-      })
-      .done(response => {
-        state = {
-          userLoggedIn: true,
-          username: response.name.givenName,
-        };
+    // $.ajax({
+    //     url: 'https://www.googleapis.com/plus/v1/people/me',
+    //     headers: {Authorization: 'Bearer ' + token},
+    //   })
+    //   .done(response => {
+    //     state = {
+    //       userLoggedIn: true,
+    //       username: response.name.givenName,
+    //     };
 
-        chrome.runtime.sendMessage({
-          context: 'popup',
-          type: 'login',
-          data: response,
-        });
-      });
+    //     chrome.runtime.sendMessage({
+    //       context: 'popup',
+    //       type: 'login',
+    //       data: response,
+    //     });
+    //   });
   } else if (request.type === 'logout') {
     chrome.identity.getAuthToken({}, token => {
       chrome.identity.removeCachedAuthToken({token}, () => {
