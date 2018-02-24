@@ -60,7 +60,7 @@
       ]
     }
   ],
-  "permissions": ["identity", "tabs", "storage"],
+  "permissions": ["identity", "tabs", "storage", "https://api.getrocketnote.com/v1/*"],
   "oauth2": {
     "client_id":
     "772398796773-oiofjsr6bbquchgpujodu1ireue92a70.apps.googleusercontent.com",

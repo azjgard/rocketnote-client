@@ -3,10 +3,53 @@ let state = {
   username: null,
 };
 
-const authWithRocketNote = id_token => {
+const authWithRocketNote = async id_token => {
   console.log('Auth with RocketNote');
   console.log('ID_TOKEN:');
   console.log(id_token);
+
+  chrome.storage.sync.get('id_token', function(tokenIsSet) {
+    if (!tokenIsSet !== {} || !tokenIsSet) {
+      chrome.storage.sync.set({ id_token }, function() {
+
+      });
+    }
+  });
+};
+
+const apiRequest = (method, url, data, noHeader) => {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get('id_token', function({ id_token }) {
+
+      var config = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.getrocketnote.com/v1/auth",
+        "method": "POST",
+        "headers": {},
+        "data": JSON.stringify(data)
+      }
+
+      // if (noHeader) {
+      //   config.headers = {};
+      // }
+
+      // if (data) {
+      //   config.data = data;
+      // }
+
+      console.log('config');
+      console.log(config);
+
+      $.ajax(config)
+        .done(function(response) {
+          resolve(response);
+        })
+        .fail(function(error) {
+          reject(error)
+        });
+    });
+  });
 };
 
 const login = interactive => {
@@ -19,12 +62,12 @@ const login = interactive => {
     const responseType = encodeURIComponent('id_token');
 
     const url = 'https://accounts.google.com/o/oauth2/auth' + 
-          '?client_id=' + clientId + 
-          '&response_type=' + responseType +
-          '&access_type=offline' + 
-          '&redirect_uri=' + redirectUri + 
-          '&prompt=consent' +
-          '&scope=' + scopes;
+      '?client_id=' + clientId + 
+      '&response_type=' + responseType +
+      '&access_type=offline' + 
+      '&redirect_uri=' + redirectUri + 
+      '&prompt=consent' +
+      '&scope=' + scopes;
 
 
     const RESULT_PREFIX = ['Success', 'Denied', 'Error'];
@@ -45,7 +88,7 @@ const login = interactive => {
             if (response.includes('id_token=')) {
               const id_token = response.split('&')[0].replace('id_token=', '');
 
-              await authWithRocketNote(id_token);
+              resolve(id_token);
             }
             else {
               console.log('There was an error.');
@@ -68,7 +111,11 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   }
 
   if (request.type === 'login') {
-    const token = await login(true);
+    const id_token = await login(true);
+
+    authWithRocketNote(id_token);
+
+
     // $.ajax({
     //     url: 'https://www.googleapis.com/plus/v1/people/me',
     //     headers: {Authorization: 'Bearer ' + token},
