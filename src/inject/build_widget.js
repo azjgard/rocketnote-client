@@ -4,10 +4,12 @@ const buildWidget = () => {
 	let widgetAttr = {id: "rn_widget"};
 	let noteContainer = buildNoteContainer();
 	let noteInput = buildNoteInput();
+	let settingsButton = $(document.createElement("button")).attr({id: "rn_enable-edit", class: "rn_button-action"});
+	let settingsIcon = $(document.createElement("img")).attr({class: "settings-icon", src: chrome.runtime.getURL("assets/img/settings_gray.svg")});
 
+	settingsButton.append(settingsIcon);
 	widget.attr(widgetAttr);
-	widget.append(noteContainer);
-	widget.append(noteInput);
+	widget.append([settingsButton, noteContainer, noteInput]);
 	relatedContent.prepend(widget.hide().delay().fadeIn(300));
 	noteContainer.scrollTop(noteContainer[0].scrollHeight);
 };
@@ -28,8 +30,8 @@ const buildExistingNotes = container => {
 				return a.createdAt - b.createdAt;
 			});
 
-			existingNotes.map(function (note) {
-				let existingNote = $(document.createElement("div")).attr({class: "existing-note"});
+			existingNotes.map(note => {
+				let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id});
 				let noteBody = buildNoteBody(note);
 				let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
 				let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});
@@ -51,25 +53,6 @@ const buildExistingNotes = container => {
 
 		return container;
 	});
-
-	const buildNoteBody = note => {
-		let noteBody = $(document.createElement("p"));
-		let pinIcon = $(document.createElement("img")).attr({
-			src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
-			class: "pin-icon"
-		});
-
-		if (note.content.length > 0) {
-			noteBody.text(note.content);
-			noteBody.linkify();
-			addClassToHashtags(noteBody);
-		} else {
-			noteBody.append(pinIcon);
-			noteBody.addClass("pin");
-		}
-
-		return noteBody;
-	};
 };
 
 const buildNoteInput = () => {
@@ -91,4 +74,23 @@ const buildNoteInput = () => {
 	inputForm.append([input, pinButton, submitButton]);
 
 	return inputForm;
+};
+
+const buildNoteBody = note => {
+	let noteBody = $(document.createElement("p"));
+	let pinIcon = $(document.createElement("img")).attr({
+		src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
+		class: "pin-icon"
+	});
+
+	if (note.content.length > 0) {
+		noteBody.text(note.content);
+		noteBody.linkify();
+		addClassToHashtags(noteBody);
+	} else {
+		noteBody.append(pinIcon);
+		noteBody.addClass("pin");
+	}
+
+	return noteBody;
 };

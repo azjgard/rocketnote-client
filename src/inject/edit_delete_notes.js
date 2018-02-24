@@ -1,18 +1,28 @@
-const editNote = (e, note) => {
+const editNote = e => {
 	const existingNote = $(e.target).closest(".existing-note");
 	const noteBody = existingNote.find("p");
-	const confirmButton = existingNote.find(".rn_confirm-edit-button");
-	const cancelButton = existingNote.find(".rn_cancel-edit-button");
+	const editedNoteId = existingNote.attr("id").replace("rn_note-", "");
 
-	confirmButton.remove();
-	cancelButton.remove();
+	existingNote.find(".rn_edit-buttons").remove();
 	noteBody.attr("contenteditable", "false");
-	console.log("Changes Saved!");
+
+	chrome.storage.sync.get({notes: {}}, result => {
+		let notes = result.notes;
+		let existingNotes = notes[getCurrentVideoId()] || [];
+
+		existingNotes.map(({id}, i) => {
+			if (parseInt(id) === parseInt(editedNoteId)) {
+				notes[getCurrentVideoId()][i].content = noteBody.text();
+				chrome.storage.sync.set({notes});
+				addClassToHashtags(noteBody);
+				noteBody.linkify();
+			}
+		});
+	});
 };
 
-const watchCancelEditNote = () => {
+const watchForCancelEditNote = () => {
 	$(document).on("click", ".rn_cancel-edit-button", e => {
-		console.log($(e.target).closest(".existing-note").find("p").text());
 		cancelEdit($(e.target).closest(".existing-note").find("p"));
 	});
 
@@ -27,6 +37,8 @@ const watchCancelEditNote = () => {
 		chrome.storage.sync.get({"editedNote": ''}, result => {
 			if (result.editedNote.originalContents.length > 0) {
 				$(target).text(result.editedNote.originalContents);
+				addClassToHashtags($(target));
+				$(target).linkify();
 			} else if ($(target).is(":empty")) {
 				const thumbtack = $(document.createElement("img")).attr({
 					src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
@@ -36,14 +48,9 @@ const watchCancelEditNote = () => {
 				$(target).append(thumbtack);
 			}
 
-			$(target).closest(".existing-note").find(".rn_confirm-edit-button").remove();
-			$(target).closest(".existing-note").find(".rn_cancel-edit-button").remove();
+			$(target).closest(".existing-note").find(".rn_edit-buttons").remove();
 		});
 	}
-};
-
-const deleteNote = note => {
-
 };
 
 const switchToEditNoteMode = e => {
@@ -90,16 +97,11 @@ const switchToEditNoteMode = e => {
 	}
 };
 
-const confirmDeleteNote = note => {
-
-};
-
 const watchForEditNote = () => {
-	$(document).on("keyup", "p[contenteditable]", e => {
-		if (e.shiftKey) {
-			console.log("Shift key is being pressed, so go ahead and add ENTER spaces!");
-		} else if (e.keyCode === 13) {
+	$(document).on("keydown", "p[contenteditable]", e => {
+		if (e.keyCode === 13 && !e.shiftKey) {
 			editNote(e);
+			e.preventDefault();
 		}
 	});
 
@@ -120,16 +122,22 @@ const watchButtonForEditNote = () => {
 	});
 };
 
-const watchKeyForDeleteNote = keyCode => {
-
-};
-
-const watchKeyToEnableEditActions = keyCode => {
+const watchEnableEditActions = keyCode => {
 	$(document).keyup(function (e) {
 		if (e.keyCode === keyCode && !shortcutKeyShouldBePrevented(e)) {
-			$("#rn_note-container").toggleClass("edit");
+			enableEdit();
+			swapImage($("#rn_enable-edit").find("img"), "settings_gray.svg", "checkmark_gray.svg");
 		}
 	});
+
+	$(document).on("click", "#rn_enable-edit", () => {
+		enableEdit();
+		swapImage($("#rn_enable-edit").find("img"), "settings_gray.svg", "checkmark_gray.svg");
+	});
+
+	function enableEdit() {
+		$("#rn_note-container").toggleClass("edit");
+	}
 };
 
 const addEditActions = noteElements => {
@@ -144,4 +152,82 @@ const addEditActions = noteElements => {
 	editActions.append([editButton, deleteButton]);
 
 	noteElements.append(editActions);
+};
+
+const deleteNote = note => {
+	const noteId = note.attr("id").replace("rn_note-", "");
+
+	chrome.storage.sync.get({notes: {}}, result => {
+		let notes = result.notes;
+		let existingNotes = notes[getCurrentVideoId()] || [];
+
+		existingNotes.map(({id}, i) => {
+			if (parseInt(id) === parseInt(noteId)) {
+				notes[getCurrentVideoId()][i].index = i;
+				updateLastDeleted(notes[getCurrentVideoId()][i]);
+				notes[getCurrentVideoId()].splice(i, 1);
+				chrome.storage.sync.set({notes});
+			}
+		});
+	});
+	notifyDelete(note);
+	note.remove();
+
+	function notifyDelete(note) {
+		let noteDeletedNotification = $(document.createElement("div")).addClass("rn_notify-deleted").text("Note deleted.");
+		const undoAnchor = $(document.createElement("a")).attr({class: "rn_undo-action"}).text(" undo");
+
+		$(".rn_notify-deleted").remove();
+
+		noteDeletedNotification.append(undoAnchor);
+		noteDeletedNotification.insertBefore(note);
+	}
+};
+
+const watchForDeleteNote = () => {
+	$(document).on("click", ".rn_delete-button", e => {
+		deleteNote($(e.target).closest(".existing-note"));
+	});
+};
+
+const undoAction = e => {
+	let notifyBody = $(e.target).closest("div");
+
+	chrome.storage.sync.get({lastDeleted: {}}, lastDeletedResult => {
+		let note = lastDeletedResult.lastDeleted;
+
+		let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id});
+		let noteBody = buildNoteBody(note);
+		let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
+		let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});
+
+		existingNote.append(noteBody);
+
+		if (note.timestamp >= 0) {
+			const formattedTimestamp = formatTimestamp(note.timestamp);
+			existingNote.prepend(timestamp.text(formattedTimestamp));
+		}
+
+		addEditActions(existingNote);
+		existingNote.insertBefore(notifyBody);
+		notifyBody.remove();
+
+		chrome.storage.sync.get({notes: {}}, notesResult => {
+			let allNotes = notesResult.notes;
+			let currentVideoNotes = allNotes[getCurrentVideoId()];
+			currentVideoNotes.splice(note.index, 0, note);
+
+			chrome.storage.sync.set({notes: allNotes});
+		});
+	});
+};
+
+const watchUndoAction = () => {
+	$(document).on("click", ".rn_undo-action", e => {
+		undoAction(e);
+	});
+};
+
+const updateLastDeleted = note => {
+	chrome.storage.sync.set({lastDeleted: note});
 };

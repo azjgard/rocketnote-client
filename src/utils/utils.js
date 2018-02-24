@@ -43,6 +43,17 @@ const stopKeyboardShorcutsOnContentEditable = () => {
 	});
 };
 
+const swapImage = (img, src1, src2) => {
+	let source1 = chrome.runtime.getURL("assets/img/" + src1);
+	let source2 = chrome.runtime.getURL("assets/img/" + src2);
+
+	if ($(img).attr("src") === source1) {
+		$(img).attr("src", source2);
+	} else {
+		$(img).attr("src", source1);
+	}
+};
+
 String.prototype.trunc = function(n) {
 		return (this.length > n) ? this.substr(0, n-1) + '...' : this;
 };

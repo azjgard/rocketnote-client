@@ -12,7 +12,7 @@ html {
 	--widget-playlist-tab-off-color: #dcdcdc;
 
 	--main-border-color: #292929;
-	--pin-buton-color: #c9c9c9;
+	--pin-button-color: #c9c9c9;
 	--pin-button-hover-color: #b7b7b7;
 	--timestamp-color: #707070;
 	--tool-background-color: #efefef;
@@ -37,7 +37,7 @@ html[dark="true"] {
 
 
 	--main-border-color: #b7b7b7;
-	--pin-buton-color: #b7b7b7;
+	--pin-button-color: #b7b7b7;
 	--pin-button-hover-color: #a6a6a6;
 	--timestamp-color: #707070;
 	--tool-background-color: #efefef;
@@ -50,15 +50,15 @@ html[dark="true"] {
 	border-top: 2px solid var(--red-color);
 	color: var(--widget-text-color);
 	font-size: 14px;
+	height: 450px;
 	margin-bottom: 20px;
 	padding: 10px 10px 20px 10px;
-	text-align: center;
+	text-align: right;
 }
 
 #rn_note-container {
 	border: 1px solid var(--main-border-color);
-	height: 340px;
-	margin-top: 10px;
+	height: 310px;
 	padding: 5px;
 	text-align: left;
 	overflow-x: hidden;
@@ -156,7 +156,7 @@ html[dark="true"] {
 }
 
 .rn_button-action.gray {
-	background-color: var(--pin-buton-color);
+	background-color: var(--pin-button-color);
 	color: var(--widget-background-color);
 	padding: 5px 7px 3px;
 }
@@ -176,6 +176,15 @@ html[dark="true"] {
 	text-align: center;
 	top: 50%;
 	transform: translateY(-50%);
+}
+
+#rn_enable-edit {
+	background-color: transparent;
+	padding: 0;
+}
+
+.settings-icon {
+	height: 30px;
 }
 
 /*===  PLAYLIST  ===*/
@@ -280,8 +289,9 @@ input[type="radio"] {
 	width: calc(-1 * var(--edit-note-offset));
 }
 
-#rn_note-container .existing-note p[contenteditable="true"] {
-	/*background-color: var(--widget-playlist-tab-off-color);*/
+#rn_note-container.edit .existing-note {
+	left: -30px;
+	transition-duration: .2s;
 }
 
 #rn_note-container .existing-note p::selection {
@@ -307,20 +317,33 @@ input[type="radio"] {
 
 .edit-action img {
 	height: 22px;
+	left: 50%;
 	position: relative;
 	top: 50%;
-	left: 50%;
 	transform: translate(-50%, -50%);
 }
 
 .rn_edit-buttons {
 	display: block;
+	margin-top: 10px;
 	text-align: right;
 }
 
 .rn_cancel-edit-button.gray {
 	background-color: var(--white-color);
-	padding: 5px 10px;
+	border: 1px solid var(--pin-button-color);
 	color: var(--widget-text-color);
-	border: 1px solid var(--pin-buton-color);
+	padding: 5px 10px;
+}
+
+.rn_notify-deleted {
+	background-color: var(--widget-playlist-tab-off-color);
+	margin: 0 -5px;
+	padding: 5px 0;
+	text-align: center;
+}
+
+.rn_undo-action {
+	color: var(--link-color);
+	cursor: pointer;
 }

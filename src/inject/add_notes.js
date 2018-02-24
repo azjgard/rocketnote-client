@@ -7,7 +7,7 @@ const addNote = (isPin, content) => {
 	note.content = isPin ? "" : input.val();
 	note.content = content ? content : note.content;
 	note.videoId = getCurrentVideoId();
-	note.formattedTags = tags.join(" ").toLowerCase();
+	note.formattedTags = tags.join(" ");
 	note.timestamp = Math.floor(video.currentTime);
 	// TODO: Delete these when you're wired in.
 	note.createdAt = moment().format();
@@ -34,7 +34,7 @@ const addNote = (isPin, content) => {
 const addNoteToContainer = ({content, timestamp, videoId, id}) => {
 	let noteContainer = $("#rn_note-container");
 	let notePlaceholder = $(".rn_notes-placeholder");
-	let noteBodyContainer = $(document.createElement("div")).attr({class: "existing-note"});
+	let noteBodyContainer = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + id});
 	let noteBody = $(document.createElement("p"));
 	let timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
 	let timestampAnchor = $(document.createElement("a")).attr({
@@ -98,4 +98,31 @@ const storeNoteLocally = note => {
 
 		chrome.storage.sync.set({notes});
 	});
+};
+
+const submitFeedback = note => {
+
+};
+
+const watchInputForFeedback = () => {
+	$(document).on("keyup", "#rn_note-input", () => {
+		let inputValue = $("#rn_note-input").val();
+		if (inputValue.indexOf("#feedback") > -1) {
+			changeToSubmitFeedback();
+		} else {
+			changeToAddNote();
+		}
+	});
+
+	$(document).on("click", "#rn_note-submit.feedback", () => {
+		submitFeedback();
+	});
+
+	function changeToSubmitFeedback() {
+		$("#rn_note-submit").addClass("feedback").text("Submit Feedback");
+	}
+
+	function changeToAddNote() {
+		$("#rn_note-submit").removeClass("feedback").text("Add");
+	}
 };

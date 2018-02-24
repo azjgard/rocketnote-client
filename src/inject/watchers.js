@@ -7,14 +7,17 @@ const initWatchers = () => {
 	watchKeyForCollapseNotes(79); 	// `o` for open (and close) widget
 	watchKeyForInputBlur(27);				// `ESC` for input blur
 	watchKeyForNoteSubmit(13); 			// `ENTER` for add note
-	watchKeyToEnableEditActions(219);					// `[` for toggle edit actions
+	watchEnableEditActions(219);					// `[` for toggle edit actions
 	watchTimestampForCurrentVideo();
 	watchForPlaylist();
 	watchForLiveVideo();
 	watchMouseSelection();
 	watchButtonForEditNote();
-	watchCancelEditNote();
+	watchForCancelEditNote();
 	watchForEditNote();
+	watchForDeleteNote();
+	watchUndoAction();
+	watchInputForFeedback();
 };
 
 const watchClickAddNoteButton = () => {

@@ -18,7 +18,9 @@
     "assets/img/rocket_red.svg",
     "assets/img/rocket_white.svg",
     "assets/img/edit.svg",
-    "assets/img/trash.svg"
+    "assets/img/trash.svg",
+    "assets/img/settings_gray.svg",
+    "assets/img/checkmark_gray.svg"
   ],
   "background": {
     "scripts": ["js/lib/jquery/jquery.js", "src/bg/background.js"],

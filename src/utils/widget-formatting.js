@@ -6,7 +6,7 @@ const moveWidgetUnderTab = playlistContainer => {
 	widget.css("border-top", 0);
 	playlistContainer.find(".header").hide();
 	playlistItems.hide();
-	noteContainer.height("290px");
+	noteContainer.height("266px");
 	widget.appendTo(playlistContainer);
 };
 
