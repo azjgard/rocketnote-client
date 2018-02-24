@@ -27,6 +27,7 @@ const apiRequest = (method, url, data, noHeader) => {
         "url": "https://api.getrocketnote.com/v1/auth",
         "method": "POST",
         "headers": {},
+        "contentType": "application/json",
         "data": JSON.stringify(data)
       }
 
