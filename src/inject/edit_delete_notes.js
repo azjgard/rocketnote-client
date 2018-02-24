@@ -122,12 +122,22 @@ const watchButtonForEditNote = () => {
 	});
 };
 
-const watchKeyToEnableEditActions = keyCode => {
+const watchEnableEditActions = keyCode => {
 	$(document).keyup(function (e) {
 		if (e.keyCode === keyCode && !shortcutKeyShouldBePrevented(e)) {
-			$("#rn_note-container").toggleClass("edit");
+			enableEdit();
+			swapImage($("#rn_enable-edit").find("img"), "settings_gray.svg", "checkmark_gray.svg");
 		}
 	});
+
+	$(document).on("click", "#rn_enable-edit", () => {
+		enableEdit();
+		swapImage($("#rn_enable-edit").find("img"), "settings_gray.svg", "checkmark_gray.svg");
+	});
+
+	function enableEdit() {
+		$("#rn_note-container").toggleClass("edit");
+	}
 };
 
 const addEditActions = noteElements => {

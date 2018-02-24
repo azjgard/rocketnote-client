@@ -4,10 +4,12 @@ const buildWidget = () => {
 	let widgetAttr = {id: "rn_widget"};
 	let noteContainer = buildNoteContainer();
 	let noteInput = buildNoteInput();
+	let settingsButton = $(document.createElement("button")).attr({id: "rn_enable-edit", class: "rn_button-action"});
+	let settingsIcon = $(document.createElement("img")).attr({class: "settings-icon", src: chrome.runtime.getURL("assets/img/settings_gray.svg")});
 
+	settingsButton.append(settingsIcon);
 	widget.attr(widgetAttr);
-	widget.append(noteContainer);
-	widget.append(noteInput);
+	widget.append([settingsButton, noteContainer, noteInput]);
 	relatedContent.prepend(widget.hide().delay().fadeIn(300));
 	noteContainer.scrollTop(noteContainer[0].scrollHeight);
 };

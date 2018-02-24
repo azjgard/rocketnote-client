@@ -16,20 +16,8 @@ const toggleCollapseNotes = () => {
 	if (isChatOrPlaylist()) {
 		return;
 	}
-	swapLogoColor();
+	swapImage($("#rn_youtube-control"), "rocket_white.svg", "rocket_red.svg");
 	$("#rn_widget").fadeToggle();
-
-	function swapLogoColor() {
-		let youtubeControl = $("#rn_youtube-control");
-		let whiteLogo = chrome.runtime.getURL("assets/img/rocket_white.svg");
-		let redLogo = chrome.runtime.getURL("assets/img/rocket_red.svg");
-
-		if (youtubeControl.attr("src") === whiteLogo) {
-			youtubeControl.attr("src", redLogo);
-		} else {
-			youtubeControl.attr("src", whiteLogo);
-		}
-	}
 
 	function isChatOrPlaylist() {
 		return $("#chat").length || $("#container.ytd-playlist-panel-renderer").length;
