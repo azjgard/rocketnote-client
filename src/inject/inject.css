@@ -316,6 +316,7 @@ input[type="radio"] {
 
 .rn_edit-buttons {
 	display: block;
+	margin-top: 10px;
 	text-align: right;
 }
 

@@ -28,8 +28,8 @@ const buildExistingNotes = container => {
 				return a.createdAt - b.createdAt;
 			});
 
-			existingNotes.map(function (note) {
-				let existingNote = $(document.createElement("div")).attr({class: "existing-note"});
+			existingNotes.map(note => {
+				let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id});
 				let noteBody = buildNoteBody(note);
 				let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
 				let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});

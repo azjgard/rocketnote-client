@@ -1,13 +1,26 @@
-const editNote = (e, note) => {
+const editNote = e => {
 	const existingNote = $(e.target).closest(".existing-note");
 	const noteBody = existingNote.find("p");
 	const confirmButton = existingNote.find(".rn_confirm-edit-button");
 	const cancelButton = existingNote.find(".rn_cancel-edit-button");
+	const editedNoteId = existingNote.attr("id").replace("rn_note-", "");
 
 	confirmButton.remove();
 	cancelButton.remove();
 	noteBody.attr("contenteditable", "false");
-	console.log("Changes Saved!");
+
+	chrome.storage.sync.get({notes: {}}, result => {
+		let notes = result.notes;
+		let existingNotes = notes[getCurrentVideoId()] || [];
+		existingNotes.map(({id}, i) => {
+			if (parseInt(id) === parseInt(editedNoteId)) {
+				notes[getCurrentVideoId()][i].content = $(noteBody).text();
+				chrome.storage.sync.set({notes});
+				addClassToHashtags(noteBody);
+				noteBody.linkify();
+			}
+		});
+	});
 };
 
 const watchCancelEditNote = () => {
@@ -87,10 +100,6 @@ const switchToEditNoteMode = e => {
 	}
 };
 
-const confirmDeleteNote = note => {
-
-};
-
 const watchForEditNote = () => {
 	$(document).on("keydown", "p[contenteditable]", e => {
 		if (e.keyCode === 13 && !e.shiftKey) {
@@ -116,10 +125,6 @@ const watchButtonForEditNote = () => {
 	});
 };
 
-const watchKeyForDeleteNote = keyCode => {
-
-};
-
 const watchKeyToEnableEditActions = keyCode => {
 	$(document).keyup(function (e) {
 		if (e.keyCode === keyCode && !shortcutKeyShouldBePrevented(e)) {
@@ -140,4 +145,16 @@ const addEditActions = noteElements => {
 	editActions.append([editButton, deleteButton]);
 
 	noteElements.append(editActions);
+};
+
+const askConfirmDeleteNote = note => {
+
+};
+
+const deleteNote = note => {
+
+};
+
+const watchKeyForDeleteNote = keyCode => {
+
 };
