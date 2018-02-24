@@ -3,53 +3,41 @@ let state = {
   username: null,
 };
 
-const authWithRocketNote = async id_token => {
-  console.log('Auth with RocketNote');
-  console.log('ID_TOKEN:');
-  console.log(id_token);
+const setAuthToken = auth_token => new Promise(resolve =>
+  chrome.storage.sync.set({ auth_token }, resolve)
+);
 
-  chrome.storage.sync.get('id_token', function(tokenIsSet) {
-    if (!tokenIsSet !== {} || !tokenIsSet) {
-      chrome.storage.sync.set({ id_token }, function() {
+const getAuthToken = () => new Promise(resolve =>
+  chrome.storage.sync.get('auth_token', result => resolve(result.auth_token))
+);
 
-      });
+const clearAuthToken = () => new Promise(resolve =>
+  chrome.storage.sync.set({ auth_token: null }, resolve)
+);
+
+const isLoggedIn = async () => await getAuthToken() ? true : false;
+
+const apiRequest = (method, relativePath, data, noHeader) =>  {
+  return new Promise(async (resolve, reject) => {
+    const baseUrl = 'https://api.getrocketnote.com/v1';
+    const url     = `${baseUrl}${relativePath}`;
+
+    const config = {
+      url,
+      method,
+      headers: {},
+      contentType : "application/json"
     }
-  });
-};
 
-const apiRequest = (method, url, data, noHeader) => {
-  return new Promise((resolve, reject) => {
-    chrome.storage.sync.get('id_token', function({ id_token }) {
+    if (await isLoggedIn()) {
+      config.headers.Authorization = await getAuthToken();
+    }
 
-      var config = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.getrocketnote.com/v1/auth",
-        "method": "POST",
-        "headers": {},
-        "contentType": "application/json",
-        "data": JSON.stringify(data)
-      }
+    if (method.match(/post/)) {
+      config.data = JSON.stringify(data);
+    }
 
-      // if (noHeader) {
-      //   config.headers = {};
-      // }
-
-      // if (data) {
-      //   config.data = data;
-      // }
-
-      console.log('config');
-      console.log(config);
-
-      $.ajax(config)
-        .done(function(response) {
-          resolve(response);
-        })
-        .fail(function(error) {
-          reject(error)
-        });
-    });
+    $.ajax(config).done(resolve).fail(reject);
   });
 };
 
@@ -88,7 +76,6 @@ const login = interactive => {
 
             if (response.includes('id_token=')) {
               const id_token = response.split('&')[0].replace('id_token=', '');
-
               resolve(id_token);
             }
             else {
@@ -114,7 +101,7 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   if (request.type === 'login') {
     const id_token = await login(true);
 
-    authWithRocketNote(id_token);
+    await setAuthToken(id_token);
 
 
     // $.ajax({
