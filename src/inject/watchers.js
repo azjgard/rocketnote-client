@@ -17,6 +17,7 @@ const initWatchers = () => {
 	watchForEditNote();
 	watchForDeleteNote();
 	watchUndoAction();
+	watchInputForFeedback();
 };
 
 const watchClickAddNoteButton = () => {

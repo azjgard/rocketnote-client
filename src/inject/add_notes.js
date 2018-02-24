@@ -99,3 +99,30 @@ const storeNoteLocally = note => {
 		chrome.storage.sync.set({notes});
 	});
 };
+
+const submitFeedback = note => {
+
+};
+
+const watchInputForFeedback = () => {
+	$(document).on("keyup", "#rn_note-input", () => {
+		let inputValue = $("#rn_note-input").val();
+		if (inputValue.indexOf("#feedback") > -1) {
+			changeToSubmitFeedback();
+		} else {
+			changeToAddNote();
+		}
+	});
+
+	$(document).on("click", "#rn_note-submit.feedback", () => {
+		submitFeedback();
+	});
+
+	function changeToSubmitFeedback() {
+		$("#rn_note-submit").addClass("feedback").text("Submit Feedback");
+	}
+
+	function changeToAddNote() {
+		$("#rn_note-submit").removeClass("feedback").text("Add");
+	}
+};
