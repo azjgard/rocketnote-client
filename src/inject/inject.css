@@ -18,6 +18,7 @@ html {
 	--tool-background-color: #efefef;
 
 	--edit-note-offset: -80px;
+	--note-selection-color: var(--light-gray-color);
 }
 
 /*===  DARK THEME  ===*/
@@ -40,6 +41,8 @@ html[dark="true"] {
 	--pin-button-hover-color: #a6a6a6;
 	--timestamp-color: #707070;
 	--tool-background-color: #efefef;
+
+	--note-selection-color: var(--widget-playlist-tab-color);
 }
 
 #rn_widget {
@@ -71,16 +74,6 @@ html[dark="true"] {
 	display: inline;
 	margin: 0;
 	outline: none;
-}
-
-#rn_note-container .existing-note p[contenteditable="true"] {
-	background-color: var(--widget-playlist-tab-color);
-}
-
-#rn_note-container .existing-note p[contenteditable="true"]::after {
-	background-color: var(--widget-background-color);
-	color: var(--timestamp-color);
-	content: " (editing)";
 }
 
 #rn_note-container .pin p {
@@ -287,6 +280,20 @@ input[type="radio"] {
 	width: calc(-1 * var(--edit-note-offset));
 }
 
+#rn_note-container .existing-note p[contenteditable="true"] {
+	/*background-color: var(--widget-playlist-tab-off-color);*/
+}
+
+#rn_note-container .existing-note p::selection {
+	background-color: var(--note-selection-color);
+}
+
+#rn_note-container .existing-note p[contenteditable="true"]::after {
+	background-color: var(--widget-background-color);
+	color: var(--timestamp-color);
+	content: " (editing)";
+}
+
 .edit-action {
 	display: inline-block;
 	height: 100%;
@@ -306,10 +313,14 @@ input[type="radio"] {
 	transform: translate(-50%, -50%);
 }
 
-.existing-note textarea {
-	background-color: transparent;
-	border: 0;
+.rn_edit-buttons {
+	display: block;
+	text-align: right;
+}
+
+.rn_cancel-edit-button.gray {
+	background-color: var(--white-color);
+	padding: 5px 10px;
 	color: var(--widget-text-color);
-	font-size: 14px;
-	outline: none;
+	border: 1px solid var(--pin-buton-color);
 }

@@ -57,9 +57,10 @@ const addNoteToContainer = ({content, timestamp, videoId, id}) => {
 
 	if (timestamp >= 0) {
 		const formattedTimestamp = formatTimestamp(timestamp);
-		noteBody.prepend(timestampAnchor.text(formattedTimestamp));
+		noteBodyContainer.prepend(timestampAnchor.text(formattedTimestamp));
 	}
 
+	addEditActions(noteBodyContainer);
 	noteBodyContainer.append(noteBody);
 	noteContainer.append(noteBodyContainer);
 	noteContainer.scrollTop(noteContainer[0].scrollHeight);

@@ -41,6 +41,7 @@ const buildExistingNotes = container => {
 					existingNote.prepend(timestamp.text(formattedTimestamp));
 				}
 
+				addEditActions(existingNote);
 				container.append(existingNote);
 			});
 		} else {

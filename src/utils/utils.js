@@ -32,7 +32,15 @@ const formatTimestamp = timestamp => {
 };
 
 const shortcutKeyShouldBePrevented = event => {
-	return $(event.target).closest("input")[0] || $(event.target).closest("textarea")[0];
+	return $(event.target).closest("input")[0] || $(event.target).closest("textarea")[0] || $(event.target).closest("p[contenteditable]")[0];
+};
+
+const stopKeyboardShorcutsOnContentEditable = () => {
+	$("body").on("keyup keypress keydown", e => {
+		if ($("p[contenteditable]").is(":focus") && (e.keyCode !== 27 && e.keyCode !== 13)) {
+			e.stopImmediatePropagation();
+		}
+	});
 };
 
 String.prototype.trunc = function(n) {
