@@ -1,6 +1,6 @@
-const render = name => {
-  if (name) {
-    $('#rn_welcome').html("Not <b>" + name + "</b>?");
+const render = userProfile => {
+  if (userProfile) {
+    $('#rn_welcome').html("Not <b>" + userProfile.email + "</b>?");
     $('#logged-out').fadeOut(() => $('#logged-in').fadeIn());
   } else {
     $('#logged-in').fadeOut(() => $('#logged-out').fadeIn());
@@ -8,23 +8,31 @@ const render = name => {
 };
 
 $(document).ready($ => {
-  chrome.runtime.sendMessage({context: 'background', type: 'getState'});
+  chrome.runtime.sendMessage( { context: 'background', type: 'getState' },
+    response =>  {
+      render(response);
+    }
+  );
 
   $('#rn_log-in').on('click', e => {
     chrome.runtime.sendMessage({type: 'login'});
   });
 
   $('#rn_log-out').on('click', e => {
-    chrome.runtime.sendMessage({type: 'logout'});
+    chrome.runtime.sendMessage({type: 'logout'}, response => {
+      render(false);
+    });
   });
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.context === 'popup') {
-    if (request.type === 'state') {
-      render(request.state.userLoggedIn ? request.state.username : false);
-    } else {
-      render(request.type === 'login' ? request.data.name.givenName : false);
-    }
+  alert('received a message on the popup');
+  alert(request);
+  if (request.context === 'popup' && request.type === 'state') {
+    render(
+      request.state.userLoggedIn ?
+      request.state.userProfile :
+      false
+    );
   }
 });

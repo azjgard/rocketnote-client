@@ -23,7 +23,12 @@
     "assets/img/checkmark_gray.svg"
   ],
   "background": {
-    "scripts": ["js/lib/jquery/jquery.js", "src/bg/background.js"],
+    "scripts": [
+      "js/lib/jquery/jquery.js",
+      "src/bg/auth.js",
+      "src/bg/api.js",
+      "src/bg/background.js"
+    ],
     "persistent": true
   },
   "browser_action": {
