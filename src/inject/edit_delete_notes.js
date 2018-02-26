@@ -76,6 +76,7 @@ const switchToEditNoteMode = e => {
 	existingNote.append(editButtons);
 	setEndOfContentEditable(note[0]);
 	$("#rn_note-container").removeClass("edit");
+	swapImage($("#rn_enable-edit").find("img"), "settings_gray.svg", "checkmark_gray.svg");
 
 	function setEndOfContentEditable(contentEditableElement) {
 		let range = document.createRange();
