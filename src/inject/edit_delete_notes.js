@@ -113,6 +113,7 @@ const watchForEditNote = () => {
 const watchButtonForEditNote = () => {
 	$(document).on("click", ".rn_edit-button", (e) => {
 		switchToEditNoteMode(e);
+		swapImage($("#rn_enable-edit").find("img"), "settings_gray.svg", "checkmark_gray.svg");
 	});
 
 	$(document).on("dblclick", "#rn_note-container .existing-note", (e) => {
