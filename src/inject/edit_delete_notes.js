@@ -6,14 +6,14 @@ const editNote = e => {
 	existingNote.find(".rn_edit-buttons").remove();
 	noteBody.attr("contenteditable", "false");
 
-	chrome.storage.sync.get({notes: {}}, result => {
+	chrome.storage.local.get({notes: {}}, result => {
 		let notes = result.notes;
 		let existingNotes = notes[getCurrentVideoId()] || [];
 
 		existingNotes.map(({id}, i) => {
 			if (parseInt(id) === parseInt(editedNoteId)) {
 				notes[getCurrentVideoId()][i].content = noteBody.text();
-				chrome.storage.sync.set({notes});
+				chrome.storage.local.set({notes});
 				addClassToHashtags(noteBody);
 				noteBody.linkify();
 			}
@@ -34,7 +34,7 @@ const watchForCancelEditNote = () => {
 
 	function cancelEdit(target) {
 		$(target).attr("contenteditable", "false");
-		chrome.storage.sync.get({"editedNote": ''}, result => {
+		chrome.storage.local.get({"editedNote": ''}, result => {
 			if (result.editedNote.originalContents.length > 0) {
 				$(target).text(result.editedNote.originalContents);
 				addClassToHashtags($(target));
@@ -71,7 +71,7 @@ const switchToEditNoteMode = e => {
 
 	turnOffAllOtherEditing();
 
-	chrome.storage.sync.set({editedNote});
+	chrome.storage.local.set({editedNote});
 	note.attr("contenteditable", "true");
 	existingNote.append(editButtons);
 	setEndOfContentEditable(note[0]);
@@ -158,7 +158,7 @@ const addEditActions = noteElements => {
 const deleteNote = note => {
 	const noteId = note.attr("id").replace("rn_note-", "");
 
-	chrome.storage.sync.get({notes: {}}, result => {
+	chrome.storage.local.get({notes: {}}, result => {
 		let notes = result.notes;
 		let existingNotes = notes[getCurrentVideoId()] || [];
 
@@ -167,7 +167,7 @@ const deleteNote = note => {
 				notes[getCurrentVideoId()][i].index = i;
 				updateLastDeleted(notes[getCurrentVideoId()][i]);
 				notes[getCurrentVideoId()].splice(i, 1);
-				chrome.storage.sync.set({notes});
+				chrome.storage.local.set({notes});
 			}
 		});
 	});
@@ -194,7 +194,7 @@ const watchForDeleteNote = () => {
 const undoAction = e => {
 	let notifyBody = $(e.target).closest("div");
 
-	chrome.storage.sync.get({lastDeleted: {}}, lastDeletedResult => {
+	chrome.storage.local.get({lastDeleted: {}}, lastDeletedResult => {
 		let note = lastDeletedResult.lastDeleted;
 
 		let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id});
@@ -213,12 +213,12 @@ const undoAction = e => {
 		existingNote.insertBefore(notifyBody);
 		notifyBody.remove();
 
-		chrome.storage.sync.get({notes: {}}, notesResult => {
+		chrome.storage.local.get({notes: {}}, notesResult => {
 			let allNotes = notesResult.notes;
 			let currentVideoNotes = allNotes[getCurrentVideoId()];
 			currentVideoNotes.splice(note.index, 0, note);
 
-			chrome.storage.sync.set({notes: allNotes});
+			chrome.storage.local.set({notes: allNotes});
 		});
 	});
 };
@@ -230,5 +230,5 @@ const watchUndoAction = () => {
 };
 
 const updateLastDeleted = note => {
-	chrome.storage.sync.set({lastDeleted: note});
+	chrome.storage.local.set({lastDeleted: note});
 };

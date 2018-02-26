@@ -12,6 +12,13 @@ const addNote = (isPin, content) => {
 	note.createdAt = moment().format();
 
 	submitNote(note);
+	if ($("#rn_note-submit").hasClass("feedback")) {
+		let feedback = {
+			content: note.content,
+		};
+
+		submitFeedback(feedback);
+	}
 
 	function submitNote(note) {
 		addNoteToContainer(note);
@@ -85,7 +92,7 @@ const addNoteIfInputHasContent = () => {
 };
 
 const storeNoteLocally = note => {
-	chrome.storage.sync.get({notes: {}}, function(result) {
+	chrome.storage.local.get({notes: {}}, function(result) {
 		let notes = result.notes;
 		notes.recent = notes.recent || [];
 		notes.recent.push(note);
@@ -95,7 +102,7 @@ const storeNoteLocally = note => {
 		notes[getCurrentVideoId()] = notes[getCurrentVideoId()] || [];
 		notes[getCurrentVideoId()].push(note);
 
-		chrome.storage.sync.set({notes});
+		chrome.storage.local.set({notes});
 	});
 };
 
@@ -103,8 +110,8 @@ const storeNoteInDb = note => {
 	chrome.runtime.sendMessage({type: "storeNote", note: note});
 };
 
-const submitFeedback = note => {
-
+const submitFeedback = feedback => {
+	chrome.runtime.sendMessage({type: "sendFeedback", feedback: feedback});
 };
 
 const watchInputForFeedback = () => {
@@ -115,10 +122,6 @@ const watchInputForFeedback = () => {
 		} else {
 			changeToAddNote();
 		}
-	});
-
-	$(document).on("click", "#rn_note-submit.feedback", () => {
-		submitFeedback();
 	});
 
 	function changeToSubmitFeedback() {

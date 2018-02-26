@@ -49,6 +49,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 	if (request.type === 'storeNote') {
 		api.storeNote(request.note).then(sendResponse);
+		return true;
+	} else if (request.type === 'sendFeedback') {
+		api.sendFeedback(request.feedback).then(sendResponse);
+		return true;
+	} else if (request.type === 'getFeedback') {
+		api.getFeedback().then(sendResponse);
+		return true;
 	}
 });
 

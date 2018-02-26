@@ -9,7 +9,7 @@ $(() => {
 
 const addRecentNotesToDropdown = () => {
 	let recentNotesContainer = $("#recent-notes");
-	chrome.storage.sync.get("notes", function(results) {
+	chrome.storage.local.get("notes", function(results) {
 		let recentNotes = results.notes.recent;
 		recentNotes.slice().reverse().map(function(note) {
 			recentNotesContainer.append(buildNoteBody(note));

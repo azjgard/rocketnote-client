@@ -22,7 +22,7 @@ const buildNoteContainer = () => {
 };
 
 const buildExistingNotes = container => {
-	chrome.storage.sync.get({notes: {}}, function(result) {
+	chrome.storage.local.get({notes: {}}, function(result) {
 		let existingNotes = result.notes[getCurrentVideoId()] || [];
 
 		if (existingNotes.length > 0) {

@@ -20,7 +20,9 @@ const api = {
   getNotesByVideo : async videoId => await apiRequest('GET', '/notes?videoId=' + videoId),
   deleteNote      : async noteId => await apiRequest('DELETE', '/notes/' + noteId),
   updateNote      : async (noteId, updatedNote) => await apiRequest('PUT', '/notes/' + noteId, updatedNote),
-  storeNote       : async note => await apiRequest('POST', '/notes', note)
+  storeNote       : async note => await apiRequest('POST', '/notes', note),
+  sendFeedback    : async feedback => await apiRequest('POST', '/feedback', feedback),
+  getFeedback     : async () => await apiRequest('GET', '/feedback'),
 };
 
 // await api.getProfile();

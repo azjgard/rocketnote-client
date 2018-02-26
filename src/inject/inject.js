@@ -18,6 +18,9 @@ chrome.runtime.sendMessage({
 				chrome.runtime.sendMessage({type: "getNotes"}, notes => {
 					console.log(notes);
 				});
+				chrome.runtime.sendMessage({type: "getFeedback"}, feedback => {
+					console.log(feedback);
+				});
 
 				function watchVideoForChanges(currentVideoId) {
 					setInterval(() => {
