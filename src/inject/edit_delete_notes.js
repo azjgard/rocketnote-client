@@ -2,9 +2,16 @@ const editNote = e => {
 	const existingNote = $(e.target).closest(".existing-note");
 	const noteBody = existingNote.find("p");
 	const editedNoteId = existingNote.attr("id").replace("rn_note-", "");
+	const editedNote = {
+		id: editedNoteId,
+		content: noteBody.text(),
+	};
 
 	existingNote.find(".rn_edit-buttons").remove();
 	noteBody.attr("contenteditable", "false");
+
+
+	chrome.runtime.sendMessage({type: "updateNote", note: editedNote});
 
 	chrome.storage.local.get({notes: {}}, result => {
 		let notes = result.notes;
@@ -157,6 +164,8 @@ const addEditActions = noteElements => {
 
 const deleteNote = note => {
 	const noteId = note.attr("id").replace("rn_note-", "");
+
+	chrome.runtime.sendMessage({type: "deleteNote", noteId: noteId});
 
 	chrome.storage.local.get({notes: {}}, result => {
 		let notes = result.notes;

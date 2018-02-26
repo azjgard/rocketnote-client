@@ -60,6 +60,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 		api.getFeedback().then(sendResponse);
 		return true;
 	}
+
+	if (request.type === 'deleteNote') {
+		api.deleteNote(request.noteId).then(sendResponse);
+		return true;
+	} else if (request.type === 'updateNote') {
+		api.updateNote(request.note.id, request.note).then(sendResponse);
+		return true;
+	}
 });
 
 chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => {

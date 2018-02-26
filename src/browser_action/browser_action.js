@@ -26,8 +26,6 @@ $(() => {
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  alert('received a message on the popup');
-  alert(request);
   if (request.context === 'popup' && request.type === 'state') {
     render(
       request.state.userLoggedIn ?
