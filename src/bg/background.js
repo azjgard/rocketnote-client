@@ -67,6 +67,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 	} else if (request.type === 'updateNote') {
 		api.updateNote(request.note.id, request.note).then(sendResponse);
 		return true;
+	} else if (request.type === 'undoDelete') {
+		api.storeNote(request.note).then(sendResponse);
 	}
 });
 

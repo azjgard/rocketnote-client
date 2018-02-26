@@ -23,7 +23,6 @@ const buildNoteContainer = () => {
 
 const buildExistingNotes = container => {
 	chrome.runtime.sendMessage({type: "getNotesByVideo", currentVideoId: getCurrentVideoId()}, notes => {
-		console.log(notes);
 		let existingNotes = notes || [];
 
 		if (existingNotes.length > 0) {

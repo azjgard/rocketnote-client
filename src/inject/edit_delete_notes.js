@@ -10,7 +10,6 @@ const editNote = e => {
 	existingNote.find(".rn_edit-buttons").remove();
 	noteBody.attr("contenteditable", "false");
 
-
 	chrome.runtime.sendMessage({type: "updateNote", note: editedNote});
 
 	chrome.storage.local.get({notes: {}}, result => {
@@ -167,19 +166,22 @@ const deleteNote = note => {
 
 	chrome.runtime.sendMessage({type: "deleteNote", noteId: noteId});
 
-	chrome.storage.local.get({notes: {}}, result => {
-		let notes = result.notes;
-		let existingNotes = notes[getCurrentVideoId()] || [];
-
-		existingNotes.map(({id}, i) => {
+	chrome.runtime.sendMessage({type: "getNotesByVideo", currentVideoId: getCurrentVideoId()}, notes => {
+		notes.map(({id}, i) => {
 			if (parseInt(id) === parseInt(noteId)) {
-				notes[getCurrentVideoId()][i].index = i;
-				updateLastDeleted(notes[getCurrentVideoId()][i]);
-				notes[getCurrentVideoId()].splice(i, 1);
-				chrome.storage.local.set({notes});
+				console.log("Updating last deleted.");
+				notes[i].index = i;
+				updateLastDeleted(notes[i]);
+
+				chrome.storage.local.get({notes: {}}, result => {
+					result.notes[getCurrentVideoId()] = result.notes[getCurrentVideoId()] || [];
+					result.notes[getCurrentVideoId()].splice(i, 1);
+					chrome.storage.local.set({notes: result.notes});
+				});
 			}
 		});
 	});
+
 	notifyDelete(note);
 	note.remove();
 
@@ -222,10 +224,12 @@ const undoAction = e => {
 		existingNote.insertBefore(notifyBody);
 		notifyBody.remove();
 
+		chrome.runtime.sendMessage({type: "undoDelete", note: note});
+
 		chrome.storage.local.get({notes: {}}, notesResult => {
 			let allNotes = notesResult.notes;
-			let currentVideoNotes = allNotes[getCurrentVideoId()];
-			currentVideoNotes.splice(note.index, 0, note);
+			allNotes[getCurrentVideoId()] = allNotes[getCurrentVideoId()] || [];
+			allNotes[getCurrentVideoId()].splice(note.index, 0, note);
 
 			chrome.storage.local.set({notes: allNotes});
 		});
@@ -239,5 +243,7 @@ const watchUndoAction = () => {
 };
 
 const updateLastDeleted = note => {
-	chrome.storage.local.set({lastDeleted: note});
+	chrome.storage.local.set({"lastDeleted": note}, result => {
+		console.log(result.lastDeleted);
+	});
 };

@@ -3,13 +3,14 @@ $(() => {
 		return value.trunc(21);
 	};
 
-	addRecentNotesToDropdown();
+	addRecentNotesToPopup();
 	updateVersionNumber();
 });
 
-const addRecentNotesToDropdown = () => {
+const addRecentNotesToPopup = () => {
 	let recentNotesContainer = $("#recent-notes");
-	chrome.storage.local.get("notes", function(results) {
+
+	chrome.storage.local.get({notes: {}}, function(results) {
 		let recentNotes = results.notes.recent;
 		recentNotes.slice().reverse().map(function(note) {
 			recentNotesContainer.append(buildNoteBody(note));

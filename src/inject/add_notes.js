@@ -92,7 +92,7 @@ const addNoteIfInputHasContent = () => {
 };
 
 const storeNoteLocally = note => {
-	chrome.storage.local.get({notes: {}}, function(result) {
+	chrome.storage.local.get({notes: {}}, result => {
 		let notes = result.notes;
 		notes.recent = notes.recent || [];
 		notes.recent.push(note);
