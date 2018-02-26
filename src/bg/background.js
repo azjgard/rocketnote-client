@@ -39,7 +39,16 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 	}
 
 	if (request.type === 'getNotes') {
+		if (!this.userLoggedIn) {
+			sendResponse(false);
+		} else {
+			api.getNotes().then(sendResponse);
+			return true;
+		}
+	}
 
+	if (request.type === 'storeNote') {
+		api.storeNote(request.note).then(sendResponse);
 	}
 });
 

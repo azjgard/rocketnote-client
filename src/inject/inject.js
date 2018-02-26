@@ -15,7 +15,9 @@ chrome.runtime.sendMessage({
 				initWatchers();
 				watchVideoForChanges(currentVideoId);
 				stopKeyboardShorcutsOnContentEditable();
-				console.log(requests.getNotes());
+				chrome.runtime.sendMessage({type: "getNotes"}, notes => {
+					console.log(notes);
+				});
 
 				function watchVideoForChanges(currentVideoId) {
 					setInterval(() => {

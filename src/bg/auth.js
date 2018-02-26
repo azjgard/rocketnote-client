@@ -79,6 +79,6 @@ const login = interactive => new Promise((resolve, reject) =>
   .then(tradeIdTokenForAuthToken)
   .then(storeAuthToken)
   .then(resolve)
-)
+);
 
 const logout = () => clearAuthToken();

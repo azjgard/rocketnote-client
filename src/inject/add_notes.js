@@ -2,22 +2,21 @@ const addNote = (isPin, content) => {
 	let video = $("video")[0];
 	let input = $("#rn_note-input");
 	let note = {};
-	let tags = filterHashtags(content);
+	let unformattedTags = filterHashtags(content);
 
 	note.content = isPin ? "" : input.val();
 	note.content = content ? content : note.content;
 	note.videoId = getCurrentVideoId();
-	note.formattedTags = tags.join(" ");
+	note.tags = unformattedTags.join(" ");
 	note.timestamp = Math.floor(video.currentTime);
-	// TODO: Delete these when you're wired in.
 	note.createdAt = moment().format();
-	note.id = Math.floor(Math.random() * 10000 * Math.random());
 
 	submitNote(note);
 
 	function submitNote(note) {
 		addNoteToContainer(note);
 		storeNoteLocally(note);
+		storeNoteInDb(note);
 
 		resetInput(isPin);
 	}
@@ -98,6 +97,10 @@ const storeNoteLocally = note => {
 
 		chrome.storage.sync.set({notes});
 	});
+};
+
+const storeNoteInDb = note => {
+	chrome.runtime.sendMessage({type: "storeNote", note: note});
 };
 
 const submitFeedback = note => {
