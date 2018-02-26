@@ -22,8 +22,9 @@ const buildNoteContainer = () => {
 };
 
 const buildExistingNotes = container => {
-	chrome.storage.local.get({notes: {}}, function(result) {
-		let existingNotes = result.notes[getCurrentVideoId()] || [];
+	chrome.runtime.sendMessage({type: "getNotesByVideo", currentVideoId: getCurrentVideoId()}, notes => {
+		console.log(notes);
+		let existingNotes = notes || [];
 
 		if (existingNotes.length > 0) {
 			existingNotes.sort(function (a, b) {
@@ -52,6 +53,10 @@ const buildExistingNotes = container => {
 		}
 
 		return container;
+	});
+
+	chrome.storage.local.get({notes: {}}, function(result) {
+
 	});
 };
 

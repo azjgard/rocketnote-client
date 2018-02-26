@@ -45,6 +45,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 			api.getNotes().then(sendResponse);
 			return true;
 		}
+	} else if (request.type === 'getNotesByVideo') {
+		api.getNotesByVideo(request.currentVideoId).then(sendResponse);
+		return true;
 	}
 
 	if (request.type === 'storeNote') {

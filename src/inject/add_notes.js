@@ -10,13 +10,13 @@ const addNote = (isPin, content) => {
 	note.tags = unformattedTags.join(" ");
 	note.timestamp = Math.floor(video.currentTime);
 	note.createdAt = moment().format();
+	note.id = Math.floor(Math.random() * 100000000 * Math.random());
 
 	submitNote(note);
 	if ($("#rn_note-submit").hasClass("feedback")) {
 		let feedback = {
 			content: note.content,
 		};
-
 		submitFeedback(feedback);
 	}
 
