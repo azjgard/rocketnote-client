@@ -22,6 +22,9 @@
     "assets/img/settings_gray.svg",
     "assets/img/checkmark_gray.svg"
   ],
+  "externally_connectable": {
+    "matches": ["*://*.getrocketnote.com/*", "*://getrocketnote.com/*"]
+  },
   "background": {
     "scripts": [
       "js/lib/jquery/jquery.js",

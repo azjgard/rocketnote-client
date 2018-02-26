@@ -112,6 +112,10 @@ a:hover {
   margin: 0;
 }
 
+#rn_welcome {
+  color: #707070;
+}
+
 #logged-out {
   left: 50%;
   position: absolute;

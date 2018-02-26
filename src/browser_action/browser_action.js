@@ -1,13 +1,13 @@
 const render = userProfile => {
   if (userProfile) {
-    $('#rn_welcome').html("Not <b>" + userProfile.email + "</b>?");
+    $('#rn_welcome').html(userProfile.email);
     $('#logged-out').fadeOut(() => $('#logged-in').fadeIn());
   } else {
     $('#logged-in').fadeOut(() => $('#logged-out').fadeIn());
   }
 };
 
-$(document).ready($ => {
+$(() => {
   chrome.runtime.sendMessage( { context: 'background', type: 'getState' },
     response =>  {
       render(response);

@@ -9,7 +9,7 @@ const apiRequest = (method, relUrl, data) =>  {
         authorization
       },
       contentType: "application/json"
-    }
+    };
     $.ajax(settings).done(resolve);
   });
 };
@@ -21,7 +21,7 @@ const api = {
   deleteNote      : async noteId => await apiRequest('DELETE', '/notes/' + noteId),
   updateNote      : async (noteId, updatedNote) => await apiRequest('PUT', '/notes/' + noteId, updatedNote),
   storeNote       : async note => await apiRequest('POST', '/notes', note)
-}
+};
 
 // await api.getProfile();
 
