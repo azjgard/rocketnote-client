@@ -17,7 +17,6 @@ const filterHashtags = string => {
 	while (match = regex.exec(string)) {
 		tags.push(match[1]);
 	}
-
 	return tags;
 };
 

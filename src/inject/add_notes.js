@@ -2,12 +2,14 @@ const addNote = (isPin, content) => {
 	let video = $("video")[0];
 	let input = $("#rn_note-input");
 	let note = {};
-	let unformattedTags = filterHashtags(content);
 
 	note.content = isPin ? "" : input.val();
 	note.content = content ? content : note.content;
+	let unformattedTags = filterHashtags(note.content);
 	note.videoId = getCurrentVideoId();
 	note.tags = unformattedTags.join(" ");
+	console.log("tags:", note.tags);
+
 	note.timestamp = Math.floor(video.currentTime);
 	note.createdAt = moment().format();
 	note.id = Math.floor(Math.random() * 100000000 * Math.random());
