@@ -39,12 +39,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 	}
 
 	if (request.type === 'getNotes') {
-		if (!this.userLoggedIn) {
-			sendResponse(false);
-		} else {
-			api.getNotes().then(sendResponse);
-			return true;
-		}
+		api.getNotes().then(sendResponse);
+		return true;
 	} else if (request.type === 'getNotesByVideo') {
 		api.getNotesByVideo(request.currentVideoId).then(sendResponse);
 		return true;
@@ -80,5 +76,8 @@ chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => 
 			api.getProfile().then(sendResponse);
 			return true;
 		}
+	} else if (request.type === 'getNotes') {
+		api.getNotes().then(sendResponse);
+		return true;
 	}
 });
