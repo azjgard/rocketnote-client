@@ -171,6 +171,7 @@ const deleteNote = note => {
 			if (parseInt(id) === parseInt(noteId)) {
 				console.log("Updating last deleted.");
 				notes[i].index = i;
+				console.log(notes[i]);
 				updateLastDeleted(notes[i]);
 
 				chrome.storage.local.get({notes: {}}, result => {
@@ -242,8 +243,9 @@ const watchUndoAction = () => {
 	});
 };
 
-const updateLastDeleted = note => {
-	chrome.storage.local.set({"lastDeleted": note}, result => {
+function updateLastDeleted(note) {
+	chrome.storage.local.set({lastDeleted: note}, result => {
 		console.log(result.lastDeleted);
+		console.log("WE DID IT!");
 	});
-};
+}

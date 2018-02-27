@@ -5,7 +5,10 @@ const buildWidget = () => {
 	let noteContainer = buildNoteContainer();
 	let noteInput = buildNoteInput();
 	let settingsButton = $(document.createElement("button")).attr({id: "rn_enable-edit", class: "rn_button-action"});
-	let settingsIcon = $(document.createElement("img")).attr({class: "settings-icon", src: chrome.runtime.getURL("assets/img/settings_gray.svg")});
+	let settingsIcon = $(document.createElement("img")).attr({
+		class: "settings-icon",
+		src: chrome.runtime.getURL("assets/img/settings_gray.svg")
+	});
 
 	settingsButton.append(settingsIcon);
 	widget.attr(widgetAttr);
@@ -22,41 +25,46 @@ const buildNoteContainer = () => {
 };
 
 const buildExistingNotes = container => {
-	chrome.runtime.sendMessage({type: "getNotesByVideo", currentVideoId: getCurrentVideoId()}, notes => {
-		let existingNotes = notes || [];
+	if (loggedIn) {
+		chrome.runtime.sendMessage({type: "getNotesByVideo", currentVideoId: getCurrentVideoId()}, notes => {
+			let existingNotes = notes || [];
 
-		if (existingNotes.length > 0) {
-			existingNotes.sort(function (a, b) {
-				return a.createdAt - b.createdAt;
-			});
+			if (existingNotes.length > 0) {
+				existingNotes.sort(function (a, b) {
+					return a.createdAt - b.createdAt;
+				});
 
-			existingNotes.map(note => {
-				let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id});
-				let noteBody = buildNoteBody(note);
-				let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
-				let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});
+				existingNotes.map(note => {
+					let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id});
+					let noteBody = buildNoteBody(note);
+					let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
+					let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});
 
-				existingNote.append(noteBody);
+					existingNote.append(noteBody);
 
-				if (note.timestamp >= 0) {
-					const formattedTimestamp = formatTimestamp(note.timestamp);
-					existingNote.prepend(timestamp.text(formattedTimestamp));
-				}
+					if (note.timestamp >= 0) {
+						const formattedTimestamp = formatTimestamp(note.timestamp);
+						existingNote.prepend(timestamp.text(formattedTimestamp));
+					}
 
-				addEditActions(existingNote);
-				container.append(existingNote);
-			});
-		} else {
-			const noNotes = $(document.createElement("p")).addClass("rn_notes-placeholder").text("You have not yet added notes for this video.");
-			container.append(noNotes);
-		}
+					addEditActions(existingNote);
+					container.append(existingNote);
+				});
+			} else {
+				const noNotes = $(document.createElement("p")).addClass("rn_notes-placeholder").text("You have not yet added notes for this video.");
+				container.append(noNotes);
+			}
 
-		return container;
-	});
+			return container;
+		});
+	} else {
+		let notLoggedInMessage = $(document.createElement("p")).addClass("rn_notes-placeholder")
+			.text(" to take notes.");
+		let logInButton = $(document.createElement("a")).addClass("rn_notes-placeholder-login").text("Log in");
 
-	chrome.storage.local.get({notes: {}}, function(result) {
-
-	});
+		notLoggedInMessage.prepend(logInButton);
+		container.append(notLoggedInMessage);
+	}
 };
 
 const buildNoteInput = () => {

@@ -347,3 +347,7 @@ input[type="radio"] {
 	color: var(--link-color);
 	cursor: pointer;
 }
+
+.rn_notes-placeholder-login {
+	cursor: pointer;
+}

@@ -18,16 +18,23 @@ const initWatchers = () => {
 	watchForDeleteNote();
 	watchUndoAction();
 	watchInputForFeedback();
+	watchLogInButton();
 };
 
 const watchClickAddNoteButton = () => {
 	$(document).on("click", "#rn_note-submit", () => {
+		if (!loggedIn) {
+			return;
+		}
 		addNoteIfInputHasContent();
 	});
 };
 
 const watchClickPinButton = () => {
 	$(document).on("click", "#rn_pin", () => {
+		if (!loggedIn) {
+			return;
+		}
 		addPin();
 	});
 };
@@ -52,6 +59,9 @@ const watchKeyForNoteSubmit = keyCode => {
 	$(document).keyup(e => {
 		if ($("#rn_note-input").is(":focus")) {
 			if (e.keyCode === keyCode) {
+				if (!loggedIn) {
+					return;
+				}
 				addNoteIfInputHasContent();
 			}
 		}
@@ -59,8 +69,14 @@ const watchKeyForNoteSubmit = keyCode => {
 };
 
 const watchKeyForPin = keyCode => {
+	if (!loggedIn) {
+		return;
+	}
 	$(document).keyup(e => {
 		if (e.keyCode === keyCode && !shortcutKeyShouldBePrevented(e)) {
+			if (!loggedIn) {
+				return;
+			}
 			addPin();
 		}
 	});
@@ -81,4 +97,22 @@ const watchTimestampForCurrentVideo = () => {
 			e.preventDefault();
 		}
 	});
+};
+
+const watchLogInButton = () => {
+	$(document).on("click", ".rn_notes-placeholder-login", () => {
+		chrome.runtime.sendMessage({type: "login", context: "widget"}, () => {
+			chrome.storage.onChanged.addListener(listenForAuth);
+		});
+	});
+
+	function listenForAuth(changes) {
+		const changedItems = Object.keys(changes);
+
+		for (let item of changedItems) {
+			if (item === "auth_token") {
+				location.reload();
+			}
+		}
+	}
 };
