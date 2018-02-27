@@ -31,7 +31,7 @@ const buildExistingNotes = container => {
 
 			if (existingNotes.length > 0) {
 				existingNotes.sort(function (a, b) {
-					return a.createdAt - b.createdAt;
+					return moment(a.createdAt).unix() - moment(b.createdAt).unix();
 				});
 
 				existingNotes.map(note => {
