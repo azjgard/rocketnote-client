@@ -8,11 +8,8 @@ const addNote = (isPin, content) => {
 	let unformattedTags = filterHashtags(note.content);
 	note.videoId = getCurrentVideoId();
 	note.tags = unformattedTags.join(" ");
-	console.log("tags:", note.tags);
-
 	note.timestamp = Math.floor(video.currentTime);
 	note.createdAt = moment().format();
-	note.id = Math.floor(Math.random() * 100000000 * Math.random());
 
 	submitNote(note);
 	if ($("#rn_note-submit").hasClass("feedback")) {
@@ -23,10 +20,7 @@ const addNote = (isPin, content) => {
 	}
 
 	function submitNote(note) {
-		addNoteToContainer(note);
-		storeNoteLocally(note);
-		storeNoteInDb(note);
-
+		storeNote(note);
 		resetInput(isPin);
 	}
 
@@ -37,6 +31,13 @@ const addNote = (isPin, content) => {
 		}
 		input.removeClass("error");
 	}
+};
+
+const storeNote = note => {
+	return chrome.runtime.sendMessage({type: "storeNote", note: note}, response => {
+		addNoteToContainer(response.note);
+		storeNoteLocally(response.note);
+	});
 };
 
 const addNoteToContainer = ({content, timestamp, videoId, id}) => {
@@ -106,10 +107,6 @@ const storeNoteLocally = note => {
 
 		chrome.storage.local.set({notes});
 	});
-};
-
-const storeNoteInDb = note => {
-	chrome.runtime.sendMessage({type: "storeNote", note: note});
 };
 
 const submitFeedback = feedback => {
