@@ -79,5 +79,16 @@ chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => 
 	} else if (request.type === 'getNotes') {
 		api.getNotes().then(sendResponse);
 		return true;
+	} else if (request.type === 'login') {
+		login(true).then(() => {
+			this.userLoggedIn = true;
+			sendResponse(true);
+		});
+	} else if (request.type === 'logout') {
+		logout().then(() => {
+			this.userLoggedIn = false;
+			sendResponse(false);
+		});
+		return true;
 	}
 });

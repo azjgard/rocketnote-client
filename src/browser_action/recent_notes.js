@@ -47,7 +47,7 @@ const addRecentNotesToPopup = () => {
 		}
 
 		if (note.createdAt) {
-			let dateCreated = $(document.createElement("span")).addClass("rn_date-created").text(moment(note.createdAt).fromNow());
+			let dateCreated = $(document.createElement("span")).attr({class: "rn_date-created", title: moment(note.createdAt).format('MMMM Do YYYY, h:mm a')}).text(moment(note.createdAt).fromNow());
 			noteBodyContainer.append(dateCreated);
 		}
 
