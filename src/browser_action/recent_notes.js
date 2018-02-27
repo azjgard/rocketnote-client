@@ -29,8 +29,10 @@ const addRecentNotesToPopup = () => {
 		let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl, target: "_blank"});
 		let thumbnailUrl = getVideoThumbnailUrl(note.videoId);
 		let thumbnail = $(document.createElement("img")).attr({src: thumbnailUrl, class: "rn_thumbnail"});
+		let thumbnailTimestamp = $(document.createElement("a")).attr({href: videoUrl, target: "_blank"});
+		thumbnail.appendTo(thumbnailTimestamp);
 
-		noteBodyContainer.append(thumbnail);
+		noteBodyContainer.append(thumbnailTimestamp);
 
 		if (note.timestamp >= 0) {
 			let formattedTimestamp = formatTimestamp(note.timestamp);
