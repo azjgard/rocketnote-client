@@ -13,12 +13,9 @@ const editNote = e => {
 	chrome.runtime.sendMessage({type: "updateNote", note: editedNote}, editedNote => {
 		chrome.storage.local.get({notes: {}}, result => {
 			let notes = result.notes;
-			console.log(notes.recent);
-			console.log(editedNote);
-
 			for (let i = 0; i < notes.recent.length; i++) {
-				if (notes.recent[i].id === editedNote.id) {
-					notes.recent[i] = editedNote;
+				if (notes.recent[i].id === editedNote.note.id) {
+					notes.recent[i] = editedNote.note;
 				}
 			}
 
