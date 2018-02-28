@@ -53,6 +53,7 @@ html[dark="true"] {
 	height: 450px;
 	margin-bottom: 20px;
 	padding: 10px 10px 20px 10px;
+	position: relative;
 	text-align: right;
 }
 
@@ -185,6 +186,18 @@ html[dark="true"] {
 
 .settings-icon {
 	height: 30px;
+}
+.rn_dashboard-link {
+	color: var(--link-color);
+	left: 15px;
+	height: 24px;
+	position: absolute;
+	text-decoration: none;
+	top: 20px;
+}
+
+.rn_dashboard-link:visited {
+	color: var(--link-color);
 }
 
 /*===  PLAYLIST  ===*/

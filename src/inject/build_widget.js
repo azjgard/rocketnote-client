@@ -9,10 +9,11 @@ const buildWidget = () => {
 		class: "settings-icon",
 		src: chrome.runtime.getURL("assets/img/settings_gray.svg")
 	});
+	let dashboardLink = $(document.createElement("a")).attr({href: "https://getrocketnote.com/notes", target: "_blank", class: "rn_dashboard-link"}).text("view all");
 
 	settingsButton.append(settingsIcon);
 	widget.attr(widgetAttr);
-	widget.append([settingsButton, noteContainer, noteInput]);
+	widget.append([settingsButton, noteContainer, noteInput, dashboardLink]);
 	relatedContent.prepend(widget.hide().delay().fadeIn(300));
 	noteContainer.scrollTop(noteContainer[0].scrollHeight);
 };
