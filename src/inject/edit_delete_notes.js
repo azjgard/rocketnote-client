@@ -10,7 +10,21 @@ const editNote = e => {
 	existingNote.find(".rn_edit-buttons").remove();
 	noteBody.attr("contenteditable", "false");
 
-	chrome.runtime.sendMessage({type: "updateNote", note: editedNote});
+	chrome.runtime.sendMessage({type: "updateNote", note: editedNote}, editedNote => {
+		chrome.storage.local.get({notes: {}}, result => {
+			let notes = result.notes;
+			console.log(notes.recent);
+			console.log(editedNote);
+
+			for (let i = 0; i < notes.recent.length; i++) {
+				if (notes.recent[i].id === editedNote.id) {
+					notes.recent[i] = editedNote;
+				}
+			}
+
+			chrome.storage.local.set({notes});
+		});
+	});
 
 	chrome.storage.local.get({notes: {}}, result => {
 		let notes = result.notes;
