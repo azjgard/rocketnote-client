@@ -67,7 +67,8 @@
       ]
     },
     {
-      "matches": ["https://getrocketnote.com", "https://www.getrocketnote.com"],
+      "run_at": "document_end",
+      "matches": ["https://getrocketnote.com/*", "https://www.getrocketnote.com/*"],
       "js": [
         "src/utils/install-check.js"
       ]
