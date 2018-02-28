@@ -55,7 +55,6 @@
         "js/lib/moment/moment.min.js",
         "src/utils/utils.js",
         "src/utils/widget-formatting.js",
-        "src/requests/requests.js",
         "src/inject/watchers.js",
         "src/inject/edit_delete_notes.js",
         "src/inject/build_widget.js",
@@ -65,6 +64,12 @@
         "src/inject/collapse.js",
         "src/inject/toolbar.js",
         "src/inject/inject.js"
+      ]
+    },
+    {
+      "matches": ["https://getrocketnote.com", "https://www.getrocketnote.com"],
+      "js": [
+        "src/utils/install-check.js"
       ]
     }
   ],
