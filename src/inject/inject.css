@@ -396,3 +396,24 @@ input[type="radio"] {
 	background-color: var(--nav-active-color);
 	transition-duration: .3s;
 }
+
+#help-modal {
+	background-color: rgba(0, 0, 0, .6);
+	height: 100%;
+	position: fixed;
+	width: 100%;
+	z-index: 2021;
+}
+
+#help-modal .modal-body {
+	background-color: var(--widget-background-color);
+	border-radius: 5px;
+	height: 90%;
+	left: 50%;
+	min-height: 650px;
+	min-width: 600px;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 75%;
+}

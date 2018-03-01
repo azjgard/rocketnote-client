@@ -19,8 +19,7 @@ const initWatchers = () => {
 	watchUndoAction();
 	watchInputForFeedback();
 	watchLogInButton();
-	watchClickHelpButton();
-	watchHideHelpModal();
+	watchHelpModal();
 };
 
 const watchClickAddNoteButton = () => {
