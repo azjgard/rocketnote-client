@@ -18,6 +18,7 @@ chrome.runtime.sendMessage({
 				initWatchers();
 				watchVideoForChanges(currentVideoId);
 				stopKeyboardShorcutsOnContentEditable();
+				buildHelpButton();
 
 					function watchVideoForChanges(currentVideoId) {
 					setInterval(() => {

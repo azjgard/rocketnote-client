@@ -177,12 +177,18 @@ const addEditActions = noteElements => {
 const deleteNote = note => {
 	const noteId = note.attr("id").replace("rn_note-", "");
 
-	chrome.runtime.sendMessage({type: "deleteNote", noteId: noteId});
+	chrome.runtime.sendMessage({type: "deleteNote", noteId: noteId}, deletedNote => {
+		console.log("Note message:", deletedNote.message);
+	});
 
 	chrome.runtime.sendMessage({type: "getNotesByVideo", currentVideoId: getCurrentVideoId()}, notes => {
+		console.log("All Notes:", notes);
 		notes.map(({id}, i) => {
+			console.log(parseInt(id), parseInt(noteId));
 			if (parseInt(id) === parseInt(noteId)) {
+				console.log(notes[i]);
 				notes[i].index = i;
+				console.log(notes[i]);
 				updateLastDeleted(notes[i]);
 
 				chrome.storage.local.get({notes: {}}, result => {
