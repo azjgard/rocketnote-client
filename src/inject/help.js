@@ -11,3 +11,9 @@ const buildHelpButton = () => {
 		clearInterval(navCheck);
 	}, 5000);
 };
+
+const watchClickHelpButton = () => {
+	$(document).on("click", "#rn_help-button", () => {
+		alert("I just love alerts.");
+	});
+};

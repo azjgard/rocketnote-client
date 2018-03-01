@@ -171,7 +171,7 @@ const addEditActions = noteElements => {
 	deleteButton.append(trashIcon);
 	editActions.append([editButton, deleteButton]);
 
-	noteElements.append(editActions);
+	noteElements.prepend(editActions);
 };
 
 const deleteNote = note => {
