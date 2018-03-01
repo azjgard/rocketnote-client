@@ -14,6 +14,7 @@ chrome.runtime.sendMessage({
 				let currentVideoId = getCurrentVideoId();
 				clearInterval(readyStateCheckInterval);
 				buildWidget();
+				buildHelpModal();
 				addRocketLogoToPlayerControls();
 				initWatchers();
 				watchVideoForChanges(currentVideoId);
