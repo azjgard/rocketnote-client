@@ -56,6 +56,14 @@ const watchHelpModal = () => {
 const buildHelpModal = () => {
 	let helpModal = $(document.createElement("div")).attr({id: "help-modal"});
 	let modalBody = $(document.createElement("div")).attr({class: "modal-body"});
+	let logoContainer = $(document.createElement("div")).attr({
+		class: "modal-logo-container",
+	});
+	let logo = $(document.createElement("img")).attr({
+		src: chrome.runtime.getURL("assets/img/rocket_note_main_logo.svg"),
+		class: "modal-logo",
+	});
 
+	logoContainer.append(logo).appendTo(modalBody);
 	helpModal.append(modalBody).hide().appendTo($("body"));
 };

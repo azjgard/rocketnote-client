@@ -320,12 +320,23 @@ input[type="radio"] {
 }
 
 #rn_note-container .existing-note p[contenteditable="true"]::after {
-	background-color: var(--widget-background-color);
+	background-color: transparent;
 	color: var(--timestamp-color);
 	content: " (editing)";
 }
 
+#rn_note-container .existing-note .edit-actions {
+	background-color: transparent;
+	transition-duration: .2s;
+}
+
+#rn_note-container .existing-note:hover .edit-actions {
+	background-color: var(--note-hover-color);
+	transition-duration: .2s;
+}
+
 .edit-action {
+	background-color: transparent;
 	display: inline-block;
 	height: 100%;
 	width: 50%;
@@ -410,10 +421,23 @@ input[type="radio"] {
 	border-radius: 5px;
 	height: 90%;
 	left: 50%;
+	max-width: 90%;
 	min-height: 650px;
-	min-width: 600px;
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: 75%;
+	width: 800px;
+}
+
+.modal-logo-container {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.modal-logo {
+	width: 300px;
+}
+
+#help-modal .modal-body .title {
+
 }
