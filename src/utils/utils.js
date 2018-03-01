@@ -53,10 +53,23 @@ const swapImage = (img, src1, src2) => {
 	}
 };
 
-String.prototype.trunc = function(n) {
-		return (this.length > n) ? this.substr(0, n-1) + '...' : this;
+function checkElementIsInView(container, element) {
+	let contHeight = container.height();
+	let contTop = container.scrollTop();
+	let contBottom = contTop + contHeight;
+	let elemTop = $(element).offset().top - container.offset().top;
+	let elemBottom = elemTop + $(element).height();
+	let elementIsTooLow = elemBottom > contBottom;
+
+	if (elementIsTooLow) {
+		element[0].scrollIntoView(false);
+	}
+}
+
+String.prototype.trunc = function (n) {
+	return (this.length > n) ? this.substr(0, n - 1) + '...' : this;
 };
 
-linkify.options.defaults.format = function(value) {
+linkify.options.defaults.format = function (value) {
 	return value.trunc(21);
 };

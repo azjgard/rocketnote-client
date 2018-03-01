@@ -81,6 +81,7 @@ const switchToEditNoteMode = e => {
 		.addClass("rn_cancel-edit-button rn_button-action gray")
 		.text("Cancel");
 	const editButtons = $(document.createElement("div")).addClass("rn_edit-buttons").append([cancelEditButton, submitEditButton]);
+	const noteContainer = $("#rn_note-container");
 
 	let editedNote = {
 		originalContents: noteContents,
@@ -91,8 +92,9 @@ const switchToEditNoteMode = e => {
 	chrome.storage.local.set({editedNote});
 	note.attr("contenteditable", "true");
 	existingNote.append(editButtons);
+	checkElementIsInView(noteContainer, $(".rn_edit-buttons"));
 	setEndOfContentEditable(note[0]);
-	$("#rn_note-container").removeClass("edit");
+	noteContainer.removeClass("edit");
 
 	function setEndOfContentEditable(contentEditableElement) {
 		let range = document.createRange();
