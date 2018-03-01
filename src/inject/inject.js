@@ -24,6 +24,7 @@ chrome.runtime.sendMessage({
 					setInterval(() => {
 						if (currentVideoId !== getCurrentVideoId()) {
 							refreshWidget();
+							buildHelpButton();
 							currentVideoId = getCurrentVideoId();
 						}
 					}, 1000);
@@ -33,10 +34,10 @@ chrome.runtime.sendMessage({
 	}, 1000);
 });
 
-function refreshWidget(isLoggedIn) {
+function refreshWidget() {
 	let container = $("#rn_note-container");
 	container.empty();
-	buildExistingNotes(container, isLoggedIn);
+	buildExistingNotes(container);
 }
 
 function getLoginState() {
