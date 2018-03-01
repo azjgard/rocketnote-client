@@ -21,6 +21,7 @@ html {
 	--edit-note-offset: -80px;
 	--note-selection-color: var(--light-gray-color);
 
+	--nav-active-color: #dcdcdc;
 	--help-button-image: url('chrome-extension://__MSG_@@extension_id__/assets/img/help_icon_gray.svg');
 }
 
@@ -48,8 +49,8 @@ html[dark="true"] {
 
 	--note-selection-color: var(--widget-playlist-tab-color);
 
+	--nav-active-color: #525252;
 	--help-button-image: url('chrome-extension://__MSG_@@extension_id__/assets/img/help_icon_white.svg');
-
 }
 
 #rn_widget {
@@ -381,10 +382,16 @@ input[type="radio"] {
 	background-position: center;
 	background-size: 24px;
 	border: 0;
+	border-radius: 100%;
 	cursor: pointer;
 	height: 40px;
 	margin-right: 8px;
 	outline: 0;
 	padding: 8px;
 	width: 40px;
+}
+
+#rn_help-button:active {
+	background-color: var(--nav-active-color);
+	transition-duration: .3s;
 }
