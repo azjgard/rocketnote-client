@@ -12,15 +12,7 @@
   },
   "default_locale": "en",
   "web_accessible_resources": [
-    "assets/img/thumbtack_light.svg",
-    "assets/img/thumbtack_dark.svg",
-    "assets/img/rocket_note_main_logo.svg",
-    "assets/img/rocket_red.svg",
-    "assets/img/rocket_white.svg",
-    "assets/img/edit.svg",
-    "assets/img/trash.svg",
-    "assets/img/settings_gray.svg",
-    "assets/img/checkmark_gray.svg"
+    "assets/img/*"
   ],
   "externally_connectable": {
     "matches": ["*://*.getrocketnote.com/*", "*://getrocketnote.com/*"]
@@ -63,6 +55,7 @@
         "src/inject/live_video.js",
         "src/inject/collapse.js",
         "src/inject/toolbar.js",
+        "src/inject/help.js",
         "src/inject/inject.js"
       ]
     },
