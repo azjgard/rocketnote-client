@@ -16,12 +16,20 @@ const buildHelpButton = () => {
 const watchHelpModal = () => {
 	let wasPaused = false;
 
-	watchClickHelpButton();
+	watchShowHelpModal();
 	watchHideHelpModal();
+	watchFlipHelpModal();
 
-	function watchClickHelpButton() {
+	function watchShowHelpModal() {
 		$(document).on("click", "#rn_help-button", () => {
 			showHelpModal();
+		});
+
+		$(document).on("keyup", e => {
+			// on press "z" key, fade in modal
+			if (e.keyCode === 90 && !shortcutKeyShouldBePrevented(e)) {
+				showHelpModal();
+			}
 		});
 	}
 
@@ -47,8 +55,26 @@ const watchHelpModal = () => {
 			$("#help-modal").fadeOut();
 		});
 
+		$(document).on("keyup", e => {
+			// on press "ESC" key, fade out modal
+			if (e.keyCode === 27 && !shortcutKeyShouldBePrevented(e)) {
+				const video = $("video")[0];
+				if (!wasPaused) {
+					video.play();
+				}
+
+				$("#help-modal").fadeOut();
+			}
+		});
+
 		$(document).on("click", "#help-modal .modal-body", e => {
 			e.stopPropagation();
+		});
+	}
+
+	function watchFlipHelpModal() {
+		$(document).on("click", ".flip-modal", ()=> {
+
 		});
 	}
 };
