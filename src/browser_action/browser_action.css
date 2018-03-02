@@ -82,6 +82,10 @@ a:hover {
   position: relative;
 }
 
+.recent-note:last-of-type {
+  border-bottom: 1px solid #efefef;
+}
+
 .recent-note-body {
   display: inline;
   line-height: 16px;

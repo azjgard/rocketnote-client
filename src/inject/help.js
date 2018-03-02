@@ -93,7 +93,7 @@ const buildHelpModal = () => {
 		src: chrome.runtime.getURL("assets/img/rocket_note_main_logo.svg"),
 		class: "modal-logo",
 	});
-	let flipButton = $(document.createElement("a")).attr({class: "flip-modal", href: "javascript:void(0);"}).text("View Shortcuts");
+	let flipButton = $(document.createElement("a")).attr({class: "flip-modal right", href: "javascript:void(0);"}).html("View Keyboard Shortcuts &rarr;");
 	let docsContainer = $(document.createElement("div")).attr({class: "container"});
 	let columnsDocs = $(document.createElement("div")).attr({class: "columns"});
 	let columnLeftDocs = $(document.createElement("div")).attr({class: "column"});
@@ -105,9 +105,11 @@ const buildHelpModal = () => {
 	shortcutsContainer.appendTo(modalShortcuts);
 	modalSides.append([modalDocs, modalShortcuts]).appendTo(modalBody);
 	logoContainer.append(logo).appendTo(docsContainer);
-	flipButton.appendTo(docsContainer).clone().text("View Docs").appendTo(shortcutsContainer);
+	flipButton.appendTo(docsContainer).clone().removeClass("right").html("&larr; Back To Documentation").addClass("left").appendTo(shortcutsContainer);
 	columnsDocs.append([columnLeftDocs, columnRightDocs]).appendTo(docsContainer);
+
 	buildShortcuts(shortcutsContainer);
+	
 
 	helpModal.append(modalBody).hide().appendTo($("body"));
 
