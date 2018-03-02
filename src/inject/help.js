@@ -100,9 +100,6 @@ const buildHelpModal = () => {
 	let columnRightDocs = $(document.createElement("div")).attr({class: "column"});
 
 	let shortcutsContainer = docsContainer.clone();
-	let columnsShortcuts = columnsDocs.clone();
-	let columnLeftShortcuts = columnLeftDocs.clone();
-	let columnRightShortcuts = columnRightDocs.clone();
 
 	docsContainer.appendTo(modalDocs);
 	shortcutsContainer.appendTo(modalShortcuts);
@@ -110,6 +107,20 @@ const buildHelpModal = () => {
 	logoContainer.append(logo).appendTo(docsContainer);
 	flipButton.appendTo(docsContainer).clone().text("View Docs").appendTo(shortcutsContainer);
 	columnsDocs.append([columnLeftDocs, columnRightDocs]).appendTo(docsContainer);
+	buildShortcuts(shortcutsContainer);
 
 	helpModal.append(modalBody).hide().appendTo($("body"));
+
+	function buildShortcuts(container) {
+		shortcuts.map(({key, title, description}) => {
+			let shortcutBlock = $(document.createElement("div")).attr({class: "shortcut"});
+			let shortcutKey = $(document.createElement("span")).text(key).addClass("keyboard-key");
+			let shortcutTitle = $(document.createElement("h1")).text(title).addClass("shortcut-title");
+			let shortcutDescription = $(document.createElement("p")).text(description).addClass("shortcut-description");
+
+			shortcutTitle.append(shortcutKey);
+			shortcutBlock.append([shortcutTitle, shortcutDescription]);
+			shortcutBlock.appendTo(container);
+		});
+	}
 };
