@@ -85,6 +85,7 @@ const buildHelpModal = () => {
 	let modalBody = $(document.createElement("div")).attr({class: "modal-body"});
 	let modalSides = $(document.createElement("div")).attr({class: "modal-sides"});
 	let modalDocs = $(document.createElement("div")).attr({class: "modal-docs"});
+	let featuresContainer = $(document.createElement("div"));
 	let modalShortcuts = $(document.createElement("div")).attr({class: "modal-shortcuts"});
 
 	let logoContainer = $(document.createElement("div")).attr({
@@ -96,11 +97,8 @@ const buildHelpModal = () => {
 	});
 	let flipButton = $(document.createElement("a")).attr({class: "flip-modal right", href: "javascript:void(0);"}).html("View Keyboard Shortcuts &rarr;");
 	let docsContainer = $(document.createElement("div")).attr({class: "container"});
-	let columnsDocs = $(document.createElement("div")).attr({class: "columns"});
-	let columnLeftDocs = $(document.createElement("div")).attr({class: "column"});
-	let columnRightDocs = $(document.createElement("div")).attr({class: "column"});
 	let docsTitle = $(document.createElement("h1")).addClass("section-header").text("Documentation");
-	let featuresTitle = $(document.createElement("h2")).addClass("column-header").text("How To:");
+	let featuresTitle = $(document.createElement("h2")).addClass("column-header").text("How To");
 	let shortcutsTitle = docsTitle.clone().text("Keyboard Shortcuts");
 
 
@@ -111,10 +109,10 @@ const buildHelpModal = () => {
 	modalSides.append([modalDocs, modalShortcuts]).appendTo(modalBody);
 	logoContainer.append(logo).appendTo(docsContainer);
 	flipButton.appendTo(docsContainer).clone().removeClass("right").html("&larr; Back To Documentation").addClass("left").appendTo(shortcutsContainer);
-	docsContainer.append(docsTitle);
-	columnsDocs.append([columnLeftDocs, columnRightDocs]).appendTo(docsContainer);
-	columnLeftDocs.append(featuresTitle);
-	buildFeatures(columnLeftDocs);
+
+	featuresContainer.append(featuresTitle);
+	buildFeatures(featuresContainer);
+	docsContainer.append([docsTitle, featuresContainer]);
 
 	shortcutsContainer.append(shortcutsTitle);
 	buildShortcuts(shortcutsContainer);
@@ -124,13 +122,18 @@ const buildHelpModal = () => {
 
 	function buildFeatures(container) {
 		docs.features.map(({title, description, targetSelector, id}) => {
+			let featureColumns = $(document.createElement("div")).attr({class: "columns"});
+			let featureColumnLeft = $(document.createElement("div")).attr({class: "column"});
+			let featureColumnRight = $(document.createElement("div")).attr({class: "column"});
 			let featureBlock = $(document.createElement("div")).attr({class: "feature", id: "feature-" + id});
 			let featureTitle = $(document.createElement("h3")).addClass("feature-title").html(
 				title + " <span class=\"show-me\" targetSelector=\"" + targetSelector + "\">I can't find this feature.</span>"
 			);
 			let featureDescription = $(document.createElement("p")).attr({description}).addClass("feature-description").html(displaySpaces(description.trunc(64) + "\n\n(Show More)"));
 
-			featureBlock.append([featureTitle, featureDescription]);
+			featureColumns.append([featureColumnLeft, featureColumnRight]);
+			featureColumnLeft.append([featureTitle, featureDescription]);
+			featureBlock.append(featureColumns);
 			container.append(featureBlock);
 		});
 	}

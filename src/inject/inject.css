@@ -23,6 +23,7 @@ html {
 
 	--nav-active-color: #dcdcdc;
 	--help-button-image: url('chrome-extension://__MSG_@@extension_id__/assets/img/help_icon_gray.svg');
+	--help-modal-padding: 20px;
 }
 
 /*===  DARK THEME  ===*/
@@ -497,9 +498,13 @@ h1.section-header {
 }
 
 .modal-docs .feature {
-	border-top: 1px solid var(--note-hover-color);
+	border-bottom: 1px solid var(--note-hover-color);
 	cursor: pointer;
 	padding: 10px;
+}
+
+.modal-docs .feature:last-of-type {
+	border-bottom: 0;
 }
 
 .feature-title {
@@ -510,6 +515,7 @@ h1.section-header {
 }
 
 .feature-description {
+	color: #4d4d4d;
 	font-size: 14px;
 	line-height: 1.2;
 }
@@ -532,7 +538,7 @@ h1.section-header {
 }
 
 .shortcut {
-	padding: 20px;
+	padding: var(--help-modal-padding);
 }
 
 .shortcut h1 {
@@ -555,15 +561,15 @@ h1.section-header {
 	font-size: 14px;
 	position: absolute;
 	text-decoration: none;
-	top: 20px;
+	top: var(--help-modal-padding);
 }
 
 .flip-modal.right {
-	right: 20px;
+	right: var(--help-modal-padding);
 }
 
 .flip-modal.left {
-	left: 20px;
+	left: var(--help-modal-padding);
 }
 
 .flip-modal:hover {
@@ -574,7 +580,8 @@ h1.section-header {
 	color: var(--link-color);
 	cursor: pointer;
 	font-size: 10px;
-	float: right;
+	position: absolute;
+	right: var(--help-modal-padding);
 }
 
 .show-me:hover {
