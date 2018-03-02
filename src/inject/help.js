@@ -14,7 +14,6 @@ const buildHelpButton = () => {
 	}, 5000);
 };
 
-
 const watchHelpModal = () => {
 	watchShowHelpModal();
 	watchHideHelpModal();
@@ -65,7 +64,7 @@ const watchHelpModal = () => {
 	}
 
 	function watchFlipHelpModal() {
-		$(document).on("click", ".flip-modal", ()=> {
+		$(document).on("click", ".flip-modal", () => {
 			$("#help-modal").find(".modal-sides").toggleClass("flipped");
 		});
 	}
@@ -92,15 +91,16 @@ const buildHelpModal = () => {
 		class: "modal-logo-container",
 	});
 	let logo = $(document.createElement("img")).attr({
-		src: chrome.runtime.getURL("assets/img/rocket_note_main_logo.svg"),
+		src: chrome.runtime.getURL("assets/img/rocket_red.svg"),
 		class: "modal-logo",
 	});
-	let flipButton = $(document.createElement("a")).attr({class: "flip-modal right", href: "javascript:void(0);"}).html("View Keyboard Shortcuts &rarr;");
+	let flipButton = $(document.createElement("a")).attr({
+		class: "flip-modal right",
+		href: "javascript:void(0);"
+	}).html("View Keyboard Shortcuts &rarr;");
 	let docsContainer = $(document.createElement("div")).attr({class: "container"});
 	let docsTitle = $(document.createElement("h1")).addClass("section-header").text("Documentation");
-	let featuresTitle = $(document.createElement("h2")).addClass("column-header").text("How To");
 	let shortcutsTitle = docsTitle.clone().text("Keyboard Shortcuts");
-
 
 	let shortcutsContainer = docsContainer.clone();
 
@@ -110,25 +110,31 @@ const buildHelpModal = () => {
 	logoContainer.append(logo).appendTo(docsContainer);
 	flipButton.appendTo(docsContainer).clone().removeClass("right").html("&larr; Back To Documentation").addClass("left").appendTo(shortcutsContainer);
 
-	featuresContainer.append(featuresTitle);
 	buildFeatures(featuresContainer);
 	docsContainer.append([docsTitle, featuresContainer]);
 
 	shortcutsContainer.append(shortcutsTitle);
 	buildShortcuts(shortcutsContainer);
 
-
 	helpModal.append(modalBody).hide().appendTo($("body"));
 
 	function buildFeatures(container) {
-		docs.features.map(({title, description, targetSelector, id}) => {
+		docs.features.map(({title, description, targetSelector = "", id, addToInput = ""}) => {
 			let featureColumns = $(document.createElement("div")).attr({class: "columns"});
-			let featureColumnLeft = $(document.createElement("div")).attr({class: "column"});
-			let featureColumnRight = $(document.createElement("div")).attr({class: "column"});
+			let featureColumnLeft = $(document.createElement("div")).attr({class: "column left"});
+			let featureColumnRight = $(document.createElement("div")).attr({class: "column right"});
 			let featureBlock = $(document.createElement("div")).attr({class: "feature", id: "feature-" + id});
-			let featureTitle = $(document.createElement("h3")).addClass("feature-title").html(
-				title + " <span class=\"show-me\" targetSelector=\"" + targetSelector + "\">I can't find this feature.</span>"
-			);
+			if (addToInput.length > 0) {
+				featureBlock.attr({addToInput});
+			}
+			let featureTitle = $(document.createElement("h3"));
+			if (targetSelector.length > 0) {
+				featureTitle.addClass("feature-title").html(
+					title + " <span class=\"show-me\" targetSelector=\"" + targetSelector + "\">I can't find this feature.</span>"
+				);
+			} else {
+				featureTitle.addClass("feature-title").text(title);
+			}
 			let featureDescription = $(document.createElement("p")).attr({description}).addClass("feature-description").html(displaySpaces(description.trunc(64) + "\n\n(Show More)"));
 
 			featureColumns.append([featureColumnLeft, featureColumnRight]);
@@ -153,8 +159,8 @@ const buildHelpModal = () => {
 };
 
 const watchClickFeatures = () => {
-	$(document).on("click", ".modal-docs .feature-description", e => {
-		let target = $(e.target);
+	$(document).on("click", ".modal-docs .feature *", e => {
+		let target = $(e.target).closest(".feature").find("p");
 		let targetShortText = target.html();
 		let description = "";
 		if (target.hasClass("long-form")) {
@@ -171,11 +177,17 @@ const watchClickFeatures = () => {
 const watchTargetSelectors = () => {
 	$(document).on("click", ".show-me", e => {
 		targetSelector = $(e.target).attr("targetSelector");
-
 		hideHelpModal();
 		$(targetSelector).addClass("help-target").focus();
+		if ($(e.target).closest(".feature").attr("addtoinput")) {
+			$("#rn_note-input").val($(e.target).closest(".feature").attr("addtoinput"));
+			$(targetSelector).keyup();
+		} else {
+			console.log("No addtoinput");
+		}
 		setTimeout(() => {
 			$(targetSelector).removeClass("help-target");
 		}, 3000);
+
 	});
 };

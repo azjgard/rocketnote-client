@@ -24,6 +24,8 @@ html {
 	--nav-active-color: #dcdcdc;
 	--help-button-image: url('chrome-extension://__MSG_@@extension_id__/assets/img/help_icon_gray.svg');
 	--help-modal-padding: 20px;
+	--menu-description-color: #4d4d4d;
+	--menu-header-color: #0a0a0a;
 }
 
 /*===  DARK THEME  ===*/
@@ -51,6 +53,8 @@ html[dark="true"] {
 
 	--nav-active-color: #525252;
 	--help-button-image: url('chrome-extension://__MSG_@@extension_id__/assets/img/help_icon_white.svg');
+	--menu-description-color: #9f9f9f;
+	--menu-header-color: #efefef;
 }
 
 #rn_widget {
@@ -478,10 +482,15 @@ input[type="radio"] {
 }
 
 .modal-logo {
-	width: 120px;
+	height: 30px;
+}
+
+.shortcut-title {
+	color: var(--menu-header-color);
 }
 
 h1.section-header {
+	color: var(--menu-header-color);
 	font-size: 34px;
 	margin-bottom: 0;
 	margin-top: 0;
@@ -508,15 +517,15 @@ h1.section-header {
 }
 
 .feature-title {
-	font-size: 16px;
-	font-weight: 500;
+	color: var(--menu-header-color);
+	font-size: 22px;
 	margin-bottom: 5px;
 	margin-top: 0;
 }
 
 .feature-description {
-	color: #4d4d4d;
-	font-size: 14px;
+	color: var(--menu-description-color);
+	font-size: 16px;
 	line-height: 1.2;
 }
 
@@ -580,6 +589,7 @@ h1.section-header {
 	color: var(--link-color);
 	cursor: pointer;
 	font-size: 10px;
+	font-weight: normal;
 	position: absolute;
 	right: var(--help-modal-padding);
 }
