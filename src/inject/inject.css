@@ -450,18 +450,30 @@ input[type="radio"] {
 }
 
 .modal-shortcuts {
-	background-color: var(--widget-text-color);
+	background-color: var(--widget-background-color);
 	border-radius: 5px;
 	height: 100%;
 	transform: rotateY(180deg) translateZ(1px);
 	width: 100%;
 }
 
+.modal-docs .container,
+.modal-shortcuts .container {
+	padding: 20px;
+}
+
+.columns {
+	display: flex;
+}
+
+.modal-body .column {
+	flex: 1;
+}
+
 .modal-logo-container {
-	margin-top: 20px;
 	text-align: center;
 }
 
 .modal-logo {
-	width: 300px;
+	width: 240px;
 }

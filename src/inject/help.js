@@ -85,6 +85,7 @@ const buildHelpModal = () => {
 	let modalSides = $(document.createElement("div")).attr({class: "modal-sides"});
 	let modalDocs = $(document.createElement("div")).attr({class: "modal-docs"});
 	let modalShortcuts = $(document.createElement("div")).attr({class: "modal-shortcuts"});
+
 	let logoContainer = $(document.createElement("div")).attr({
 		class: "modal-logo-container",
 	});
@@ -93,9 +94,22 @@ const buildHelpModal = () => {
 		class: "modal-logo",
 	});
 	let flipButton = $(document.createElement("a")).attr({class: "flip-modal", href: "javascript:void(0);"}).text("View Shortcuts");
+	let docsContainer = $(document.createElement("div")).attr({class: "container"});
+	let columnsDocs = $(document.createElement("div")).attr({class: "columns"});
+	let columnLeftDocs = $(document.createElement("div")).attr({class: "column"});
+	let columnRightDocs = $(document.createElement("div")).attr({class: "column"});
 
+	let shortcutsContainer = docsContainer.clone();
+	let columnsShortcuts = columnsDocs.clone();
+	let columnLeftShortcuts = columnLeftDocs.clone();
+	let columnRightShortcuts = columnRightDocs.clone();
+
+	docsContainer.appendTo(modalDocs);
+	shortcutsContainer.appendTo(modalShortcuts);
 	modalSides.append([modalDocs, modalShortcuts]).appendTo(modalBody);
-	logoContainer.append(logo).appendTo(modalDocs);
-	flipButton.appendTo(modalDocs).clone().appendTo(modalShortcuts);
+	logoContainer.append(logo).appendTo(docsContainer);
+	flipButton.appendTo(docsContainer).clone().text("View Docs").appendTo(shortcutsContainer);
+	columnsDocs.append([columnLeftDocs, columnRightDocs]).appendTo(docsContainer);
+
 	helpModal.append(modalBody).hide().appendTo($("body"));
 };
