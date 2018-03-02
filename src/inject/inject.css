@@ -40,7 +40,6 @@ html[dark="true"] {
 	--widget-playlist-tab-color: #404040;
 	--widget-playlist-tab-off-color: #525252;
 
-
 	--main-border-color: #b7b7b7;
 	--pin-button-color: #b7b7b7;
 	--pin-button-hover-color: #a6a6a6;
@@ -200,6 +199,7 @@ html[dark="true"] {
 .settings-icon {
 	height: 30px;
 }
+
 .rn_dashboard-link {
 	color: var(--link-color);
 	left: 15px;
@@ -258,7 +258,7 @@ input[type="radio"] {
 #rn_tools {
 	background-color: var(--tool-background-color);
 	border-left: 2px solid var(--red-color);
-	box-shadow: 0 0 4px rgba(0,0,0,.5);
+	box-shadow: 0 0 4px rgba(0, 0, 0, .5);
 	display: none;
 	list-style: none;
 	padding-left: 0;
@@ -473,11 +473,45 @@ input[type="radio"] {
 }
 
 .modal-logo-container {
-	text-align: center;
+	text-align: left;
 }
 
 .modal-logo {
-	width: 240px;
+	width: 120px;
+}
+
+h1.section-header {
+	font-size: 34px;
+	margin-bottom: 0;
+	margin-top: 0;
+	text-align: center;
+}
+
+.modal-shortcuts h1.section-header {
+	margin-top: 20px;
+}
+
+.modal-docs .column-header {
+	font-size: 22px;
+	margin-bottom: 10px;
+}
+
+.modal-docs .feature {
+	border-top: 1px solid var(--note-hover-color);
+	cursor: pointer;
+	padding: 10px;
+}
+
+.feature-title {
+	font-size: 16px;
+	font-weight: 500;
+	margin-bottom: 5px;
+	margin-top: 0;
+}
+
+.feature-description {
+	font-size: 14px;
+	line-height: 1.2;
 }
 
 .keyboard-key {
@@ -513,7 +547,7 @@ input[type="radio"] {
 }
 
 .shortcut:not(:last-of-type) {
-	border-bottom: 1px solid rgba(0,0,0,.1);
+	border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
 .flip-modal {
@@ -534,4 +568,21 @@ input[type="radio"] {
 
 .flip-modal:hover {
 	text-decoration: underline;
+}
+
+.show-me {
+	color: var(--link-color);
+	cursor: pointer;
+	font-size: 10px;
+	float: right;
+}
+
+.show-me:hover {
+	text-decoration: underline;
+}
+
+.help-target {
+	border: 3px solid red;
+	margin: -3px;
+	transition-duration: .5s;
 }
