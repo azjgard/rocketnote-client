@@ -417,16 +417,44 @@ input[type="radio"] {
 }
 
 #help-modal .modal-body {
-	background-color: var(--widget-background-color);
-	border-radius: 5px;
 	height: 90%;
 	left: 50%;
 	max-width: 90%;
 	min-height: 650px;
+	perspective: 1200px;
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
 	width: 800px;
+}
+
+#help-modal .modal-sides {
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: all 1s ease-in-out;
+	width: 100%;
+}
+
+#help-modal .modal-sides.flipped {
+	transform: rotateY(180deg);
+}
+
+.modal-docs {
+	backface-visibility: hidden;
+	background-color: var(--widget-background-color);
+	border-radius: 5px;
+	height: 100%;
+	position: absolute;
+	transform: translateZ(1px);
+	width: 100%;
+}
+
+.modal-shortcuts {
+	background-color: var(--widget-text-color);
+	border-radius: 5px;
+	height: 100%;
+	transform: rotateY(180deg) translateZ(1px);
+	width: 100%;
 }
 
 .modal-logo-container {
@@ -436,8 +464,4 @@ input[type="radio"] {
 
 .modal-logo {
 	width: 300px;
-}
-
-#help-modal .modal-body .title {
-
 }

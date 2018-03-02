@@ -74,7 +74,7 @@ const watchHelpModal = () => {
 
 	function watchFlipHelpModal() {
 		$(document).on("click", ".flip-modal", ()=> {
-
+			$("#help-modal").find(".modal-sides").toggleClass("flipped");
 		});
 	}
 };
@@ -82,6 +82,9 @@ const watchHelpModal = () => {
 const buildHelpModal = () => {
 	let helpModal = $(document.createElement("div")).attr({id: "help-modal"});
 	let modalBody = $(document.createElement("div")).attr({class: "modal-body"});
+	let modalSides = $(document.createElement("div")).attr({class: "modal-sides"});
+	let modalDocs = $(document.createElement("div")).attr({class: "modal-docs"});
+	let modalShortcuts = $(document.createElement("div")).attr({class: "modal-shortcuts"});
 	let logoContainer = $(document.createElement("div")).attr({
 		class: "modal-logo-container",
 	});
@@ -89,7 +92,10 @@ const buildHelpModal = () => {
 		src: chrome.runtime.getURL("assets/img/rocket_note_main_logo.svg"),
 		class: "modal-logo",
 	});
+	let flipButton = $(document.createElement("a")).attr({class: "flip-modal", href: "javascript:void(0);"}).text("View Shortcuts");
 
-	logoContainer.append(logo).appendTo(modalBody);
+	modalSides.append([modalDocs, modalShortcuts]).appendTo(modalBody);
+	logoContainer.append(logo).appendTo(modalDocs);
+	flipButton.appendTo(modalDocs).clone().appendTo(modalShortcuts);
 	helpModal.append(modalBody).hide().appendTo($("body"));
 };
