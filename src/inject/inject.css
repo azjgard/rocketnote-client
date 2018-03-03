@@ -443,7 +443,7 @@ input[type="radio"] {
 	height: 90%;
 	left: 50%;
 	max-width: 90%;
-	min-height: 650px;
+	min-height: 450px;
 	perspective: 1200px;
 	position: absolute;
 	top: 50%;
