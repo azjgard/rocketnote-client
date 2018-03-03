@@ -70,7 +70,8 @@ const buildExistingNotes = container => {
 
 const buildNoteInput = () => {
 	let inputForm = $(document.createElement("div")).attr({id: "rn_input-form"});
-	let input = $(document.createElement("input")).attr({id: "rn_note-input", placeholder: "Type here..."});
+	let inputLimit = $(document.createElement("span")).text("255").attr({id: "rn_input-limit"});
+	let input = $(document.createElement("input")).attr({id: "rn_note-input", placeholder: "Type here...", maxlength: 300});
 	let pinIcon = $(document.createElement("img")).attr({
 		src: chrome.runtime.getURL("assets/img/thumbtack_dark.svg"),
 		class: "pin-icon"
@@ -84,7 +85,7 @@ const buildNoteInput = () => {
 		id: "rn_note-submit"
 	}).text("Add");
 
-	inputForm.append([input, pinButton, submitButton]);
+	inputForm.append([input, inputLimit, pinButton, submitButton]);
 
 	return inputForm;
 };

@@ -89,7 +89,7 @@ const addNoteIfInputHasContent = () => {
 	if (input.val() === "") {
 		input.addClass("error");
 		input.focus();
-	} else {
+	} else if (!$("#rn_note-submit").hasClass("disabled")) {
 		addNote();
 	}
 };

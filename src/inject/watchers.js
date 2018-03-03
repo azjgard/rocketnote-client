@@ -18,6 +18,7 @@ const initWatchers = () => {
 	watchForDeleteNote();
 	watchUndoAction();
 	watchInputForFeedback();
+	watchInputLimit(255);
 	watchLogInButton();
 	watchHelpModal();
 };
@@ -79,6 +80,26 @@ const watchKeyForPin = keyCode => {
 				return;
 			}
 			addPin();
+		}
+	});
+};
+
+const watchInputLimit = maxCharacters => {
+	$(document).on("keyup keydown paste", "#rn_note-input", () => {
+		let inputLimit = $("#rn_input-limit");
+		let input = $("#rn_note-input");
+		let submitButton = $("#rn_note-submit");
+		let difference = maxCharacters - input.val().length;
+
+		inputLimit.text(difference);
+		if (difference <= 0) {
+			inputLimit.addClass("over");
+			submitButton.prop("disabled", true).addClass("disabled");
+			input.addClass("error");
+		} else {
+			inputLimit.removeClass("over");
+			submitButton.prop("disabled", false).removeClass("disabled");
+			input.removeClass("error");
 		}
 	});
 };
