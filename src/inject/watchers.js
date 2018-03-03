@@ -21,6 +21,7 @@ const initWatchers = () => {
 	watchInputLimit(255);
 	watchLogInButton();
 	watchHelpModal();
+	watchForTimestampUpdate();
 };
 
 const watchClickAddNoteButton = () => {
@@ -137,4 +138,14 @@ const watchLogInButton = () => {
 			}
 		}
 	}
+};
+
+const watchForTimestampUpdate = () => {
+	$(document).on("keyup keydown paste", "#rn_note-input", () => {
+		let input = $("#rn_note-input");
+		if (currentTimestamp === null && input.val().length > 0) {
+			const video = $("video")[0];
+			currentTimestamp = video.currentTime;
+		}
+	});
 };

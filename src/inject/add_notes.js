@@ -8,10 +8,11 @@ const addNote = (isPin, content) => {
 	let unformattedTags = filterHashtags(note.content);
 	note.videoId = getCurrentVideoId();
 	note.tags = unformattedTags.join(" ");
-	note.timestamp = Math.floor(video.currentTime);
+	note.timestamp = isPin ? Math.floor(video.currentTime) : Math.floor(currentTimestamp);
 	note.createdAt = moment().format();
 
 	submitNote(note);
+
 	if ($("#rn_note-submit").hasClass("feedback")) {
 		let feedback = {
 			content: note.content,
@@ -30,6 +31,7 @@ const addNote = (isPin, content) => {
 			input.focus();
 		}
 		input.removeClass("error");
+		currentTimestamp = null;
 	}
 };
 
