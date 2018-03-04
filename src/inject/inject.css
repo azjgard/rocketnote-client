@@ -621,3 +621,15 @@ h1.section-header {
 	margin: -3px;
 	transition-duration: .5s;
 }
+
+/*=== Timestamp Editing ===*/
+
+.timestamp-indicator {
+	background-color: red;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 2px;
+	z-index: 2022;
+}

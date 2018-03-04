@@ -50,7 +50,8 @@ const addNoteToContainer = ({content, timestamp, videoId, id}) => {
 	let timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
 	let timestampAnchor = $(document.createElement("a")).attr({
 		class: "timestamp yt-simple-endpoint",
-		href: timestampedUrl
+		href: timestampedUrl,
+		duration: timestamp,
 	});
 	let thumbtack = $(document.createElement("img")).attr({
 		src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),

@@ -6,6 +6,9 @@ const editNote = e => {
 		id: editedNoteId,
 		content: noteBody.text(),
 	};
+	if (newTimestamp !== null) {
+		editedNote.timestamp = newTimestamp;
+	}
 
 	existingNote.find(".rn_edit-buttons").remove();
 	noteBody.attr("contenteditable", "false");
@@ -36,6 +39,9 @@ const editNote = e => {
 			}
 		});
 	});
+
+	newTimestamp = null;
+	turnOffTimestampEditing();
 };
 
 const watchForCancelEditNote = () => {
@@ -67,12 +73,19 @@ const watchForCancelEditNote = () => {
 
 			$(target).closest(".existing-note").find(".rn_edit-buttons").remove();
 		});
+
+		turnOffTimestampEditing();
 	}
+};
+
+const turnOffTimestampEditing = () => {
+	$(".timestamp-indicator").remove();
 };
 
 const switchToEditNoteMode = e => {
 	const existingNote = $(e.target).closest(".existing-note");
 	const note = existingNote.find("p");
+	const timestamp = existingNote.find("a").attr("duration");
 	const noteContents = note.text();
 	const submitEditButton = $(document.createElement("button"))
 		.addClass("rn_confirm-edit-button rn_button-action")
@@ -95,6 +108,7 @@ const switchToEditNoteMode = e => {
 	checkElementIsInView(noteContainer, $(".rn_edit-buttons"));
 	setEndOfContentEditable(note[0]);
 	noteContainer.removeClass("edit");
+	turnOnChangeTimestamp(timestamp);
 
 	function setEndOfContentEditable(contentEditableElement) {
 		let range = document.createRange();
@@ -113,6 +127,16 @@ const switchToEditNoteMode = e => {
 
 		allEditButtons.remove();
 		existingNoteContents.attr("contenteditable", "false");
+	}
+
+	function turnOnChangeTimestamp(timestamp) {
+		let playerContainer = $("#player-container");
+		let video = $("video")[0];
+		let videoDuration = video.duration;
+		let indicatorPosition = (parseInt(timestamp) / videoDuration) * 100 + "%";
+		let timestampPositionIndicator = $(document.createElement("div")).addClass("timestamp-indicator");
+		timestampPositionIndicator.css({left: indicatorPosition});
+		timestampPositionIndicator.prependTo(playerContainer);
 	}
 };
 

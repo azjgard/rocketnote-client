@@ -39,7 +39,7 @@ const buildExistingNotes = container => {
 					let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id});
 					let noteBody = buildNoteBody(note);
 					let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
-					let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl});
+					let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl, duration: note.timestamp});
 
 					existingNote.append(noteBody);
 

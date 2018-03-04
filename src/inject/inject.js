@@ -1,5 +1,6 @@
 let loggedIn = null;
 let currentTimestamp = null;
+let newTimestamp = null;
 getLoginState();
 
 chrome.runtime.sendMessage({
