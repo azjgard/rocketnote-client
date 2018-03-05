@@ -13,6 +13,15 @@ const editNote = e => {
 	existingNote.find(".rn_edit-buttons").remove();
 	noteBody.attr("contenteditable", "false");
 
+	if (noteBody.text().length <= 0) {
+		const thumbtack = $(document.createElement("img")).attr({
+			src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
+			class: "pin-icon"
+		});
+
+		noteBody.append(thumbtack);
+	}
+
 	chrome.runtime.sendMessage({type: "updateNote", note: editedNote}, editedNote => {
 		chrome.storage.local.get({notes: {}}, result => {
 			let notes = result.notes;
@@ -64,7 +73,7 @@ const watchForCancelEditNote = () => {
 			} else if ($(target).is(":empty")) {
 				const thumbtack = $(document.createElement("img")).attr({
 					src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
-					class: "pin-icon"
+					class: "pin-icon",
 				});
 
 				$(target).append(thumbtack);
@@ -102,6 +111,7 @@ const switchToEditNoteMode = e => {
 
 	chrome.storage.local.set({editedNote});
 	note.attr("contenteditable", "true");
+	note.find(".pin-icon").remove();
 	existingNote.append(editButtons);
 	checkElementIsInView(noteContainer, $(".rn_edit-buttons"));
 	setEndOfContentEditable(note[0]);
