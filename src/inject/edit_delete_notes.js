@@ -328,6 +328,6 @@ function buildTimestampNotification() {
 	let playerContainer = $("#player-container");
 	const timestampNotification = $(document.createElement("div")).addClass("timestamp-notification");
 	const notification = $(document.createElement("p"))
-		.text("Your note is in editing mode. Change this note's timestamp by changing the current time the video is at.");
+		.text("Your note is in editing mode. Change this note's timestamp by adjusting the current time the video is at (red timeline below).");
 	timestampNotification.append(notification).appendTo(playerContainer);
 }
