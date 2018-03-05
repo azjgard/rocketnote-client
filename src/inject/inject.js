@@ -24,8 +24,9 @@ chrome.runtime.sendMessage({
 				watchVideoForChanges(currentVideoId);
 				stopKeyboardShorcutsOnContentEditable();
 				buildHelpButton();
+				buildTimestampNotification();
 
-					function watchVideoForChanges(currentVideoId) {
+				function watchVideoForChanges(currentVideoId) {
 					setInterval(() => {
 						if (currentVideoId !== getCurrentVideoId()) {
 							refreshWidget();

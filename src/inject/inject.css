@@ -624,3 +624,18 @@ h1.section-header {
 
 /*=== Timestamp Editing ===*/
 
+.timestamp-notification {
+	background-color: var(--action-button-color);
+	color: white;
+	display: none;
+	left: 0;
+	padding: 0 10px;
+	position: absolute;
+	top: 0;
+	width: calc(100% - 20px);
+	z-index: 2021;
+}
+
+.timestamp-notification p {
+	font-size: 14px;
+}

@@ -306,9 +306,28 @@ function startWatchingTimestamp(note, timestamp) {
 
 		timestampAnchor.text(formatTimestamp(moment.duration(currentVideoTime.text()).asMinutes()));
 	}, 300);
+
+	showNotifyChangeTimestamp();
+
+	function showNotifyChangeTimestamp() {
+		$(".timestamp-notification").show();
+	}
 }
 
 function stopWatchingTimestamp() {
 	clearInterval(window.checkVideoTimestamp);
 	newTimestamp = null;
+	hideNotifyChangeTimestamp();
+
+	function hideNotifyChangeTimestamp() {
+		$(".timestamp-notification").hide();
+	}
+}
+
+function buildTimestampNotification() {
+	let playerContainer = $("#player-container");
+	const timestampNotification = $(document.createElement("div")).addClass("timestamp-notification");
+	const notification = $(document.createElement("p"))
+		.text("Your note is in editing mode. Change this note's timestamp by changing the current time the video is at.");
+	timestampNotification.append(notification).appendTo(playerContainer);
 }
