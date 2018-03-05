@@ -40,8 +40,7 @@ const editNote = e => {
 		});
 	});
 
-	newTimestamp = null;
-	turnOffTimestampEditing();
+	stopWatchingTimestamp();
 };
 
 const watchForCancelEditNote = () => {
@@ -70,16 +69,14 @@ const watchForCancelEditNote = () => {
 
 				$(target).append(thumbtack);
 			}
-
+			$(target).closest(".existing-note").find(".timestamp").attr({
+				duration: result.editedNote.originalDuration,
+			}).text(formatTimestamp(result.editedNote.originalDuration));
 			$(target).closest(".existing-note").find(".rn_edit-buttons").remove();
 		});
 
-		turnOffTimestampEditing();
+		stopWatchingTimestamp();
 	}
-};
-
-const turnOffTimestampEditing = () => {
-	$(".timestamp-indicator").remove();
 };
 
 const switchToEditNoteMode = e => {
@@ -98,6 +95,7 @@ const switchToEditNoteMode = e => {
 
 	let editedNote = {
 		originalContents: noteContents,
+		originalDuration: timestamp,
 	};
 
 	turnOffAllOtherEditing();
@@ -108,7 +106,7 @@ const switchToEditNoteMode = e => {
 	checkElementIsInView(noteContainer, $(".rn_edit-buttons"));
 	setEndOfContentEditable(note[0]);
 	noteContainer.removeClass("edit");
-	turnOnChangeTimestamp(timestamp);
+	startWatchingTimestamp(existingNote, timestamp);
 
 	function setEndOfContentEditable(contentEditableElement) {
 		let range = document.createRange();
@@ -127,16 +125,24 @@ const switchToEditNoteMode = e => {
 
 		allEditButtons.remove();
 		existingNoteContents.attr("contenteditable", "false");
-	}
+		existingNotes.map((noteIndex) => {
+			let currentNote = $(existingNotes[noteIndex]);
+			let originalContent = currentNote.attr("originalContent");
+			let originalDuration = currentNote.find(".timestamp").attr("originalDuration");
 
-	function turnOnChangeTimestamp(timestamp) {
-		let playerContainer = $("#player-container");
-		let video = $("video")[0];
-		let videoDuration = video.duration;
-		let indicatorPosition = (parseInt(timestamp) / videoDuration) * 100 + "%";
-		let timestampPositionIndicator = $(document.createElement("div")).addClass("timestamp-indicator");
-		timestampPositionIndicator.css({left: indicatorPosition});
-		timestampPositionIndicator.prependTo(playerContainer);
+			currentNote.find("p").text(originalContent);
+			currentNote.find(".timestamp").attr("duration", originalDuration).text(formatTimestamp(originalDuration));
+
+			if (currentNote.find("p").is(":empty")) {
+				const thumbtack = $(document.createElement("img")).attr({
+					src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
+					class: "pin-icon"
+				});
+				currentNote.find("p").append(thumbtack);
+			}
+		});
+
+		stopWatchingTimestamp();
 	}
 };
 
@@ -280,4 +286,29 @@ const watchUndoAction = () => {
 
 function updateLastDeleted(note) {
 	chrome.storage.local.set({lastDeleted: note});
+}
+
+function startWatchingTimestamp(note, timestamp) {
+	const video = $("video")[0];
+	const timestampAnchor = note.find("a");
+	const currentVideoTime = $(".ytp-time-current");
+	storedDuration = timestamp;
+
+	setTimeout(() => {
+		video.pause();
+	}, 100);
+
+	video.currentTime = timestamp;
+
+	window.checkVideoTimestamp = setInterval(() => {
+		newTimestamp = Math.floor(video.currentTime);
+		timestampAnchor.attr("duration", newTimestamp);
+
+		timestampAnchor.text(formatTimestamp(moment.duration(currentVideoTime.text()).asMinutes()));
+	}, 300);
+}
+
+function stopWatchingTimestamp() {
+	clearInterval(window.checkVideoTimestamp);
+	newTimestamp = null;
 }

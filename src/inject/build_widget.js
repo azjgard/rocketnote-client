@@ -36,10 +36,10 @@ const buildExistingNotes = container => {
 				});
 
 				existingNotes.map(note => {
-					let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id});
+					let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id, originalContent: note.content});
 					let noteBody = buildNoteBody(note);
 					let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
-					let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl, duration: note.timestamp});
+					let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl, duration: note.timestamp, originalDuration: note.timestamp});
 
 					existingNote.append(noteBody);
 

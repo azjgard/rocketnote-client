@@ -45,13 +45,14 @@ const storeNote = note => {
 const addNoteToContainer = ({content, timestamp, videoId, id}) => {
 	let noteContainer = $("#rn_note-container");
 	let notePlaceholder = $(".rn_notes-placeholder");
-	let noteBodyContainer = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + id});
+	let noteBodyContainer  = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + id, originalContent: content});
 	let noteBody = $(document.createElement("p"));
 	let timestampedUrl = "/watch?v=" + videoId + "&t=" + timestamp + "s";
 	let timestampAnchor = $(document.createElement("a")).attr({
 		class: "timestamp yt-simple-endpoint",
 		href: timestampedUrl,
 		duration: timestamp,
+		originalDuration: timestamp
 	});
 	let thumbtack = $(document.createElement("img")).attr({
 		src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
