@@ -29,7 +29,9 @@ chrome.runtime.sendMessage({
 				function watchVideoForChanges(currentVideoId) {
 					setInterval(() => {
 						if (currentVideoId !== getCurrentVideoId()) {
-							refreshWidget();
+							$("#rn_widget").remove();
+
+							buildWidget();
 							buildHelpButton();
 							buildTimestampNotification();
 							currentVideoId = getCurrentVideoId();
