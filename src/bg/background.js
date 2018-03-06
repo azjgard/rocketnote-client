@@ -133,5 +133,11 @@ chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => 
       sendResponse(false);
     });
     return true;
+  } else if (request.type === 'updateNote') {
+    api.updateNote(request.note.id, request.note).then(sendResponse);
+    return true;
+  } else if (request.type === 'deleteNote') {
+    api.deleteNote(request.noteId).then(sendResponse);
+    return true;
   }
 });
