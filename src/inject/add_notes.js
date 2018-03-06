@@ -115,6 +115,7 @@ const storeNoteLocally = note => {
 
 const submitFeedback = feedback => {
 	chrome.runtime.sendMessage({type: "sendFeedback", feedback: feedback});
+	changeToAddNote();
 };
 
 const watchInputForFeedback = () => {
@@ -126,12 +127,12 @@ const watchInputForFeedback = () => {
 			changeToAddNote();
 		}
 	});
-
-	function changeToSubmitFeedback() {
-		$("#rn_note-submit").addClass("feedback").text("Submit Feedback");
-	}
-
-	function changeToAddNote() {
-		$("#rn_note-submit").removeClass("feedback").text("Add");
-	}
 };
+
+function changeToSubmitFeedback() {
+	$("#rn_note-submit").addClass("feedback").text("Submit Feedback");
+}
+
+function changeToAddNote() {
+	$("#rn_note-submit").removeClass("feedback").text("Add");
+}
