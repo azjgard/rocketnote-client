@@ -32,6 +32,7 @@ const addNote = (isPin, content) => {
 		}
 		input.removeClass("error");
 		currentTimestamp = null;
+		$("#rn_input-limit").text("255");
 	}
 };
 
