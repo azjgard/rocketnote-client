@@ -139,6 +139,7 @@ html[dark="true"] {
 	border-right: 0;
 	border-top: 0;
 	color: var(--widget-text-color);
+	cursor: text;
 	font-size: 14px;
 	margin: 20px 0 30px;
 	min-height: 19px;
@@ -149,6 +150,7 @@ html[dark="true"] {
 }
 
 p[placeholder]:empty:before {
+	color: var(--timestamp-color);
 	content: attr(placeholder);
 }
 
