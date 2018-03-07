@@ -3,7 +3,7 @@ const addNote = (isPin, content) => {
 	let input = $("#rn_note-input");
 	let note = {};
 
-	note.content = isPin ? "" : input.val();
+	note.content = isPin ? "" : input.text();
 	note.content = content ? content : note.content;
 	let unformattedTags = filterHashtags(note.content);
 	note.videoId = getCurrentVideoId();
@@ -27,7 +27,7 @@ const addNote = (isPin, content) => {
 
 	function resetInput(isPin) {
 		if (!isPin) {
-			input.val("");
+			input.text("");
 			input.focus();
 		}
 		input.removeClass("error");
@@ -91,7 +91,7 @@ const addPin = () => {
 
 const addNoteIfInputHasContent = () => {
 	let input = $("#rn_note-input");
-	if (input.val() === "") {
+	if (input.text() === "") {
 		input.addClass("error");
 		input.focus();
 	} else if (!$("#rn_note-submit").hasClass("disabled")) {
@@ -121,7 +121,7 @@ const submitFeedback = feedback => {
 
 const watchInputForFeedback = () => {
 	$(document).on("keyup", "#rn_note-input", () => {
-		let inputValue = $("#rn_note-input").val();
+		let inputValue = $("#rn_note-input").text();
 		if (inputValue.indexOf("#feedback") > -1) {
 			changeToSubmitFeedback();
 		} else {

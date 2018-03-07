@@ -69,6 +69,14 @@ const watchKeyForNoteSubmit = keyCode => {
 			}
 		}
 	});
+
+	$(document).keydown(e => {
+		if ($("#rn_note-input").is(":focus")) {
+			if (e.keyCode === keyCode) {
+				e.preventDefault();
+			}
+		}
+	});
 };
 
 const watchKeyForPin = keyCode => {
@@ -86,21 +94,24 @@ const watchKeyForPin = keyCode => {
 };
 
 const watchInputLimit = maxCharacters => {
-	$(document).on("keyup keydown paste", "#rn_note-input", () => {
-		let inputLimit = $("#rn_input-limit");
+	$("body").on("keyup keydown paste", () => {
 		let input = $("#rn_note-input");
-		let submitButton = $("#rn_note-submit");
-		let difference = maxCharacters - input.val().length;
 
-		inputLimit.text(difference);
-		if (difference <= 0) {
-			inputLimit.addClass("over");
-			submitButton.prop("disabled", true).addClass("disabled");
-			input.addClass("error");
-		} else {
-			inputLimit.removeClass("over");
-			submitButton.prop("disabled", false).removeClass("disabled");
-			input.removeClass("error");
+		if (input.is(":focus")) {
+			let inputLimit = $("#rn_input-limit");
+			let submitButton = $("#rn_note-submit");
+			let difference = maxCharacters - input.text().length;
+
+			inputLimit.text(difference);
+			if (difference <= 0) {
+				inputLimit.addClass("over");
+				submitButton.prop("disabled", true).addClass("disabled");
+				input.addClass("error");
+			} else {
+				inputLimit.removeClass("over");
+				submitButton.prop("disabled", false).removeClass("disabled");
+				input.removeClass("error");
+			}
 		}
 	});
 };
@@ -143,7 +154,7 @@ const watchLogInButton = () => {
 const watchForTimestampUpdate = () => {
 	$(document).on("keyup keydown paste", "#rn_note-input", () => {
 		let input = $("#rn_note-input");
-		if (currentTimestamp === null && input.val().length > 0) {
+		if (currentTimestamp === null && input.text().length > 0) {
 			const video = $("video")[0];
 			currentTimestamp = video.currentTime;
 		}

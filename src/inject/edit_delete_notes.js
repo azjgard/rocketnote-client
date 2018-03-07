@@ -157,7 +157,7 @@ const switchToEditNoteMode = e => {
 };
 
 const watchForEditNote = () => {
-	$(document).on("keydown", "p[contenteditable]", e => {
+	$(document).on("keydown", "#rn_note-container p[contenteditable]", e => {
 		if (e.keyCode === 13 && !e.shiftKey) {
 			editNote(e);
 			e.preventDefault();

@@ -180,10 +180,8 @@ const watchTargetSelectors = () => {
 		hideHelpModal();
 		$(targetSelector).addClass("help-target").focus();
 		if ($(e.target).closest(".feature").attr("addtoinput")) {
-			$("#rn_note-input").val($(e.target).closest(".feature").attr("addtoinput"));
+			$("#rn_note-input").text($(e.target).closest(".feature").attr("addtoinput"));
 			$(targetSelector).keyup();
-		} else {
-			console.log("No addtoinput");
 		}
 		setTimeout(() => {
 			$(targetSelector).removeClass("help-target");

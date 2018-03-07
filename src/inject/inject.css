@@ -62,8 +62,8 @@ html[dark="true"] {
 	border-top: 2px solid var(--red-color);
 	color: var(--widget-text-color);
 	font-size: 14px;
-	height: 450px;
 	margin-bottom: 20px;
+	min-height: 450px;
 	padding: 10px 10px 20px 10px;
 	position: relative;
 	text-align: right;
@@ -141,9 +141,19 @@ html[dark="true"] {
 	color: var(--widget-text-color);
 	font-size: 14px;
 	margin: 20px 0 30px;
+	min-height: 19px;
 	outline: 0;
 	padding-bottom: 2px;
+	text-align: left;
 	width: 100%;
+}
+
+p[placeholder]:empty:before {
+	content: attr(placeholder);
+}
+
+p[placeholder]:empty:focus:before {
+	content: "";
 }
 
 #rn_note-input:focus {
