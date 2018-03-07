@@ -70,6 +70,10 @@ function displaySpaces(string) {
 	return string.replace(/\n/g, "<br/>");
 }
 
+const getVideoThumbnailUrl = videoId => {
+	return "https://i1.ytimg.com/vi/" + videoId +  "/mqdefault.jpg";
+};
+
 String.prototype.trunc = function (n) {
 	return (this.length > n) ? this.substr(0, n - 1) + '...' : this;
 };

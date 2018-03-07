@@ -60,10 +60,6 @@ const addRecentNotesToPopup = () => {
 	}
 };
 
-const getVideoThumbnailUrl = videoId => {
-	return "https://i1.ytimg.com/vi/" + videoId +  "/mqdefault.jpg";
-};
-
 const updateVersionNumber = () => {
 	let version = chrome.runtime.getManifest().version;
 	$("#rn_version").text(version);
