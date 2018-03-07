@@ -11,10 +11,12 @@ const addRecentNotesToPopup = () => {
 	let recentNotesContainer = $("#recent-notes");
 
 	chrome.storage.local.get({notes: {}}, function(results) {
-		let recentNotes = results.notes.recent;
-		recentNotes.slice().reverse().map(function(note) {
-			recentNotesContainer.append(buildNoteBody(note));
-		});
+		if (Object.keys(results.notes).length > 0) {
+			let recentNotes = results.notes.recent;
+			recentNotes.slice().reverse().map(function(note) {
+				recentNotesContainer.append(buildNoteBody(note));
+			});
+		}
 	});
 
 	function buildNoteBody(note) {
