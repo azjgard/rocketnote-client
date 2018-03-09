@@ -120,12 +120,16 @@ const submitFeedback = feedback => {
 };
 
 const watchInputForFeedback = () => {
-	$(document).on("keyup", "#rn_note-input", () => {
-		let inputValue = $("#rn_note-input").text();
-		if (inputValue.indexOf("#feedback") > -1) {
-			changeToSubmitFeedback();
-		} else {
-			changeToAddNote();
+	$("body").on("keyup keydown paste", () => {
+		let input = $("#rn_note-input");
+
+		if (input.is(":focus")) {
+			let inputValue = input.text();
+			if (inputValue.indexOf("#feedback") > -1) {
+				changeToSubmitFeedback();
+			} else {
+				changeToAddNote();
+			}
 		}
 	});
 };
