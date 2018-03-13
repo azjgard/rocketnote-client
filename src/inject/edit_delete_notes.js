@@ -135,12 +135,15 @@ const switchToEditNoteMode = e => {
 
 		allEditButtons.remove();
 		existingNoteContents.attr("contenteditable", "false");
+		existingNoteContents.linkify();
+		addClassToHashtags(existingNoteContents);
 		existingNotes.map((noteIndex) => {
 			let currentNote = $(existingNotes[noteIndex]);
 			let originalContent = currentNote.attr("originalContent");
 			let originalDuration = currentNote.find(".timestamp").attr("originalDuration");
 
-			currentNote.find("p").text(originalContent);
+			currentNote.find("p").text(originalContent).linkify();
+			addClassToHashtags(currentNote.find("p"));
 			currentNote.find(".timestamp").attr("duration", originalDuration).text(formatTimestamp(originalDuration));
 
 			if (currentNote.find("p").is(":empty")) {
