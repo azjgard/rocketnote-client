@@ -152,11 +152,13 @@ const watchLogInButton = () => {
 };
 
 const watchForTimestampUpdate = () => {
-	$(document).on("keyup keydown paste", "#rn_note-input", () => {
+	$("body").on("keyup keydown paste", "#rn_note-input", () => {
 		let input = $("#rn_note-input");
 		if (currentTimestamp === null && input.text().length > 0) {
 			const video = $("video")[0];
 			currentTimestamp = video.currentTime;
+		} else if (currentTimestamp !== null && input.text().length === 0) {
+			currentTimestamp = null;
 		}
 	});
 };
