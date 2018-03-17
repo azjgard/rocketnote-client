@@ -3,8 +3,12 @@ $(() => {
 		return value.trunc(21);
 	};
 
-	addRecentNotesToPopup();
-	updateVersionNumber();
+	chrome.runtime.sendMessage({type: 'getState'}, userProfile => {
+		if (userProfile) {
+			addRecentNotesToPopup();
+			updateVersionNumber();
+		}
+	});
 });
 
 const addRecentNotesToPopup = () => {

@@ -76,7 +76,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     api.getNotesByVideo(request.currentVideoId).then(sendResponse);
     return true;
   } else if (request.type === 'getRecentNotes') {
-    api.getLimitedNotes(5, 'latest').then(sendResponse);
+    console.log("I have your notes.");
+    api.getLimitedNotes(5, 'latest').then((notes) => {
+      console.log('returned from the api')
+      console.log(notes);
+			sendResponse(notes);
+    });
     return true;
   }
 
