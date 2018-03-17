@@ -141,3 +141,10 @@ chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => 
     return true;
   }
 });
+
+chrome.runtime.onInstalled.addListener(({reason}) => {
+	if (reason === "install") {
+		const onboardingPage = "https://getrocketnote.com/getting-started";
+		chrome.tabs.create({ url: onboardingPage });
+	}
+});
