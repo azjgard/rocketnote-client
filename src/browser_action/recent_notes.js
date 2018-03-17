@@ -10,14 +10,13 @@ $(() => {
 const addRecentNotesToPopup = () => {
 	let recentNotesContainer = $("#recent-notes");
 
-	chrome.storage.local.get({notes: {}}, function(results) {
-		if (Object.keys(results.notes).length > 0) {
-			let recentNotes = results.notes.recent;
+	chrome.runtime.sendMessage({type: "getRecentNotes"}, notes => {
+		if (Object.keys(notes).length > 0) {
+			let recentNotes = notes;
 			if (recentNotes.length > 0) {
-				recentNotes.slice().reverse().map(function(note) {
+				recentNotes.map(function(note) {
 					recentNotesContainer.append(buildNoteBody(note));
 				});
-				console.log("NOTES!");
 			}
 		} else {
 			let onboardPlaceholder = $(document.createElement("div")).addClass("onboard-placeholder");

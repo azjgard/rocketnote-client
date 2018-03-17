@@ -17,6 +17,7 @@ const apiRequest = (method, relUrl, data) =>  {
 const api = {
   getProfile      : async () => await apiRequest('GET', '/users'),
   getNotes        : async () => await apiRequest('GET', '/notes'),
+  getLimitedNotes  : async (limit, order) => await apiRequest('GET', '/notes?limit=' + limit + '&order=' + order),
   getNotesByVideo : async videoId => await apiRequest('GET', '/notes?videoId=' + videoId),
   deleteNote      : async noteId => await apiRequest('DELETE', '/notes/' + noteId),
   updateNote      : async (noteId, updatedNote) => await apiRequest('PUT', '/notes/' + noteId, updatedNote),

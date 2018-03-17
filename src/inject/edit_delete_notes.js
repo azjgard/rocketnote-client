@@ -22,18 +22,7 @@ const editNote = e => {
 		noteBody.append(thumbtack);
 	}
 
-	chrome.runtime.sendMessage({type: "updateNote", note: editedNote}, editedNote => {
-		chrome.storage.local.get({notes: {}}, result => {
-			let notes = result.notes;
-			for (let i = 0; i < notes.recent.length; i++) {
-				if (notes.recent[i].id === editedNote.note.id) {
-					notes.recent[i] = editedNote.note;
-				}
-			}
-
-			chrome.storage.local.set({notes});
-		});
-	});
+	chrome.runtime.sendMessage({type: "updateNote", note: editedNote});
 
 	chrome.storage.local.get({notes: {}}, result => {
 		let notes = result.notes;

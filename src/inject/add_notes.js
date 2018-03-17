@@ -39,7 +39,6 @@ const addNote = (isPin, content) => {
 const storeNote = note => {
 	return chrome.runtime.sendMessage({type: "storeNote", note: note}, response => {
 		addNoteToContainer(response.note);
-		storeNoteLocally(response.note);
 	});
 };
 
@@ -97,21 +96,6 @@ const addNoteIfInputHasContent = () => {
 	} else if (!$("#rn_note-submit").hasClass("disabled")) {
 		addNote();
 	}
-};
-
-const storeNoteLocally = note => {
-	chrome.storage.local.get({notes: {}}, result => {
-		let notes = result.notes;
-		notes.recent = notes.recent || [];
-		notes.recent.push(note);
-		if (notes.recent.length > 5) {
-			notes.recent.shift();
-		}
-		notes[getCurrentVideoId()] = notes[getCurrentVideoId()] || [];
-		notes[getCurrentVideoId()].push(note);
-
-		chrome.storage.local.set({notes});
-	});
 };
 
 const submitFeedback = feedback => {
