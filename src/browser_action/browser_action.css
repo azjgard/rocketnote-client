@@ -135,3 +135,13 @@ a:hover {
   position: absolute;
   right: 0;
 }
+
+.onboard-placeholder {
+  color: #8f8f8f;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+}

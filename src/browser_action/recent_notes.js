@@ -13,9 +13,19 @@ const addRecentNotesToPopup = () => {
 	chrome.storage.local.get({notes: {}}, function(results) {
 		if (Object.keys(results.notes).length > 0) {
 			let recentNotes = results.notes.recent;
-			recentNotes.slice().reverse().map(function(note) {
-				recentNotesContainer.append(buildNoteBody(note));
-			});
+			if (recentNotes.length > 0) {
+				recentNotes.slice().reverse().map(function(note) {
+					recentNotesContainer.append(buildNoteBody(note));
+				});
+				console.log("NOTES!");
+			}
+		} else {
+			let onboardPlaceholder = $(document.createElement("div")).addClass("onboard-placeholder");
+			let onboardText = $(document.createElement("p")).text("You have not added notes. ");
+			let onboardLink = $(document.createElement("a")).text("Learn how.").attr({href: "https://getrocketnote.com/getting-started", target: "_blank"});
+
+			onboardText.append(onboardLink).appendTo(onboardPlaceholder);
+			recentNotesContainer.append(onboardPlaceholder);
 		}
 	});
 
