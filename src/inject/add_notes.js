@@ -10,6 +10,12 @@ const addNote = (isPin, content) => {
 	note.tags = unformattedTags.join(" ");
 	note.timestamp = isPin ? Math.floor(video.currentTime) : Math.floor(currentTimestamp);
 	note.createdAt = moment().format();
+	note.meta = {};
+	note.meta.videoTitle = $(".title").find(".ytd-video-primary-info-renderer").text();
+	note.meta.channelName = $(".iv-branding-context-name").text();
+	note.meta.channelUrl = "https://youtube.com" + $("a.ytd-video-owner-renderer").attr("href");
+	note.meta.videoCategory = $(".description").find("#collapsible a").text() || "undefined";
+	note.meta.userChannel = $(".ytp-watch-later-button").attr("title").replace("Watch later as ", "") || "undefined";
 
 	submitNote(note);
 

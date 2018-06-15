@@ -54,6 +54,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       api.getProfile().then(sendResponse);
       return true;
     }
+  } else if (request.type === 'getUserOverview') {
+    if (!this.userLoggedIn) {
+      sendResponse(false);
+    } else {
+      api.getUserOverview().then(sendResponse);
+      return true;
+    }
   }
 
   if (request.type === 'login') {
@@ -76,11 +83,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     api.getNotesByVideo(request.currentVideoId).then(sendResponse);
     return true;
   } else if (request.type === 'getRecentNotes') {
-    console.log("I have your notes.");
     api.getLimitedNotes(5, 'latest').then((notes) => {
-      console.log('returned from the api')
-      console.log(notes);
-			sendResponse(notes);
+      sendResponse(notes);
     });
     return true;
   }

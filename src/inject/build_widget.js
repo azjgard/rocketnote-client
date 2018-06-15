@@ -1,21 +1,21 @@
 const buildWidget = () => {
-	let relatedContent = $("#related");
-	let widget = $(document.createElement("div"));
-	let widgetAttr = {id: "rn_widget"};
-	let noteContainer = buildNoteContainer();
-	let noteInput = buildNoteInput();
-	let settingsButton = $(document.createElement("button")).attr({id: "rn_enable-edit", class: "rn_button-action"});
-	let settingsIcon = $(document.createElement("img")).attr({
+    getUserInfo();
+    let relatedContent = $("#related");
+    let widget = $(document.createElement("div"));
+    let widgetAttr = {id: "rn_widget"};
+    let noteContainer = buildNoteContainer();
+    let noteInput = buildNoteInput();
+    let settingsButton = $(document.createElement("button")).attr({id: "rn_enable-edit", class: "rn_button-action"});
+    let settingsIcon = $(document.createElement("img")).attr({
 		class: "settings-icon",
 		src: chrome.runtime.getURL("assets/img/settings_gray.svg")
 	});
 	let dashboardLink = $(document.createElement("a")).attr({href: "https://getrocketnote.com/notes", target: "_blank", class: "rn_dashboard-link"}).text("view all");
-
-	settingsButton.append(settingsIcon);
-	widget.attr(widgetAttr);
-	widget.append([settingsButton, noteContainer, noteInput, dashboardLink]);
-	relatedContent.prepend(widget.hide().delay().fadeIn(300));
-	noteContainer.scrollTop(noteContainer[0].scrollHeight);
+    settingsButton.append(settingsIcon);
+    widget.attr(widgetAttr);
+    widget.append([settingsButton, noteContainer, noteInput, dashboardLink]);
+    relatedContent.prepend(widget.hide().delay().fadeIn(300));
+    noteContainer.scrollTop(noteContainer[0].scrollHeight);
 };
 
 const buildNoteContainer = () => {
@@ -117,4 +117,10 @@ function buildTimestampNotification() {
 	const notification = $(document.createElement("p"))
 		.text("Your note is in editing mode. Change this note's timestamp by adjusting the current time the video is at (red timeline below).");
 	timestampNotification.append(notification).appendTo(playerContainer);
+}
+
+function getUserInfo() {
+	chrome.runtime.sendMessage({type: "getUserOverview"}, (response) => {
+		console.log(response);
+	});
 }

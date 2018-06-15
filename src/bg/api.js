@@ -1,29 +1,30 @@
-const apiRequest = (method, relUrl, data) =>  {
-  return new Promise(async (resolve, reject) => {
-    const authorization = await getAuthToken();
-    const settings = {
-      method,
-      url  : baseUrl + relUrl,
-      data : JSON.stringify(data),
-      headers: {
-        authorization
-      },
-      contentType: "application/json"
-    };
-    $.ajax(settings).done(resolve);
-  });
+const apiRequest = (method, relUrl, data) => {
+    return new Promise(async (resolve, reject) => {
+        const authorization = await getAuthToken();
+        const settings = {
+            method,
+            url: baseUrl + relUrl,
+            data: JSON.stringify(data),
+            headers: {
+                authorization
+            },
+            contentType: "application/json"
+        };
+        $.ajax(settings).done(resolve);
+    });
 };
 
 const api = {
-  getProfile      : async () => await apiRequest('GET', '/users'),
-  getNotes        : async () => await apiRequest('GET', '/notes'),
-  getLimitedNotes  : async (limit, order) => await apiRequest('GET', '/notes?limit=' + limit + '&order=' + order),
-  getNotesByVideo : async videoId => await apiRequest('GET', '/notes?videoId=' + videoId),
-  deleteNote      : async noteId => await apiRequest('DELETE', '/notes/' + noteId),
-  updateNote      : async (noteId, updatedNote) => await apiRequest('PUT', '/notes/' + noteId, updatedNote),
-  storeNote       : async note => await apiRequest('POST', '/notes', note),
-  sendFeedback    : async feedback => await apiRequest('POST', '/feedback', feedback),
-  getFeedback     : async () => await apiRequest('GET', '/feedback'),
+    getProfile: async () => await apiRequest('GET', '/users'),
+    getNotes: async () => await apiRequest('GET', '/notes'),
+    getLimitedNotes: async (limit, order) => await apiRequest('GET', '/notes?limit=' + limit + '&order=' + order),
+    getNotesByVideo: async videoId => await apiRequest('GET', '/notes?videoId=' + videoId),
+    deleteNote: async noteId => await apiRequest('DELETE', '/notes/' + noteId),
+    updateNote: async (noteId, updatedNote) => await apiRequest('PUT', '/notes/' + noteId, updatedNote),
+    storeNote: async note => await apiRequest('POST', '/notes', note),
+    sendFeedback: async feedback => await apiRequest('POST', '/feedback', feedback),
+    getFeedback: async () => await apiRequest('GET', '/feedback'),
+    getUserOverview: async () => await apiRequest('GET', '/notes/overview'),
 };
 
 // await api.getProfile();
