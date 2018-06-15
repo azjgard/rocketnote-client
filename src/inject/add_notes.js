@@ -27,8 +27,8 @@ const addNote = (isPin, content) => {
 	}
 
 	function submitNote(note) {
-		storeNote(note);
-		resetInput(isPin);
+        storeNote(note);
+        resetInput(isPin);
 	}
 
 	function resetInput(isPin) {
@@ -45,7 +45,18 @@ const addNote = (isPin, content) => {
 const storeNote = note => {
 	return chrome.runtime.sendMessage({type: "storeNote", note: note}, response => {
 		addNoteToContainer(response.note);
-	});
+		if (response.note) {
+            updateNotesRemaining();
+        }
+    });
+
+    function updateNotesRemaining() {
+        let limitTextNode = $("#notes-remaining");
+        let notesRemaining = limitTextNode.text();
+        notesRemaining--;
+
+        limitTextNode.text(notesRemaining);
+    }
 };
 
 const addNoteToContainer = ({content, timestamp, videoId, id}) => {

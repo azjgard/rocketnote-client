@@ -120,7 +120,13 @@ function buildTimestampNotification() {
 }
 
 function getUserInfo() {
-	chrome.runtime.sendMessage({type: "getUserOverview"}, (response) => {
-		console.log(response);
+	chrome.runtime.sendMessage({type: "getUserOverview"}, ({noteCount, noteLimit}) => {
+		let widget = $("#rn_widget");
+		let notesRemaining = noteLimit - noteCount;
+		let notesRemainingText = $(document.createElement("p")).html("<span id='notes-remaining'>" + notesRemaining+ "</span>" + " notes remaining");
+		let upgradeLink = $(document.createElement("a")).attr({href: "https://getrocketnote.com/pricing", target: "_blank"}).text("upgrade storage");
+		let limitsUi = $(document.createElement("div")).addClass("limits-ui").append([notesRemainingText, upgradeLink]);
+
+		widget.append(limitsUi);
 	});
 }

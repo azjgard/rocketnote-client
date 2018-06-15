@@ -226,8 +226,17 @@ const deleteNote = note => {
 		});
 	});
 
+	addNotesRemaining();
 	notifyDelete(note);
 	note.remove();
+
+    function addNotesRemaining() {
+        let limitTextNode = $("#notes-remaining");
+        let notesRemaining = limitTextNode.text();
+        notesRemaining++;
+
+        limitTextNode.text(notesRemaining);
+    }
 
 	function notifyDelete(note) {
 		let noteDeletedNotification = $(document.createElement("div")).addClass("rn_notify-deleted").text("Note deleted.");
@@ -278,6 +287,16 @@ const undoAction = e => {
 			chrome.storage.local.set({notes: allNotes});
 		});
 	});
+
+	subtractNotesRemaining();
+
+    function subtractNotesRemaining() {
+        let limitTextNode = $("#notes-remaining");
+        let notesRemaining = limitTextNode.text();
+        notesRemaining--;
+
+        limitTextNode.text(notesRemaining);
+    }
 };
 
 const watchUndoAction = () => {
