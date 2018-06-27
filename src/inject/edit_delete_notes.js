@@ -232,10 +232,13 @@ const deleteNote = note => {
 
     function addNotesRemaining() {
         let limitTextNode = $("#notes-remaining");
-        let notesRemaining = limitTextNode.text();
-        notesRemaining++;
 
-        limitTextNode.text(notesRemaining);
+        if (limitTextNode) {
+            let notesRemaining = limitTextNode.text();
+            notesRemaining++;
+
+            limitTextNode.text(notesRemaining);
+        }
     }
 
 	function notifyDelete(note) {
@@ -292,10 +295,13 @@ const undoAction = e => {
 
     function subtractNotesRemaining() {
         let limitTextNode = $("#notes-remaining");
-        let notesRemaining = limitTextNode.text();
-        notesRemaining--;
 
-        limitTextNode.text(notesRemaining);
+        if (limitTextNode) {
+            let notesRemaining = limitTextNode.text();
+            notesRemaining--;
+
+            limitTextNode.text(notesRemaining);
+        }
     }
 };
 

@@ -151,6 +151,9 @@ chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => 
   } else if (request.type === 'deleteNote') {
     api.deleteNote(request.noteId).then(sendResponse);
     return true;
+  } else if (request.type === 'updateUser') {
+    api.updateUserAccount(request.accountLevel);
+    return true;
   }
 });
 

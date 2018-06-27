@@ -52,10 +52,12 @@ const storeNote = note => {
 
     function updateNotesRemaining() {
         let limitTextNode = $("#notes-remaining");
-        let notesRemaining = limitTextNode.text();
-        notesRemaining--;
 
-        limitTextNode.text(notesRemaining);
+        if (limitTextNode) {
+            let notesRemaining = limitTextNode.text();
+            notesRemaining--;
+            limitTextNode.text(notesRemaining);
+        }
     }
 };
 

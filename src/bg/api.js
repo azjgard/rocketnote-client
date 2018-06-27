@@ -25,6 +25,7 @@ const api = {
     sendFeedback: async feedback => await apiRequest('POST', '/feedback', feedback),
     getFeedback: async () => await apiRequest('GET', '/feedback'),
     getUserOverview: async () => await apiRequest('GET', '/notes/overview'),
+    updateUserAccount: async accountLevel => await apiRequest('PUT', '/users?accountLevel=' + accountLevel),
 };
 
 // await api.getProfile();
