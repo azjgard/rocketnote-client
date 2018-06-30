@@ -7,10 +7,14 @@ const buildWidget = () => {
     let noteInput = buildNoteInput();
     let settingsButton = $(document.createElement("button")).attr({id: "rn_enable-edit", class: "rn_button-action"});
     let settingsIcon = $(document.createElement("img")).attr({
-		class: "settings-icon",
-		src: chrome.runtime.getURL("assets/img/settings_gray.svg")
-	});
-	let dashboardLink = $(document.createElement("a")).attr({href: "https://getrocketnote.com/notes", target: "_blank", class: "rn_dashboard-link"}).text("view all");
+        class: "settings-icon",
+        src: chrome.runtime.getURL("assets/img/settings_gray.svg")
+    });
+    let dashboardLink = $(document.createElement("a")).attr({
+        href: "https://getrocketnote.com/notes",
+        target: "_blank",
+        class: "rn_dashboard-link"
+    }).text("view all");
     settingsButton.append(settingsIcon);
     widget.attr(widgetAttr);
     widget.append([settingsButton, noteContainer, noteInput, dashboardLink]);
@@ -19,117 +23,134 @@ const buildWidget = () => {
 };
 
 const buildNoteContainer = () => {
-	let noteContainer = $(document.createElement("div"));
-	noteContainer.attr({id: "rn_note-container"});
-	buildExistingNotes(noteContainer);
-	return noteContainer;
+    let noteContainer = $(document.createElement("div"));
+    noteContainer.attr({id: "rn_note-container"});
+    buildExistingNotes(noteContainer);
+    return noteContainer;
 };
 
 const buildExistingNotes = container => {
-	if (loggedIn) {
-		chrome.runtime.sendMessage({type: "getNotesByVideo", currentVideoId: getCurrentVideoId()}, notes => {
-			let existingNotes = notes || [];
+    if (loggedIn) {
+        chrome.runtime.sendMessage({type: "getNotesByVideo", currentVideoId: getCurrentVideoId()}, notes => {
+            let existingNotes = notes || [];
 
-			if (existingNotes.length > 0) {
-				existingNotes.sort(function (a, b) {
-					return moment(a.createdAt).unix() - moment(b.createdAt).unix();
-				});
+            if (existingNotes.length > 0) {
+                existingNotes.sort(function (a, b) {
+                    return moment(a.createdAt).unix() - moment(b.createdAt).unix();
+                });
 
-				existingNotes.map(note => {
-					let existingNote = $(document.createElement("div")).attr({class: "existing-note", id: "rn_note-" + note.id, originalContent: note.content});
-					let noteBody = buildNoteBody(note);
-					let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
-					let timestamp = $(document.createElement("a")).attr({class: "timestamp yt-simple-endpoint", href: videoUrl, duration: note.timestamp, originalDuration: note.timestamp});
+                existingNotes.map(note => {
+                    let existingNote = $(document.createElement("div")).attr({
+                        class: "existing-note",
+                        id: "rn_note-" + note.id,
+                        originalContent: note.content
+                    });
+                    let noteBody = buildNoteBody(note);
+                    let videoUrl = "/watch?v=" + note.videoId + "&t=" + note.timestamp + "s";
+                    let timestamp = $(document.createElement("a")).attr({
+                        class: "timestamp yt-simple-endpoint",
+                        href: videoUrl,
+                        duration: note.timestamp,
+                        originalDuration: note.timestamp
+                    });
 
-					existingNote.append(noteBody);
+                    existingNote.append(noteBody);
 
-					if (note.timestamp >= 0) {
-						const formattedTimestamp = formatTimestamp(note.timestamp);
-						existingNote.prepend(timestamp.text(formattedTimestamp));
-					}
+                    if (note.timestamp >= 0) {
+                        const formattedTimestamp = formatTimestamp(note.timestamp);
+                        existingNote.prepend(timestamp.text(formattedTimestamp));
+                    }
 
-					addEditActions(existingNote);
-					container.append(existingNote);
-				});
-			} else {
-				const noNotes = $(document.createElement("p")).addClass("rn_notes-placeholder").text("You have not yet added notes for this video.");
-				container.append(noNotes);
-			}
+                    addEditActions(existingNote);
+                    container.append(existingNote);
+                });
+            } else {
+                const noNotes = $(document.createElement("p")).addClass("rn_notes-placeholder").text("You have not yet added notes for this video.");
+                container.append(noNotes);
+            }
 
-			return container;
-		});
-	} else {
-		let notLoggedInMessage = $(document.createElement("p")).addClass("rn_notes-placeholder")
-			.text(" to take notes.");
-		let logInButton = $(document.createElement("a")).addClass("rn_notes-placeholder-login").text("Log in");
+            return container;
+        });
+    } else {
+        let notLoggedInMessage = $(document.createElement("p")).addClass("rn_notes-placeholder")
+            .text(" to take notes.");
+        let logInButton = $(document.createElement("a")).addClass("rn_notes-placeholder-login").text("Log in");
 
-		notLoggedInMessage.prepend(logInButton);
-		container.append(notLoggedInMessage);
-	}
+        notLoggedInMessage.prepend(logInButton);
+        container.append(notLoggedInMessage);
+    }
 };
 
 const buildNoteInput = () => {
-	let inputForm = $(document.createElement("div")).attr({id: "rn_input-form"});
-	let inputLimit = $(document.createElement("span")).text("255").attr({id: "rn_input-limit"});
-	let input = $(document.createElement("p")).attr({id: "rn_note-input", placeholder: "Type here...", maxlength: 300, "contenteditable": true});
-	let pinIcon = $(document.createElement("img")).attr({
-		src: chrome.runtime.getURL("assets/img/thumbtack_dark.svg"),
-		class: "pin-icon"
-	});
-	let pinButton = $(document.createElement("button")).attr({
-		class: "rn_button-action gray",
-		id: "rn_pin"
-	}).append(pinIcon);
-	let submitButton = $(document.createElement("button")).attr({
-		class: "rn_button-action",
-		id: "rn_note-submit"
-	}).text("Add");
+    let inputForm = $(document.createElement("div")).attr({id: "rn_input-form"});
+    let inputLimit = $(document.createElement("span")).text("255").attr({id: "rn_input-limit"});
+    let input = $(document.createElement("p")).attr({
+        id: "rn_note-input",
+        placeholder: "Type here...",
+        maxlength: 300,
+        "contenteditable": true
+    });
+    let pinIcon = $(document.createElement("img")).attr({
+        src: chrome.runtime.getURL("assets/img/thumbtack_dark.svg"),
+        class: "pin-icon"
+    });
+    let pinButton = $(document.createElement("button")).attr({
+        class: "rn_button-action gray",
+        id: "rn_pin"
+    }).append(pinIcon);
+    let submitButton = $(document.createElement("button")).attr({
+        class: "rn_button-action",
+        id: "rn_note-submit"
+    }).text("Add");
 
-	inputForm.append([input, inputLimit, pinButton, submitButton]);
+    inputForm.append([input, inputLimit, pinButton, submitButton]);
 
-	return inputForm;
+    return inputForm;
 };
 
 const buildNoteBody = note => {
-	let noteBody = $(document.createElement("p"));
-	let pinIcon = $(document.createElement("img")).attr({
-		src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
-		class: "pin-icon"
-	});
+    let noteBody = $(document.createElement("p"));
+    let pinIcon = $(document.createElement("img")).attr({
+        src: chrome.runtime.getURL("assets/img/thumbtack_light.svg"),
+        class: "pin-icon"
+    });
 
-	if (note.content.length > 0) {
-		noteBody.text(note.content);
-		noteBody.linkify();
-		addClassToHashtags(noteBody);
-	} else {
-		noteBody.append(pinIcon);
-		noteBody.addClass("pin");
-	}
+    if (note.content.length > 0) {
+        noteBody.text(note.content);
+        noteBody.linkify();
+        addClassToHashtags(noteBody);
+    } else {
+        noteBody.append(pinIcon);
+        noteBody.addClass("pin");
+    }
 
-	return noteBody;
+    return noteBody;
 };
 
 function buildTimestampNotification() {
-	$(".timestamp-notification").remove();
+    $(".timestamp-notification").remove();
 
-	const playerContainer = $("#player-container");
-	const timestampNotification = $(document.createElement("div")).addClass("timestamp-notification");
-	const notification = $(document.createElement("p"))
-		.text("Your note is in editing mode. Change this note's timestamp by adjusting the current time the video is at (red timeline below).");
-	timestampNotification.append(notification).appendTo(playerContainer);
+    const playerContainer = $("#player-container");
+    const timestampNotification = $(document.createElement("div")).addClass("timestamp-notification");
+    const notification = $(document.createElement("p"))
+        .text("Your note is in editing mode. Change this note's timestamp by adjusting the current time the video is at (red timeline below).");
+    timestampNotification.append(notification).appendTo(playerContainer);
 }
 
 function appendNotesLimit() {
-	chrome.runtime.sendMessage({type: "getUserOverview"}, ({noteCount, noteLimit}) => {
-		let widget = $("#rn_widget");
+    chrome.runtime.sendMessage({type: "getUserOverview"}, ({noteCount, noteLimit, accountLevel}) => {
+        let widget = $("#rn_widget");
 
-		if (noteLimit < 1000) {
+        if (accountLevel !== "unlimited") {
             let notesRemaining = noteLimit - noteCount;
-            let notesRemainingText = $(document.createElement("p")).html("<span id='notes-remaining'>" + notesRemaining+ "</span>" + " notes remaining");
-            let upgradeLink = $(document.createElement("a")).attr({href: "https://getrocketnote.com/pricing", target: "_blank"}).text("upgrade storage");
+            let notesRemainingText = $(document.createElement("p")).html("<span id='notes-remaining'>" + notesRemaining + "</span>" + " notes remaining");
+            let upgradeLink = $(document.createElement("a")).attr({
+                href: "https://getrocketnote.com/pricing",
+                target: "_blank"
+            }).text("upgrade storage");
             let limitsUi = $(document.createElement("div")).addClass("limits-ui").append([notesRemainingText, upgradeLink]);
 
             widget.append(limitsUi);
         }
-	});
+    });
 }
