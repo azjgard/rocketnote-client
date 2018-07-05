@@ -59,7 +59,7 @@ const addRecentNotesToPopup = () => {
 		}
 
 		if (note.content.length > 0) {
-			noteContents.text(note.content.trunc(95) + " | " + channelName);
+			noteContents.text(note.content.trunc(95));
 			noteContents.linkify();
 			addClassToHashtags(noteBody);
 		} else {
