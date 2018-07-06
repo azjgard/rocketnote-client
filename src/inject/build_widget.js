@@ -11,7 +11,7 @@ const buildWidget = () => {
         src: chrome.runtime.getURL("assets/img/settings_gray.svg")
     });
     let dashboardLink = $(document.createElement("a")).attr({
-        href: "https://getrocketnote.com/notes",
+        href: "https://getrocketnote.com/notes?ref=widget",
         target: "_blank",
         class: "rn_dashboard-link"
     }).text("view all");
@@ -145,7 +145,7 @@ function appendNotesLimit() {
             let notesRemaining = noteLimit - noteCount;
             let notesRemainingText = $(document.createElement("p")).html("<span id='notes-remaining'>" + notesRemaining + "</span>" + " notes remaining");
             let upgradeLink = $(document.createElement("a")).attr({
-                href: "https://getrocketnote.com/pricing",
+                href: "https://getrocketnote.com/pricing?ref=widget",
                 target: "_blank"
             }).text("upgrade storage");
             let limitsUi = $(document.createElement("div")).addClass("limits-ui").append([notesRemainingText, upgradeLink]);

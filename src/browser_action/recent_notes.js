@@ -26,7 +26,7 @@ const addRecentNotesToPopup = () => {
 		} else {
 			let onboardPlaceholder = $(document.createElement("div")).addClass("onboard-placeholder");
 			let onboardText = $(document.createElement("p")).text("You have not added notes. ");
-			let onboardLink = $(document.createElement("a")).text("Learn how.").attr({href: "https://getrocketnote.com/getting-started", target: "_blank"});
+			let onboardLink = $(document.createElement("a")).text("Learn how.").attr({href: "https://getrocketnote.com/getting-started?ref=popup", target: "_blank"});
 
 			onboardText.append(onboardLink).appendTo(onboardPlaceholder);
 			recentNotesContainer.append(onboardPlaceholder);
