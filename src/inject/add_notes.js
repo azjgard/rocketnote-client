@@ -15,7 +15,6 @@ const addNote = (isPin, content) => {
 	note.meta.channelName = $(".iv-branding-context-name").text();
 	note.meta.channelUrl = "https://youtube.com" + $("a.ytd-video-owner-renderer").attr("href");
 	note.meta.videoCategory = $(".description").find("#collapsible a").text() || "undefined";
-	note.meta.userChannel = $(".ytp-watch-later-button").attr("title").replace("Watch later as ", "") || "undefined";
 
 	submitNote(note);
 
