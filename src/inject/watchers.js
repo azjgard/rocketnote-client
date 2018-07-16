@@ -9,7 +9,7 @@ const initWatchers = () => {
 	watchKeyForNoteSubmit(13); 			// `ENTER` for add note
 	watchEnableEditActions(219);					// `[` for toggle edit actions
 	watchTimestampForCurrentVideo();
-	watchForPlaylist();
+	// watchForPlaylist(); need to fix with new youtube miniplayer.
 	watchForLiveVideo();
 	watchMouseSelection();
 	watchButtonForEditNote();
