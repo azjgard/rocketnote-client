@@ -218,7 +218,10 @@ p[placeholder]:empty:focus:before {
 
 .settings-button {
 	background-color: transparent;
-	height: 30px;
+	height: 25px;
+	margin-bottom: 5px;
+	margin-left: 0;
+	margin-right: -5px;
 	padding: 5px;
 	width: 30px;
 }
@@ -232,13 +235,16 @@ p[placeholder]:empty:focus:before {
 	width: 100%;
 }
 
+#rn_action-bar {
+	height: 20px;
+	padding: 5px;
+	text-align: left;
+	width: 100%;
+}
+
 .rn_dashboard-link {
 	color: var(--link-color);
-	left: 15px;
-	height: 24px;
-	position: absolute;
 	text-decoration: none;
-	top: 20px;
 }
 
 .rn_dashboard-link:visited {

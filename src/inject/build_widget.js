@@ -5,19 +5,10 @@ const buildWidget = () => {
     let widgetAttr = {id: "rn_widget"};
     let noteContainer = buildNoteContainer();
     let noteInput = buildNoteInput();
-    let settingsButton = $(document.createElement("button")).attr({id: "rn_enable-edit", class: "rn_button-action settings-button"});
-    let settingsIcon = $(document.createElement("img")).attr({
-        class: "settings-icon",
-        src: chrome.runtime.getURL("assets/img/options.svg")
-    });
-    let dashboardLink = $(document.createElement("a")).attr({
-        href: "https://getrocketnote.com/notes?ref=widget",
-        target: "_blank",
-        class: "rn_dashboard-link"
-    }).text("view all");
-    settingsButton.append(settingsIcon);
+    let actionBar = buildActionBar();
+
     widget.attr(widgetAttr);
-    widget.append([settingsButton, noteContainer, noteInput, dashboardLink]);
+    widget.append([actionBar, noteContainer, noteInput]);
     relatedContent.prepend(widget.hide().delay().fadeIn(300));
     noteContainer.scrollTop(noteContainer[0].scrollHeight);
 };
@@ -27,6 +18,22 @@ const buildNoteContainer = () => {
     noteContainer.attr({id: "rn_note-container"});
     buildExistingNotes(noteContainer);
     return noteContainer;
+};
+
+const buildActionBar = () => {
+    let actionBar = $(document.createElement("div"));
+    actionBar.attr({
+       id: "rn_action-bar",
+    });
+    let dashboardLink = $(document.createElement("a")).attr({
+        href: "https://getrocketnote.com/notes?ref=widget",
+        target: "_blank",
+        class: "rn_dashboard-link"
+    }).text("view all");
+
+    actionBar.append(dashboardLink);
+
+    return actionBar;
 };
 
 const buildExistingNotes = container => {

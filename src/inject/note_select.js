@@ -22,7 +22,7 @@ function watchNoteSelect() {
 
         };
 
-        $("#rn_edit-button").attr(editAttributes).text("Add");
+        // $("#rn_edit-button").attr(editAttributes).text("Add");
     }
 
     function changeButtonsToEditAndDelete() {
@@ -35,7 +35,7 @@ function watchNoteSelect() {
 
         };
 
-        $("#rn_note-submit").attr(editAttributes).text("Edit");
+        // $("#rn_note-submit").attr(editAttributes).text("Edit");
     }
 
     function showClearAllButton() {
