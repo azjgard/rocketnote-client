@@ -5,10 +5,10 @@ const buildWidget = () => {
     let widgetAttr = {id: "rn_widget"};
     let noteContainer = buildNoteContainer();
     let noteInput = buildNoteInput();
-    let settingsButton = $(document.createElement("button")).attr({id: "rn_enable-edit", class: "rn_button-action"});
+    let settingsButton = $(document.createElement("button")).attr({id: "rn_enable-edit", class: "rn_button-action settings-button"});
     let settingsIcon = $(document.createElement("img")).attr({
         class: "settings-icon",
-        src: chrome.runtime.getURL("assets/img/settings_gray.svg")
+        src: chrome.runtime.getURL("assets/img/options.svg")
     });
     let dashboardLink = $(document.createElement("a")).attr({
         href: "https://getrocketnote.com/notes?ref=widget",

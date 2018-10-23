@@ -196,7 +196,8 @@ p[placeholder]:empty:focus:before {
 	background-color: var(--pin-button-hover-color);
 }
 
-#rn_note-submit {
+#rn_note-submit,
+#rn_edit-button {
 	padding: 5px 20px;
 }
 
@@ -215,13 +216,20 @@ p[placeholder]:empty:focus:before {
 	transform: translateY(-50%);
 }
 
-#rn_enable-edit {
+.settings-button {
 	background-color: transparent;
-	padding: 0;
+	height: 30px;
+	padding: 5px;
+	width: 30px;
+}
+
+.settings-button:hover {
+	background-color: transparent;
 }
 
 .settings-icon {
-	height: 30px;
+	height: 100%;
+	width: 100%;
 }
 
 .rn_dashboard-link {
@@ -671,4 +679,13 @@ h1.section-header {
 
 .limits-ui a:hover {
 	text-decoration: underline;
+}
+
+#rn_note-container .existing-note.selected {
+	background-color: #cce6fa;
+}
+
+#rn_note-container .existing-note.selected + .existing-note.selected {
+	border-top: 1px solid #9db6ca;
+	padding: 4px 5px 5px;
 }

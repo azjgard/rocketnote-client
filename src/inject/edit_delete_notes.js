@@ -38,6 +38,9 @@ const editNote = e => {
 		});
 	});
 
+	existingNote.attr("originalContent", noteBody.text());
+	existingNote.find(".timestamp").attr("originalDuration", newTimestamp);
+
 	stopWatchingTimestamp();
 };
 
@@ -164,7 +167,6 @@ const watchForEditNote = () => {
 const watchButtonForEditNote = () => {
 	$(document).on("click", ".rn_edit-button", (e) => {
 		switchToEditNoteMode(e);
-		swapImage($("#rn_enable-edit").find("img"), "settings_gray.svg", "checkmark_gray.svg");
 	});
 
 	$(document).on("dblclick", "#rn_note-container .existing-note", (e) => {
@@ -178,13 +180,11 @@ const watchEnableEditActions = keyCode => {
 	$(document).keyup(function (e) {
 		if (e.keyCode === keyCode && !shortcutKeyShouldBePrevented(e)) {
 			enableEdit();
-			swapImage($("#rn_enable-edit").find("img"), "settings_gray.svg", "checkmark_gray.svg");
 		}
 	});
 
 	$(document).on("click", "#rn_enable-edit", () => {
 		enableEdit();
-		swapImage($("#rn_enable-edit").find("img"), "settings_gray.svg", "checkmark_gray.svg");
 	});
 
 	function enableEdit() {
