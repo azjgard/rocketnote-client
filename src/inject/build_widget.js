@@ -154,7 +154,7 @@ function appendNotesLimit() {
             let upgradeLink = $(document.createElement("a")).attr({
                 href: "https://getrocketnote.com/pricing?ref=widget",
                 target: "_blank"
-            }).text("upgrade storage");
+            }).text("UNLIMITED for $2/mo");
             let limitsUi = $(document.createElement("div")).addClass("limits-ui").append([notesRemainingText, upgradeLink]);
 
             widget.append(limitsUi);
